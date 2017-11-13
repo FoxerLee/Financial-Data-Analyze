@@ -1,5 +1,8 @@
 Webservice/.idea/
-target/
+Webservice/target/
+
+NewSpider/.idea/
+NewSpider/target/
 
 # Compiled class file
 *.class
