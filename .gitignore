@@ -1,5 +1,5 @@
-/.idea
-*.xml
+Webservice/.idea/
+target/
 
 # Compiled class file
 *.class
