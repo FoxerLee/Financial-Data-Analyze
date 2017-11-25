@@ -41,8 +41,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
         System.out.println("开始爬取...");
         for(;username<=15000;username++) {
             startTime = System.currentTimeMillis();
-            Spider.create(my).addUrl("http://donghua.dmzj.com/donghua_info/" + username + ".html").thread(5).run();
-            //addPipeline(new JsonFilePipeline("/Users/liyuan/Desktop/test/"));
+            Spider.create(my).addUrl("http://donghua.dmzj.com/donghua_info/" + username + ".html").addPipeline(new JsonFilePipeline("/Users/liyuan/Desktop/test/")).thread(5).run();
             endTime = System.currentTimeMillis();
             System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
         }

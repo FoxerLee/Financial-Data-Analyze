@@ -148,6 +148,13 @@ CREATE TABLE company_info(
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE connect(
+	code VARCHAR(6) NOT NULL,
+	name VARCHAR(50) NOT NULL,
+	c_name VARCHAR(50) NULL,
+	PRIMARY KEY (code)
+);
+
 
 
 
