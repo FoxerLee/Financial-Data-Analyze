@@ -2,9 +2,15 @@
 42030001 Spring2017 JavaEE by hongfei FAN @ SSE, TJU
 
 ## Framework
-- Front-end:
-- Back-end: Spring Boot
-- Database: Microsoft SQL Server Express Edition 2008
+- Front-end: HTML5 & Angular.js
+- Back-end: Spring Boot & Mybatis
+- Database: MySQL5.6.25
+
+<div  align="center"> 
+
+<img src="http://ac-deijvnqa.clouddn.com/4e0856a2557eab3e436a.png" style="zoom:50%" />
+
+</div>
 
 ## Data Sources
 **tushare**
