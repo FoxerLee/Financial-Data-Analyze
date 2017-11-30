@@ -19,6 +19,7 @@ CREATE TABLE data_days(
 	high_value DOUBLE NOT NULL,
 	low_value DOUBLE NOT NULL,
 	volume_value DOUBLE NOT NULL,
+	his_volume_value DOUBLE NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -31,6 +32,7 @@ CREATE TABLE data_weeks(
 	high_value DOUBLE NOT NULL,
 	low_value DOUBLE NOT NULL,
 	volume_value DOUBLE NOT NULL,
+	his_volume_value DOUBLE NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -43,6 +45,7 @@ CREATE TABLE data_months(
 	high_value DOUBLE NOT NULL,
 	low_value DOUBLE NOT NULL,
 	volume_value DOUBLE NOT NULL,
+	his_volume_value DOUBLE NOT NULL,
 	PRIMARY KEY (id)
 );
 
