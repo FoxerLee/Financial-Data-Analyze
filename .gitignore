@@ -1,8 +1,4 @@
-Webservice/.idea/
-Webservice/target/
-
-NewSpider/.idea/
-NewSpider/target/
+*.pyc
 
 ### STS ###
 .apt_generated

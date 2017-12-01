@@ -235,6 +235,13 @@ CREATE TABLE self_stocking(
 	PRIMARY KEY (user_id, code)
 );				
 
+CREATE TABLE news(
+	code VARCHAR(6) NOT NULL,
+	name VARCHAR(1000) NULL,
+	url VARCHAR(1000) NULL,
+	click INT NULL
+	PRIMARY KEY (code)
+);
 
 
 
