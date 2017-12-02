@@ -79,14 +79,14 @@ def getData(select,flag, start,end,st):
                 conn = mysql.connector.connect(**config)
                 cursor=conn.cursor()
 
-                # sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
-                # cursor.execute(sql)
-                # add_volume = 0.0
-                # try:
-                #     for volume_value in cursor:
-                #         add_volume = row['volume'] - volume_value
-                # except:
-                #     add_volume = row['volume']
+                sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
+                cursor.execute(sql)
+                add_volume = 0.0
+                try:
+                    for volume_value in cursor:
+                        add_volume = row['volume'] - volume_value
+                except:
+                    add_volume = row['volume']
                 add_volume = row['volume']
                 params.append((str(row['code']), inTime, row['open'], row['trade'],
                            row['high'], row['low'], add_volume))
