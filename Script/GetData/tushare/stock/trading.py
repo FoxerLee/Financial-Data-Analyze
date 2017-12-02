@@ -134,6 +134,24 @@ def _parsing_dayprice_json(types=None, page=1, flag=0):
             # Then we install this opener as the default opener for urllib2:
             # urllib2.install_opener(opener)
             text = opener.open(myurl,timeout=10).read()
+        # elif flag == 2:
+            # proxy_info = {'host': '10.60.42.201',
+            #               'port': 13143
+            #               }
+
+        #     # proxy_info = {'host': '120.78.142.72',
+        #     #               'port': 8888
+        #     #               }
+
+        #     # We create a handler for the proxy
+        #     proxy_support = urllib2.ProxyHandler({"http": "http://%(host)s:%(port)d" % proxy_info})
+
+        #     # We create an opener which uses this handler:
+        #     opener = urllib2.build_opener(proxy_support)
+
+        #     # Then we install this opener as the default opener for urllib2:
+        #     # urllib2.install_opener(opener)
+        #     text = opener.open(myurl,timeout=10).read()
         else:
             text = urllib2.urlopen(myurl,timeout=10).read()
             # print "request"
@@ -366,12 +384,15 @@ def get_today_all(flag=0,start=1,end = 60,st = False):
                 continue
 
             if newdf is None:
-                print "the middle None"
+                print "the middle None " + str(end) 
+
                 continue
             df = df.append(newdf, ignore_index=True)
 
             if flag == 0:
                 flag = 1
+            # elif flag == 1:
+            #     flag = 2
             else:
                 flag = 0
     # if st:

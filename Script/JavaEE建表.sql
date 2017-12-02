@@ -2,11 +2,11 @@ CREATE TABLE data_real_time(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -14,12 +14,11 @@ CREATE TABLE data_days(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
-	his_volume_value DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -27,25 +26,24 @@ CREATE TABLE data_weeks(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
-	his_volume_value DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
 	PRIMARY KEY (id)
 );
+
 
 CREATE TABLE data_months(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
-	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
-	his_volume_value DOUBLE NOT NULL,
+	trading_day DATETIME NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -66,11 +64,11 @@ CREATE TABLE warehouse_data_real_time(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -78,14 +76,14 @@ CREATE TABLE warehouse_data_days(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
-	ma5 DOUBLE NOT NULL,
-	ma10 DOUBLE NOT NULL,
-	ma20 DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
+	-- ma5 DOUBLE NOT NULL,
+	-- ma10 DOUBLE NOT NULL,
+	-- ma20 DOUBLE NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -93,14 +91,14 @@ CREATE TABLE warehouse_data_weeks(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
-	ma5 DOUBLE NOT NULL,
-	ma10 DOUBLE NOT NULL,
-	ma20 DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
+	-- ma5 DOUBLE NOT NULL,
+	-- ma10 DOUBLE NOT NULL,
+	-- ma20 DOUBLE NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -108,14 +106,14 @@ CREATE TABLE warehouse_data_months(
 	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	trading_day DATETIME NOT NULL,
-	open_value DOUBLE NOT NULL,
-	close_value DOUBLE NOT NULL,
-	high_value DOUBLE NOT NULL,
-	low_value DOUBLE NOT NULL,
-	volume_value DOUBLE NOT NULL,
-	ma5 DOUBLE NOT NULL,
-	ma10 DOUBLE NOT NULL,
-	ma20 DOUBLE NOT NULL,
+	open_value DOUBLE NULL,
+	close_value DOUBLE NULL,
+	high_value DOUBLE NULL,
+	low_value DOUBLE NULL,
+	volume_value DOUBLE NULL,
+	-- ma5 DOUBLE NOT NULL,
+	-- ma10 DOUBLE NOT NULL,
+	-- ma20 DOUBLE NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -236,11 +234,12 @@ CREATE TABLE self_stocking(
 );				
 
 CREATE TABLE news(
+	id INT NOT NULL AUTO_INCREMENT,
 	code VARCHAR(6) NOT NULL,
 	name VARCHAR(1000) NULL,
 	url VARCHAR(1000) NULL,
-	click INT NULL
-	PRIMARY KEY (code)
+	click INT NULL,
+	PRIMARY KEY (id)
 );
 
 

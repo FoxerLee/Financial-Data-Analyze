@@ -27,6 +27,9 @@ def Timer():
         if flag == 0:
             Process(target=DealData, args=(flag,)).start()
             flag = 1
+        # elif flag == 1:
+        #     Process(target=DealData, args=(flag,)).start()
+        #     flag = 2
         else:
             Process(target=DealData, args=(flag,)).start()
             flag = 0
@@ -72,8 +75,21 @@ def getData(select,flag, start,end,st):
     try:
         for index, row in data.iterrows():
             if row['code'][0] == '6' or row['code'][0] == '0':
+                config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
+                conn = mysql.connector.connect(**config)
+                cursor=conn.cursor()
+
+                # sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
+                # cursor.execute(sql)
+                # add_volume = 0.0
+                # try:
+                #     for volume_value in cursor:
+                #         add_volume = row['volume'] - volume_value
+                # except:
+                #     add_volume = row['volume']
+                add_volume = row['volume']
                 params.append((str(row['code']), inTime, row['open'], row['trade'],
-                           row['high'], row['low'], row['volume']))
+                           row['high'], row['low'], add_volume))
     except:
         print "data null"
     # print params

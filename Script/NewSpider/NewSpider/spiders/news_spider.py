@@ -45,14 +45,14 @@ class newSpider(Spider):
     # headers = {
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
     # }
-    headers = RandomHeaders.LoadHeader()
+    # headers = RandomHeaders.LoadHeader()
     conn.close()
     cursor.close()
 
     def start_requests(self):
         # url = 'https://book.douban.com/tag/小说'
         for start_url in self.start_urls:
-            yield Request(start_url, headers=self.headers)
+            yield Request(start_url, headers=RandomHeaders.LoadHeader())
 
     def parse(self, response):
         config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'javaEE',
