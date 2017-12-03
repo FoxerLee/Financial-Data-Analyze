@@ -13,12 +13,12 @@ import mysql.connector
 reload(sys)  # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
 
-conn1 = None
-conn2 = None
-conn3 = None
-cursor1 = None
-cursor2 = None
-cursor3 = None
+# conn1 = None
+# conn2 = None
+# conn3 = None
+# cursor1 = None
+# cursor2 = None
+# cursor3 = None
 
 
 def Timer():
@@ -38,7 +38,7 @@ def Timer():
 
 def DealData(flag):
 
-    global conn1, cursor1, conn2, cursor2, conn3, cursor3
+    # global conn1, cursor1, conn2, cursor2, conn3, cursor3
 
     start_time = datetime.datetime.now()
 
@@ -47,7 +47,7 @@ def DealData(flag):
     p1 = Process(target=getData, args=(1,flag,1,10, False))
     p2 = Process(target=getData, args=(2,flag,10,20, False))
     p3 = Process(target=getData, args=(3,flag,20,30, True))
-    p4 = Process(target=getData, args=(4, flag,30, 44, False))
+    p4 = Process(target=getData, args=(4, flag,30,44, False))
 
     p1.start()
     p2.start()
@@ -73,25 +73,30 @@ def getData(select,flag, start,end,st):
     inTime = GetTime()
     params=[]
     try:
+        config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
+        conn = mysql.connector.connect(**config)
+        cursor=conn.cursor()
         for index, row in data.iterrows():
             if row['code'][0] == '6' or row['code'][0] == '0':
-                config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
-                conn = mysql.connector.connect(**config)
-                cursor=conn.cursor()
+                
 
-                # sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
-                # cursor.execute(sql)
-                # add_volume = 0.0
-                # try:
-                #     for volume_value in cursor:
-                #         add_volume = row['volume'] - volume_value
-                # except:
-                #     add_volume = row['volume']
+                sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
+                cursor.execute(sql)
+                add_volume = 0.0
+                try:
+                    for volume_value in cursor:
+                        add_volume = row['volume'] - volume_value
+                except:
+                    add_volume = row['volume']
                 add_volume = row['volume']
                 params.append((str(row['code']), inTime, row['open'], row['trade'],
                            row['high'], row['low'], add_volume))
+                conn.close()
+                cursor.close()
     except:
-        print "data null"
+        # print "data null"
+        conn.close()
+        cursor.close()
     # print params
     store(select,params)
 
@@ -99,16 +104,21 @@ def getData(select,flag, start,end,st):
 
 
 def store(select,params):
-    global conn1, cursor1, conn2, cursor2, conn3, cursor3
-
-    config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
-    conn = mysql.connector.connect(**config)
-    cursor=conn.cursor()
-    sql = "INSERT INTO data_real_time VALUES(NULL,%s,%s,%s,%s,%s,%s,%s)"
-    cursor.executemany(sql, params)
-    # cursor.commit()
-    cursor.execute("Commit;")
-    print "success"
+    # global conn1, cursor1, conn2, cursor2, conn3, cursor3
+    try:
+        config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
+        conn = mysql.connector.connect(**config)
+        cursor=conn.cursor()
+        sql = "INSERT INTO data_real_time VALUES(NULL,%s,%s,%s,%s,%s,%s,%s)"
+        cursor.executemany(sql, params)
+        # cursor.commit()
+        cursor.execute("Commit;")
+        conn.close()
+        cursor.close()
+        print "success"
+    except:
+        conn.close()
+        cursor.close()
 
 def GetTime():
 
@@ -119,18 +129,18 @@ def GetTime():
     s_time = s_time[:nPos]
     return s_time
 
-def close():
-    global conn1, cursor1, conn2, cursor2, conn3, cursor3
-    try:
-        conn1.close()
-        cursor1.close()
-        conn2.close()
-        cursor2.close()
-        conn3.close()
-        cursor3.close()
-    except Exception,e:
-        print e
-        pass
+# def close():
+#     global conn1, cursor1, conn2, cursor2, conn3, cursor3
+#     try:
+#         conn1.close()
+#         cursor1.close()
+#         conn2.close()
+#         cursor2.close()
+#         conn3.close()
+#         cursor3.close()
+#     except Exception,e:
+#         print e
+#         pass
 
 if __name__ == '__main__':
 
@@ -138,7 +148,7 @@ if __name__ == '__main__':
     try:
         Timer()
     except Exception,e:
-        close()
+        # close()
         print e
 
     # print GetTime()
