@@ -1,4 +1,4 @@
-package edu.tongji.demo.Dao;
+package edu.tongji.demo.Mapping;
 
 import edu.tongji.demo.Model.SelfStockingKey;
 
