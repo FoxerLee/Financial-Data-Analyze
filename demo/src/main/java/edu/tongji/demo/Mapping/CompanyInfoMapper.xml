@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.tongji.demo.Dao.CompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="edu.tongji.demo.Model.CompanyInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="listing_price" jdbcType="DOUBLE" property="listingPrice" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.tongji.demo.Model.CompanyInfoWithBLOBs">
+    <result column="name" jdbcType="LONGVARCHAR" property="name" />
+    <result column="lead_underwriter" jdbcType="LONGVARCHAR" property="leadUnderwriter" />
+    <result column="en_name" jdbcType="LONGVARCHAR" property="enName" />
+    <result column="total_name" jdbcType="LONGVARCHAR" property="totalName" />
+    <result column="listing_date" jdbcType="LONGVARCHAR" property="listingDate" />
+    <result column="establish_date" jdbcType="LONGVARCHAR" property="establishDate" />
+    <result column="organization" jdbcType="LONGVARCHAR" property="organization" />
+    <result column="scope" jdbcType="LONGVARCHAR" property="scope" />
+    <result column="market" jdbcType="LONGVARCHAR" property="market" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, listing_price
+  </sql>
+  <sql id="Blob_Column_List">
+    name, lead_underwriter, en_name, total_name, listing_date, establish_date, organization, 
+    scope, market
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from company_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tongji.demo.Model.CompanyInfoWithBLOBs">
+    insert into company_info (id, code, listing_price, 
+      name, lead_underwriter, en_name, 
+      total_name, listing_date, establish_date, 
+      organization, scope, market
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{listingPrice,jdbcType=DOUBLE}, 
+      #{name,jdbcType=LONGVARCHAR}, #{leadUnderwriter,jdbcType=LONGVARCHAR}, #{enName,jdbcType=LONGVARCHAR}, 
+      #{totalName,jdbcType=LONGVARCHAR}, #{listingDate,jdbcType=LONGVARCHAR}, #{establishDate,jdbcType=LONGVARCHAR}, 
+      #{organization,jdbcType=LONGVARCHAR}, #{scope,jdbcType=LONGVARCHAR}, #{market,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tongji.demo.Model.CompanyInfoWithBLOBs">
+    insert into company_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="listingPrice != null">
+        listing_price,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="leadUnderwriter != null">
+        lead_underwriter,
+      </if>
+      <if test="enName != null">
+        en_name,
+      </if>
+      <if test="totalName != null">
+        total_name,
+      </if>
+      <if test="listingDate != null">
+        listing_date,
+      </if>
+      <if test="establishDate != null">
+        establish_date,
+      </if>
+      <if test="organization != null">
+        organization,
+      </if>
+      <if test="scope != null">
+        scope,
+      </if>
+      <if test="market != null">
+        market,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="listingPrice != null">
+        #{listingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leadUnderwriter != null">
+        #{leadUnderwriter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="enName != null">
+        #{enName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="totalName != null">
+        #{totalName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="listingDate != null">
+        #{listingDate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="establishDate != null">
+        #{establishDate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="organization != null">
+        #{organization,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="scope != null">
+        #{scope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="market != null">
+        #{market,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tongji.demo.Model.CompanyInfoWithBLOBs">
+    update company_info
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="listingPrice != null">
+        listing_price = #{listingPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="leadUnderwriter != null">
+        lead_underwriter = #{leadUnderwriter,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="enName != null">
+        en_name = #{enName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="totalName != null">
+        total_name = #{totalName,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="listingDate != null">
+        listing_date = #{listingDate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="establishDate != null">
+        establish_date = #{establishDate,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="organization != null">
+        organization = #{organization,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="scope != null">
+        scope = #{scope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="market != null">
+        market = #{market,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.tongji.demo.Model.CompanyInfoWithBLOBs">
+    update company_info
+    set code = #{code,jdbcType=VARCHAR},
+      listing_price = #{listingPrice,jdbcType=DOUBLE},
+      name = #{name,jdbcType=LONGVARCHAR},
+      lead_underwriter = #{leadUnderwriter,jdbcType=LONGVARCHAR},
+      en_name = #{enName,jdbcType=LONGVARCHAR},
+      total_name = #{totalName,jdbcType=LONGVARCHAR},
+      listing_date = #{listingDate,jdbcType=LONGVARCHAR},
+      establish_date = #{establishDate,jdbcType=LONGVARCHAR},
+      organization = #{organization,jdbcType=LONGVARCHAR},
+      scope = #{scope,jdbcType=LONGVARCHAR},
+      market = #{market,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tongji.demo.Model.CompanyInfo">
+    update company_info
+    set code = #{code,jdbcType=VARCHAR},
+      listing_price = #{listingPrice,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

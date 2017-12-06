@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.tongji.demo.Dao.ProfileDataMapper">
+  <resultMap id="BaseResultMap" type="edu.tongji.demo.Model.ProfileData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="roe" jdbcType="DOUBLE" property="roe" />
+    <result column="net_profit_ratio" jdbcType="DOUBLE" property="netProfitRatio" />
+    <result column="gross_profit_ratio" jdbcType="DOUBLE" property="grossProfitRatio" />
+    <result column="net_profits" jdbcType="DOUBLE" property="netProfits" />
+    <result column="eps" jdbcType="DOUBLE" property="eps" />
+    <result column="business_income" jdbcType="DOUBLE" property="businessIncome" />
+    <result column="bips" jdbcType="DOUBLE" property="bips" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, name, roe, net_profit_ratio, gross_profit_ratio, net_profits, eps, business_income, 
+    bips
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from profile_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from profile_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tongji.demo.Model.ProfileData">
+    insert into profile_data (id, code, name, 
+      roe, net_profit_ratio, gross_profit_ratio, 
+      net_profits, eps, business_income, 
+      bips)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{roe,jdbcType=DOUBLE}, #{netProfitRatio,jdbcType=DOUBLE}, #{grossProfitRatio,jdbcType=DOUBLE}, 
+      #{netProfits,jdbcType=DOUBLE}, #{eps,jdbcType=DOUBLE}, #{businessIncome,jdbcType=DOUBLE}, 
+      #{bips,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tongji.demo.Model.ProfileData">
+    insert into profile_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="roe != null">
+        roe,
+      </if>
+      <if test="netProfitRatio != null">
+        net_profit_ratio,
+      </if>
+      <if test="grossProfitRatio != null">
+        gross_profit_ratio,
+      </if>
+      <if test="netProfits != null">
+        net_profits,
+      </if>
+      <if test="eps != null">
+        eps,
+      </if>
+      <if test="businessIncome != null">
+        business_income,
+      </if>
+      <if test="bips != null">
+        bips,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roe != null">
+        #{roe,jdbcType=DOUBLE},
+      </if>
+      <if test="netProfitRatio != null">
+        #{netProfitRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="grossProfitRatio != null">
+        #{grossProfitRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="netProfits != null">
+        #{netProfits,jdbcType=DOUBLE},
+      </if>
+      <if test="eps != null">
+        #{eps,jdbcType=DOUBLE},
+      </if>
+      <if test="businessIncome != null">
+        #{businessIncome,jdbcType=DOUBLE},
+      </if>
+      <if test="bips != null">
+        #{bips,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tongji.demo.Model.ProfileData">
+    update profile_data
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roe != null">
+        roe = #{roe,jdbcType=DOUBLE},
+      </if>
+      <if test="netProfitRatio != null">
+        net_profit_ratio = #{netProfitRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="grossProfitRatio != null">
+        gross_profit_ratio = #{grossProfitRatio,jdbcType=DOUBLE},
+      </if>
+      <if test="netProfits != null">
+        net_profits = #{netProfits,jdbcType=DOUBLE},
+      </if>
+      <if test="eps != null">
+        eps = #{eps,jdbcType=DOUBLE},
+      </if>
+      <if test="businessIncome != null">
+        business_income = #{businessIncome,jdbcType=DOUBLE},
+      </if>
+      <if test="bips != null">
+        bips = #{bips,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tongji.demo.Model.ProfileData">
+    update profile_data
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      roe = #{roe,jdbcType=DOUBLE},
+      net_profit_ratio = #{netProfitRatio,jdbcType=DOUBLE},
+      gross_profit_ratio = #{grossProfitRatio,jdbcType=DOUBLE},
+      net_profits = #{netProfits,jdbcType=DOUBLE},
+      eps = #{eps,jdbcType=DOUBLE},
+      business_income = #{businessIncome,jdbcType=DOUBLE},
+      bips = #{bips,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

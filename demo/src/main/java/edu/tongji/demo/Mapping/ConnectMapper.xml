@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.tongji.demo.Dao.connectMapper">
-  <resultMap id="BaseResultMap" type="edu.tongji.demo.Model.connect">
+<mapper namespace="edu.tongji.demo.Dao.ConnectMapper">
+  <resultMap id="BaseResultMap" type="edu.tongji.demo.Model.Connect">
     <id column="code" jdbcType="VARCHAR" property="code" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="c_name" jdbcType="VARCHAR" property="cName" />
@@ -19,13 +19,13 @@
     delete from connect
     where code = #{code,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="edu.tongji.demo.Model.connect">
+  <insert id="insert" parameterType="edu.tongji.demo.Model.Connect">
     insert into connect (code, name, c_name
       )
     values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{cName,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.tongji.demo.Model.connect">
+  <insert id="insertSelective" parameterType="edu.tongji.demo.Model.Connect">
     insert into connect
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="code != null">
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.tongji.demo.Model.connect">
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tongji.demo.Model.Connect">
     update connect
     <set>
       <if test="name != null">
@@ -62,7 +62,7 @@
     </set>
     where code = #{code,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="edu.tongji.demo.Model.connect">
+  <update id="updateByPrimaryKey" parameterType="edu.tongji.demo.Model.Connect">
     update connect
     set name = #{name,jdbcType=VARCHAR},
       c_name = #{cName,jdbcType=VARCHAR}

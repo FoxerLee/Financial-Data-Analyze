@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.tongji.demo.Dao.SelfStockingMapper">
+  <resultMap id="BaseResultMap" type="edu.tongji.demo.Model.SelfStockingKey">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <id column="code" jdbcType="VARCHAR" property="code" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="edu.tongji.demo.Model.SelfStockingKey">
+    delete from self_stocking
+    where user_id = #{userId,jdbcType=INTEGER}
+      and code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="edu.tongji.demo.Model.SelfStockingKey">
+    insert into self_stocking (user_id, code)
+    values (#{userId,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tongji.demo.Model.SelfStockingKey">
+    insert into self_stocking
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

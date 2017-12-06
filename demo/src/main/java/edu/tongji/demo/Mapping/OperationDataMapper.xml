@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.tongji.demo.Dao.OperationDataMapper">
+  <resultMap id="BaseResultMap" type="edu.tongji.demo.Model.OperationData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="arturnover" jdbcType="DOUBLE" property="arturnover" />
+    <result column="arturndays" jdbcType="DOUBLE" property="arturndays" />
+    <result column="inventory_turnover" jdbcType="DOUBLE" property="inventoryTurnover" />
+    <result column="inventory_days" jdbcType="DOUBLE" property="inventoryDays" />
+    <result column="currentasset_turnover" jdbcType="DOUBLE" property="currentassetTurnover" />
+    <result column="currentasset_days" jdbcType="DOUBLE" property="currentassetDays" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, name, arturnover, arturndays, inventory_turnover, inventory_days, currentasset_turnover, 
+    currentasset_days
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from operation_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from operation_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.tongji.demo.Model.OperationData">
+    insert into operation_data (id, code, name, 
+      arturnover, arturndays, inventory_turnover, 
+      inventory_days, currentasset_turnover, currentasset_days
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{arturnover,jdbcType=DOUBLE}, #{arturndays,jdbcType=DOUBLE}, #{inventoryTurnover,jdbcType=DOUBLE}, 
+      #{inventoryDays,jdbcType=DOUBLE}, #{currentassetTurnover,jdbcType=DOUBLE}, #{currentassetDays,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.tongji.demo.Model.OperationData">
+    insert into operation_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="arturnover != null">
+        arturnover,
+      </if>
+      <if test="arturndays != null">
+        arturndays,
+      </if>
+      <if test="inventoryTurnover != null">
+        inventory_turnover,
+      </if>
+      <if test="inventoryDays != null">
+        inventory_days,
+      </if>
+      <if test="currentassetTurnover != null">
+        currentasset_turnover,
+      </if>
+      <if test="currentassetDays != null">
+        currentasset_days,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="arturnover != null">
+        #{arturnover,jdbcType=DOUBLE},
+      </if>
+      <if test="arturndays != null">
+        #{arturndays,jdbcType=DOUBLE},
+      </if>
+      <if test="inventoryTurnover != null">
+        #{inventoryTurnover,jdbcType=DOUBLE},
+      </if>
+      <if test="inventoryDays != null">
+        #{inventoryDays,jdbcType=DOUBLE},
+      </if>
+      <if test="currentassetTurnover != null">
+        #{currentassetTurnover,jdbcType=DOUBLE},
+      </if>
+      <if test="currentassetDays != null">
+        #{currentassetDays,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.tongji.demo.Model.OperationData">
+    update operation_data
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="arturnover != null">
+        arturnover = #{arturnover,jdbcType=DOUBLE},
+      </if>
+      <if test="arturndays != null">
+        arturndays = #{arturndays,jdbcType=DOUBLE},
+      </if>
+      <if test="inventoryTurnover != null">
+        inventory_turnover = #{inventoryTurnover,jdbcType=DOUBLE},
+      </if>
+      <if test="inventoryDays != null">
+        inventory_days = #{inventoryDays,jdbcType=DOUBLE},
+      </if>
+      <if test="currentassetTurnover != null">
+        currentasset_turnover = #{currentassetTurnover,jdbcType=DOUBLE},
+      </if>
+      <if test="currentassetDays != null">
+        currentasset_days = #{currentassetDays,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.tongji.demo.Model.OperationData">
+    update operation_data
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      arturnover = #{arturnover,jdbcType=DOUBLE},
+      arturndays = #{arturndays,jdbcType=DOUBLE},
+      inventory_turnover = #{inventoryTurnover,jdbcType=DOUBLE},
+      inventory_days = #{inventoryDays,jdbcType=DOUBLE},
+      currentasset_turnover = #{currentassetTurnover,jdbcType=DOUBLE},
+      currentasset_days = #{currentassetDays,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
