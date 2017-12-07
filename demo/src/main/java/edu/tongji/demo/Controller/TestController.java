@@ -3,7 +3,6 @@ package edu.tongji.demo.Controller;
 import edu.tongji.demo.Mapping.CompanyInfoMapper;
 import edu.tongji.demo.Mapping.ConnectMapper;
 import edu.tongji.demo.Model.CompanyInfo;
-import edu.tongji.demo.Model.Connect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
