@@ -20,6 +20,6 @@ public interface ConnectMapper {
 //    int updateByPrimaryKeySelective(Connect record);
 //
 //    int updateByPrimaryKey(Connect record);
-    @Select("select * from connect where code = ${code}")
-    ArrayList<Connect> getData(@Param("code") String code);
+    @Select("select code, name from connect where code = ${code}")
+    ArrayList<Connect> getDataByCode(@Param("code") String code);
 }
