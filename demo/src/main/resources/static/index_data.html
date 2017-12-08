@@ -3,13 +3,13 @@
 <head>
     <title>Home</title>
     <!-- jQuery-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/angular-1.5.8/angular.js"></script>
-    <script src="js/angular-1.5.8/angular-route.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/angular.js"></script>
+    <script src="../static/js/angular-route.js"></script>
 
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -46,342 +46,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;A股行业<span class="heat-map-title2">按成交量从前到后排列</span></p>
 
-    <div id="industry" class="content-grid" onclick="display(id)">
+    <div ng-repeat="n in industry" id="industry" class="content-grid" onclick="display(id)">
         <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc3">电子</div>
+            <div class="cc3">{{n.name}}</div>
             <div class="b-wrapper">
                 <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeElectronic}}</span>
-                    <span>行业涨跌额：{{industryChangeElectronic}}</span>
-                    <span>行业涨跌幅：{{industryPercentElectronic}}</span>
+                    <span>总成交额：{{n.turnover_p}}</span>
+                    <span>行业涨跌额：{{n.turnover_p}}</span>
+                    <span>行业涨跌幅：{{n.turnover}}</span>
                 </h2>
             </div>
         </a>
     </div>
-    <div id="industry2" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc1">化工</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeChemistry}}</span>
-                    <span>行业涨跌额：{{industryChangeChemistry}}</span>
-                    <span>行业涨跌幅：{{industryPercentChemistry}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry3" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc2">计算机</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeComputer}}</span>
-                    <span>行业涨跌额：{{industryChangeComputer}}</span>
-                    <span>行业涨跌幅：{{industryPercentComputer}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry4" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc3">机械设备</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeMachine}}</span>
-                    <span>行业涨跌额：{{industryChangeMachine}}</span>
-                    <span>行业涨跌幅：{{industryPercentMachine}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry5" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc4">医药生物</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeMedicine}}</span>
-                    <span>行业涨跌额：{{industryChangeMedicine}}</span>
-                    <span>行业涨跌幅：{{industryPercentMedicine}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry6" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc7">非银金融</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeNonbank}}</span>
-                    <span>行业涨跌额：{{industryChangeNonbank}}</span>
-                    <span>行业涨跌幅：{{industryPercentNonbank}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry7" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc2">有色金属</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeMetal}}</span>
-                    <span>行业涨跌额：{{industryChangeMetal}}</span>
-                    <span>行业涨跌幅：{{industryPercentMetal}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry8" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc6">通信</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeComunication}}</span>
-                    <span>行业涨跌额：{{industryChangeComunication}}</span>
-                    <span>行业涨跌幅：{{industryPercentComunication}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry9" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc8">计算机应用</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeAPP}}</span>
-                    <span>行业涨跌额：{{industryChangeAPP}}</span>
-                    <span>行业涨跌幅：{{industryPercentAPP}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry10" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc5">半导体</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeSemiconductor}}</span>
-                    <span>行业涨跌额：{{industryChangeSemiconductor}}</span>
-                    <span>行业涨跌幅：{{industryPercentSemiconductor}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry11" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc9">房地产</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeEstate}}</span>
-                    <span>行业涨跌额：{{industryChangeEstate}}</span>
-                    <span>行业涨跌幅：{{industryPercentEstate}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry12" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc4">化学制品</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeProduct}}</span>
-                    <span>行业涨跌额：{{industryChangeProduct}}</span>
-                    <span>行业涨跌幅：{{industryPercentProduct}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry13" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc3">通信设备</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交量：{{turnVolumeApparatus}}</span>
-                    <span>行业涨跌额：{{industryChangeApparatus}}</span>
-                    <span>行业涨跌幅：{{industryPercentApparatus}}</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry14" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc2">电气设备</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry15" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc1">银行</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry16" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc4">房地产开发</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry17" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc6">专用设备</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry18" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc8">传媒</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry19" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc6">建筑装饰</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry20" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc7">保险</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry21" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc8">建筑材料</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry22" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc9">食品饮料</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry23" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc1">光学光电子</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry24" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc3">汽车</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry25" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc6">钢铁</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div id="industry26" class="content-grid" onclick="display(id)">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc2">采掘</div>
-            <div class="b-wrapper">
-                <h2 class="b-animate b-from-left    b-delay03 ">
-                    <span>总成交额:</span>
-                    <span>行业涨跌额:</span>
-                    <span>行业涨跌幅:</span>
-                </h2>
-            </div>
-        </a>
-    </div>
-    <div class="content-grid">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc10">
-                none
-            </div>
 
-        </a>
-    </div>
-    <div class="content-grid">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc10">
-                none
-            </div>
-
-        </a>
-    </div>
-    <div class="content-grid">
-        <a class="b-link-stripe b-animate-go  thickbox">
-            <div class="cc10">
-                none
-            </div>
-
-        </a>
-    </div>
     <div class="content-grid">
         <a class="b-link-stripe b-animate-go  thickbox">
             <div class="cc10">
@@ -451,9 +128,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var app = angular.module('myApp', []);
     var style = new Array(40);
     app.controller('siteCtrl', function($scope, $http) {
+        $http.get("localhost:8080/Stock/GetAll")
+            .then(function (response) {
+                $scope.industry=response.data;
+            });
+    });
+
+       /* app.controller('siteCtrl', function($scope, $http) {
         $http.get("http://192.168.0.126:8080/news/user?code=601888")
             .then(function (response) {
-                $scope.industry = {};
                 $scope.names= [
                     {id:1,style:"cc2"}
                 ];
