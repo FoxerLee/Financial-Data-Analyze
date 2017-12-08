@@ -243,6 +243,16 @@ CREATE TABLE news(
 );
 
 
+CREATE TABLE industry(
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(100) NULL,
+	price DOUBLE NULL,
+	price_range VARCHAR(50) NULL,
+	turnover DOUBLE NULL,
+	turnover_p DOUBLE NULL,
+	PRIMARY KEY (id)
+);
+
 
 
 
