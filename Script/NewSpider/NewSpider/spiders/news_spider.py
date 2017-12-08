@@ -46,8 +46,9 @@ class newSpider(Spider):
     #     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36',
     # }
     # headers = RandomHeaders.LoadHeader()
-    conn.close()
     cursor.close()
+    conn.close()
+
 
     def start_requests(self):
         # url = 'https://book.douban.com/tag/小说'
@@ -91,8 +92,9 @@ class newSpider(Spider):
         sql = "INSERT INTO news VALUES(NULL,%s,%s,%s,%s)"
         cursor.executemany(sql, params)
         cursor.execute("Commit;")
-        conn.close()
         cursor.close()
+        conn.close()
+
 
 
 # cursor.execute("Commit;")

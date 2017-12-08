@@ -45,9 +45,17 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
 		</dependency>
 
+<<<<<<< HEAD
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 
+=======
+>>>>>>> 5730f8cb178c67225d05dec206761abbc9f49969
 	</dependencies>
 
 	<build>

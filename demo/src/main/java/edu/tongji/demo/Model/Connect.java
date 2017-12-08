@@ -1,6 +1,6 @@
 package edu.tongji.demo.Model;
 
-public class connect {
+public class Connect {
     private String code;
 
     private String name;
