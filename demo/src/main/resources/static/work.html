@@ -1,0 +1,110 @@
+
+<html>
+<head>
+    <title>Work</title>
+    <!-- jQuery-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular-1.5.8/angular.js"></script>
+    <script src="js/angular-1.5.8/angular-route.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kappe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+
+</head>
+<body>
+<div class="header"  ng-app="myApp" ng-controller="siteCtrl">
+    <div class="header-left">
+        <div class="logo">
+            <a href="index2.html">登录</a>
+        </div>
+        <div class="top-nav">
+            <ul >
+                <li><b class="white"></b></li>
+                <li><a href="index_data.html" class="black">A股热图</a></li>
+                <li><a href="work.html" class="black1" > 新闻资讯</a></li>
+                <li><a href="about.html" class="black2"> 个股信息</a></li>
+                <li class="active"><a> 个人主页</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!---->
+    <div class="content">
+        <div class="work">
+            <div class="work-top">
+                <div class="info">
+                    <h3>个人信息</h3>
+                    <img src="images/avantar.jpg">
+                    <ul class="likes">
+                        <li><a><i > </i>昵称：{{nickname}}</a></li>
+                        <li><span><i class="like"> </i>自选：{{choice}}</span></li>
+                        <li><a><i class="comment"> </i>邮箱：{{mailbox}}</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="work-in">
+                <div class="feature">
+                    <h3>自选股信息</h3>
+                    <ul ng-repeat="x in stockList" id="choiceList" class="feature-grid">
+                        <li><i id="2" onclick="del(id)"></i><a href="single.html">{{x.id}}</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+            <div class="clear"> </div>
+        </div>
+    </div>
+    <div class="clear"> </div>
+    <p class="footer-class-in">Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></p>
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    function del(id){
+        var x;
+        var index;
+        var number='';
+        var name=parseInt(id);
+        x=document.getElementById("choiceList");
+        var t=x.getElementsByTagName("li").length;
+        for (var i=t-1;i>=0;i--)
+        {
+            for(var j=8;j<x.getElementsByTagName("li")[i].innerHTML.length;j++){
+                if(x.getElementsByTagName("li")[i].innerHTML[j]==='\"'){
+                    index=j;
+                    break;
+                }
+            }
+            number='';
+            for(j=7;j<index;j++){
+                number=number+x.getElementsByTagName("li")[i].innerHTML[j];
+                number=parseInt(number);
+            }
+            if (number===name)
+            {
+                x.removeChild(x.getElementsByTagName("li")[i]);
+                break;
+            }
+        }
+
+    }
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://192.168.0.126:8080/news/user?code=601888")
+            .then(function (response) {
+                $scope.stockList= response.data
+            });
+    });
+</script>
