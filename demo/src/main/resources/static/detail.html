@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>detail</title>
     <!-- jQuery-->
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/jquery.min.js"></script>
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/angular.js"></script>
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/angular-route.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/angular.js"></script>
+    <script src="../static/js/angular-route.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="../../../../../../../../Downloads/laji/cpts_19_eh/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -267,15 +267,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://192.168.0.117:8080/news/user?code=601888")
-            .then(function (response) {$scope.news = response.data;});
+        $http.get("http://localhost:8080/news/user?code=601888")
+            .then(function (response) {$scope.news = response.data;
+            alert($scope.news)});
     });
 
-    var app = angular.module('myApp', []);
-    app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://192.168.0.117:8080/news/user?code=601888")
-            .then(function (response) {$scope.news = response.data[0];});
-    });
+    // var app = angular.module('myApp', []);
+    // app.controller('siteCtrl', function($scope, $http) {
+    //     $http.get("http://localhost:8080/news/user?code=601888")
+    //         .then(function (response) {$scope.news = response.data[0];});
+    // });
 
 </script>
 
