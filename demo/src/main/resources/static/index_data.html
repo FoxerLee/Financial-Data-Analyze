@@ -1,5 +1,4 @@
-
-<html>
+<!DOCTYPE html>
 <head>
     <title>Home</title>
     <!-- jQuery-->
@@ -21,7 +20,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//fonts-->
 
 </head>
+
 <body>
+<script>
+    function display(id){
+        var x,y;
+        var name;
+        var str='';
+        var index;
+        var index2;
+        x=document.getElementById(id);
+        name=x.innerHTML;
+        for(var i=0;i<name.length-1;i++){
+            var z=name[i]+name[i+1];
+            if(z==="</"){
+                index=i-1;
+                break;
+            }
+        }
+        for(i=index;i>0;i--){
+            if(name[i]==='>'){
+                index2=i+1;
+                break;
+            }
+        }
+        for(i=index2;i<index+1;i++){
+            str=str+name[i];
+        }
+        y=document.getElementById("individual");
+        y.innerHTML="&nbsp;&nbsp;&nbsp;"+str+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
+
+    }
+
+
+    var app = angular.module('myApp', []);
+    var style = new Array(40);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/Stock/GetAll")
+            .then(function (response) {
+                $scope.industry=response.data;
+            });
+    });
+
+ //    app.controller('siteCtrl', function($scope, $http) {
+ //     $http.get("http://192.168.0.126:8080/news/user?code=601888")
+ //         .then(function (response) {
+ //             $scope.names= [
+ //                 {id:1,style:"cc2"}
+ //             ];
+ //             for(var i=0;i<10;i++){
+ //                 if(i===0){
+ //                     $scope.names.splice(0,1);
+ //                 }
+ //                 if(response.data[i].id<240){
+ //                     $scope.names.splice(i,0,{id:response.data[i].id,style:"cc2"});
+ //                 }
+ //                 else if(response.data[i].id>=240){
+ //                     $scope.names.splice(i,0,{id:response.data[i].id,style:"cc7"});
+ //                 }
+ //             }
+ //             $scope.stockStyle=style;
+ //         });
+ // });
+</script>
 <div class="header" ng-app="myApp" ng-controller="siteCtrl">
     <!---->
     <div class="header-left">
@@ -95,63 +156,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 </html>
 <script type="text/javascript">
-    function display(id){
-        var x,y;
-        var name;
-        var str='';
-        var index;
-        var index2;
-        x=document.getElementById(id);
-        name=x.innerHTML;
-        for(var i=0;i<name.length-1;i++){
-            var z=name[i]+name[i+1];
-            if(z==="</"){
-                index=i-1;
-                break;
-            }
-        }
-        for(i=index;i>0;i--){
-            if(name[i]==='>'){
-                index2=i+1;
-                break;
-            }
-        }
-        for(i=index2;i<index+1;i++){
-            str=str+name[i];
-        }
-        y=document.getElementById("individual");
-        y.innerHTML="&nbsp;&nbsp;&nbsp;"+str+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
 
-    }
-
-
-    var app = angular.module('myApp', []);
-    var style = new Array(40);
-    app.controller('siteCtrl', function($scope, $http) {
-        $http.get("localhost:8080/Stock/GetAll")
-            .then(function (response) {
-                $scope.industry=response.data;
-            });
-    });
-
-       /* app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://192.168.0.126:8080/news/user?code=601888")
-            .then(function (response) {
-                $scope.names= [
-                    {id:1,style:"cc2"}
-                ];
-                for(var i=0;i<10;i++){
-                    if(i===0){
-                        $scope.names.splice(0,1);
-                    }
-                    if(response.data[i].id<240){
-                        $scope.names.splice(i,0,{id:response.data[i].id,style:"cc2"});
-                    }
-                    else if(response.data[i].id>=240){
-                        $scope.names.splice(i,0,{id:response.data[i].id,style:"cc7"});
-                    }
-                }
-                $scope.stockStyle=style;
-            });
-    });
 </script>
