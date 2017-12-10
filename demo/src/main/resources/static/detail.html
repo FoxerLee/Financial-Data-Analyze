@@ -22,7 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Untitled Document</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/echarts.js"></script>
+    <script src="../static/js/echarts.js"></script>
 </head>
 <body>
 <div class="header">
@@ -36,44 +36,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-                <li ><a href="../../../../../../../../Downloads/laji/cpts_19_eh/index.html" >大数据展示</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/news.html" class="black" > 新闻资讯</a ></li>
+                <li ><a href="index.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li class="active" ><a href="detail.html" class="black1"> 个股信息</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/work.html" class="black2" > 个人主页</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
                 <li>
 
                 </li>
-                <form novalidate  >
 
-                <div class="your-top" ng-app="formApp" ng-controller="formCtrl">
-
-                        <input type="text" value="输入股票代码查询" ng-model="stock">
-
-                        <button ng-click="search()">🔍</button>
-                        <div class="clear"> </div>
-
-                </div>
-                </form>
-                <pre>{{stock}}</pre>
-
-                <script>
-
-                    var app = angular.module('formApp', []);
-                    app.controller('formCtrl', function($scope,$http) {
-                        $scope.stock = {};
-                    $scope.search = function() {
-                        $http({
-                            url:'http://192.168.0.117:8080/Search/Stocks',
-                            method: 'POST',
-                            data: $.param($scope.stock)
-                        }).success(function(){
-                            console.log("success!");
-                        }).error(function(){
-                            console.log("error");
-                        })
-                    };
-                });
-                </script>
 
                 <!--<div class="your-top">
                     <i> </i>
@@ -268,15 +238,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
         $http.get("http://localhost:8080/news/user?code=601888")
-            .then(function (response) {$scope.news = response.data;
-            alert($scope.news)});
+            .then(function (response) {$scope.news = response.data;});
     });
-
-    // var app = angular.module('myApp', []);
-    // app.controller('siteCtrl', function($scope, $http) {
-    //     $http.get("http://localhost:8080/news/user?code=601888")
-    //         .then(function (response) {$scope.news = response.data[0];});
-    // });
 
 </script>
 

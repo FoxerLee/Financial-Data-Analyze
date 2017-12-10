@@ -1,17 +1,11 @@
 package edu.tongji.demo.Mapping;
 
 import edu.tongji.demo.Model.DataRealTime;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
+@Mapper
 public interface DataRealTimeMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(DataRealTime record);
-
-    int insertSelective(DataRealTime record);
-
-    DataRealTime selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(DataRealTime record);
-
-    int updateByPrimaryKey(DataRealTime record);
+    @Select("select * from data_real_time where code=${code}")
+    DataRealTime GetDataByCode();
 }
