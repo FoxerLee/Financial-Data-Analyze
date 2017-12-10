@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/hello")
@@ -33,6 +34,7 @@ public class TestController {
             for(int i = 0; i < cookies.length; i++){
                 names[i] = cookies[i].getName();
             }
+
             return names;
         } catch (Exception e){
             return "emmm";
