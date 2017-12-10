@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/News")
+@RequestMapping("/news")
 public class NewsController {
 
     @Autowired
     private NewsMapper newsMapper;
 
-    @GetMapping("/User")
+    @GetMapping("/user")
     public Object getNews(@Param(value = "code") String code){
         return newsMapper.getNews(code);
     }

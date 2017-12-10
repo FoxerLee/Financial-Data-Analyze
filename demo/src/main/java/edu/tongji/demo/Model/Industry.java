@@ -7,11 +7,11 @@ public class Industry {
 
     private Double price;
 
-    private String priceRange;
+    private String price_range;
 
     private Double turnover;
 
-    private Double turnoverP;
+    private Double turnover_p;
 
     public Integer getId() {
         return id;
@@ -38,11 +38,11 @@ public class Industry {
     }
 
     public String getPriceRange() {
-        return priceRange;
+        return price_range;
     }
 
     public void setPriceRange(String priceRange) {
-        this.priceRange = priceRange == null ? null : priceRange.trim();
+        this.price_range = priceRange == null ? null : priceRange.trim();
     }
 
     public Double getTurnover() {
@@ -54,10 +54,10 @@ public class Industry {
     }
 
     public Double getTurnoverP() {
-        return turnoverP;
+        return turnover_p;
     }
 
     public void setTurnoverP(Double turnoverP) {
-        this.turnoverP = turnoverP;
+        this.turnover_p = turnoverP;
     }
 }
