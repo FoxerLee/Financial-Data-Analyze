@@ -1,11 +1,10 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Mapping.ConnectMapper;
-import edu.tongji.demo.Mapping.DataRealTimeMapper;
+import edu.tongji.demo.Mapping.DataWeeksMapper;
 import edu.tongji.demo.Mapping.IndustryMapper;
 import edu.tongji.demo.Model.Connect;
-import edu.tongji.demo.Model.DataRealTime;
-import edu.tongji.demo.Model.Industry;
+import edu.tongji.demo.Model.DataWeeks;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class StockController {
     private ConnectMapper connectMapper;
 
     @Autowired
-
+    private DataWeeksMapper dataWeeksMapper;
 
     @GetMapping("/GetAll")
     public Object GetAllStockInfo(){
@@ -51,8 +50,6 @@ public class StockController {
             if(data == null)
                 return "cannot find it";
 
-//            DataRealTime dataRealTime = dataRealTimeMapper
-
             JSONObject result = new JSONObject();
             result.accumulate("code", data.get(0).getCode());
             result.accumulate("name", data.get(0).getName());
@@ -62,8 +59,14 @@ public class StockController {
         }
     }
 
+    /**
+     * 根据行业名称返回该行业股票以及它们的周信息
+     * @param name
+     * @return
+     */
     @GetMapping("/Industry")
     public Object GetStocksOfIndustry(@Param(value = "name") String name){
-        ArrayList<>
+        ArrayList<DataWeeks> dataWeeks =dataWeeksMapper.getStocksByIndustry(name);
+        return dataWeeks;
     }
 }

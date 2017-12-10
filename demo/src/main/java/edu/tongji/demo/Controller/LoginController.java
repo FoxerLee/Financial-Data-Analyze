@@ -35,9 +35,9 @@ public class LoginController {
             session.setAttribute("password", content.getString("password"));
 
             //添加cookie
-            Cookie name = new Cookie("name", content.getString("name"));
-            name.setMaxAge(60*60*1);
-            response.addCookie(name);
+            Cookie cookie = new Cookie("name", content.getString("name"));
+            cookie.setMaxAge(60*60*1);
+            response.addCookie(cookie);
             return "200";
         }
     }
