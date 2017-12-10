@@ -22,4 +22,7 @@ public interface ConnectMapper {
 //    int updateByPrimaryKey(Connect record);
     @Select("select code, name from connect where code = ${code}")
     ArrayList<Connect> getDataByCode(@Param("code") String code);
+
+    @Select("select * from connect where name = \"${name}\"")
+    ArrayList<Connect> getDataByName(@Param("name") String name);
 }

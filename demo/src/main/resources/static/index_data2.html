@@ -1,0 +1,191 @@
+
+<html>
+<head>
+    <title>Home</title>
+    <!-- jQuery-->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/angular.js"></script>
+    <script src="../static/js/angular-route.js"></script>
+
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="../static/css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kappe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>-->
+    <!--//fonts-->
+
+</head>
+<body>
+<div class="header" ng-app="myApp" ng-controller="siteCtrl">
+    <!---->
+    <div class="header-left">
+        <div class="logo">
+            <a href="index2.html">登录</a>
+        </div>
+        <div class="top-nav">
+            <ul >
+                <li><b class="white"></b></li>
+                <li class="active"><a href="index_data.html" >A股热图</a></li>
+                <li><a href="work.html" class="black" > 新闻资讯</a></li>
+                <li><a href="single.html" class="black1"> 个股信息</a></li>
+                <li><a href="work.html" class="black2" > 个人主页</a></li>
+            </ul>
+        </div>
+    </div>
+    <!---->
+    <!---->
+
+    <!---->
+    <p class="content">
+
+    <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;A股行业<span class="heat-map-title2">按成交量从前到后排列</span></p>
+
+    <div ng-repeat="n in industry" id="industry" class="content-grid" onclick="display(id)">
+        <a class="b-link-stripe b-animate-go  thickbox">
+            <div class={{n.style}}>{{n.name}}</div>
+            <div class="b-wrapper">
+                <h2 class="b-animate b-from-left    b-delay03 ">
+                    <span>总成交额：{{n.turnover_p}}</span>
+                    <span>行业涨跌额：{{n.price}}</span>
+                    <span>行业涨跌幅：{{n.price_range}}</span>
+                </h2>
+            </div>
+        </a>
+    </div>
+
+    <div class="content-grid">
+        <a class="b-link-stripe b-animate-go  thickbox">
+            <div class="cc10">
+                none
+            </div>
+
+        </a>
+    </div>
+    <div>
+        <ul>
+            <li class="insert">&nbsp;&nbsp;&nbsp;</li>
+            <li class="insert">&nbsp;&nbsp;&nbsp;</li>
+            <li class="insert">&nbsp;&nbsp;&nbsp;</li>
+        </ul>
+        <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;金融行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
+        <div ng-click="industry=x.id" ng-repeat="x in names"  class="content-grid">
+            <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
+                <div id={{industry}} class={{x.style}}>{{x.id}}</div>
+            </a>
+        </div>
+        <ul>
+            <li class="insert">&nbsp;&nbsp;&nbsp;</li>
+            <li class="insert"><img src="images/bar.png"></li>
+        </ul>
+
+    </div>
+    <div class="clear"> </div>
+</div>
+<div class="clear"> </div>
+<pre>
+			{{industry}}
+		</pre>
+
+</body>
+</html>
+<script type="text/javascript">
+    //alert("hello");
+    function display(id){
+        var x,y;
+        var name;
+        var str='';
+        var index;
+        var index2;
+        x=document.getElementById(id);
+        name=x.innerHTML;
+        for(var i=0;i<name.length-1;i++){
+            var z=name[i]+name[i+1];
+            if(z==="</"){
+                index=i-1;
+                break;
+            }
+        }
+        for(i=index;i>0;i--){
+            if(name[i]==='>'){
+                index2=i+1;
+                break;
+            }
+        }
+        for(i=index2;i<index+1;i++){
+            str=str+name[i];
+        }
+        y=document.getElementById("individual");
+        y.innerHTML="&nbsp;&nbsp;&nbsp;"+str+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
+
+    }
+
+
+    var app = angular.module('myApp', []);
+    var style = new Array(49);
+    var index =0;
+    var pr='';
+    var temp_range='';
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/Stock/GetAll")
+            .then(function (response) {
+                var temp = angular.fromJson(response.data)
+                $scope.industry= [
+                    {name:" ",turnover_p:0,price:0,price_range:0,style:"cc6"}
+                ];
+                for(var i=0;i<49;i++){
+                    pr=String(temp[i].priceRange);
+                    temp_range = pr.substring(0, pr.length - 1);
+                    // alert();
+                    // for(var j=pr.length -1;j>0;j--){
+                    //     if(pr[i]==='%'){
+                    //         index=i;
+                    //     }
+                    // }
+                    // for(j=0;j<index;j++){
+                    //     temp_range=temp_range+pr[j];
+                    // // }
+                    //alert(temp_range)
+                    float_range=parseFloat(temp_range);
+                    temp_range = ""
+
+                    if(i===0){
+                        $scope.industry.splice(0,1);
+                    }
+                    if(float_range>=1.5){
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc1"});
+                    }
+                    else if(1.0<=float_range){
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc2"});
+                    }
+                    else if(0.5<=float_range){
+
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc3"});
+                    }
+                    else if(0.0<=float_range){
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc4"});
+                    }
+                    else if(-0.5<=float_range){
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc5"});
+                    }
+                    else if(-1.0<=float_range){
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc6"});
+                    }
+                    else if(-1.5<=float_range){
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc7"});
+                    }
+                    else{
+                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc8"});
+                    }
+                }
+
+            });
+    });
+
+
+</script>
