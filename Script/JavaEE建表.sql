@@ -253,6 +253,17 @@ CREATE TABLE industry(
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE research(
+	id INT NOT NULL AUTO_INCREMENT,
+	code VARCHAR(10) NULL,
+	title VARCHAR(500) NULL,
+	url VARCHAR(500) NULL,
+	date DATE NULL,
+	inst VARCHAR(200) NULL,
+	researcher VARCHAR(200) NULL,
+	PRIMARY KEY(id)
+);
+
 
 
 
