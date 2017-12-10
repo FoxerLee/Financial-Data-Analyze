@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>news</title>
+    <!-- jQuery-->
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/angular-route.js"></script>
+    <script src="../static/js/angular.js"></script>
+
+
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kappe Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+    <!--//fonts-->
+</head>
+<body>
+<div class="header">
+    <div class="header-left">
+        <div class="logo">
+            <a href=" ">登录</a >
+        </div>
+        <div class="top-nav">
+            <ul >
+                <li><b class="white"></b></li>
+                <li><a href="index.html" >大数据展示</a ></li>
+                <li class="active" ><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="detail.html" class="black1"> 个股信息</a ></li>
+                <li><a href="static/404.html" class="black2" > 个人主页</a ></li>
+            </ul>
+
+        </div>
+    </div>
+    <!---->
+
+
+    <div class="content" ng-app="myApp" ng-controller="siteCtrl">
+        <div class="work" >
+        <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;新闻资讯</p>
+            <br />
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+                    <tr>
+
+
+                        <th scope="col" >标题</th>
+                        <th scope="col" >报告类型</th>
+                        <th scope="col" >发布日期</th>
+                        <th scope="col" >点击量</th>
+                        <th scope="col" >详情</th>
+
+                    </tr>
+                <tr ng-repeat="x in news">
+
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.name}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.id}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.code}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.click}}</td>
+                    <td><a  href="{{x.url}}" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔎</a></td>
+
+                </tr>
+
+
+                <script>
+               var app = angular.module('myApp', []);
+               app.controller('siteCtrl', function($scope, $http) {
+                   $http.get("http://localhost:8080/news/user?code=601888")
+                       .then(function (response) {$scope.news = response.data;});
+               });
+
+               </script>
+
+
+                </table>
+                <!-- 分页 begin -->
+                <div class="page">
+                    <table cellspacing="0" style="margin:0 auto;"><tr><td>
+                        <div class="pagebox" id="_function_code_page">
+                            <span class='pagebox_pre_nolink'>首页</span>  <span class='pagebox_pre_nolink'>上一页</span>  <span class='pagebox_num_nonce'>1</span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('2')">2</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('3')">3</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('4')">4</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('5')">5</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('6')">6</a></span>  <span class='pagebox_next'><a href="javascript:void(0)" onclick="set_page_num('2')">下一页</a></span>  <span class='pagebox_next'><a href="javascript:void(0)" onclick="set_page_num('4260')">最末页</a></span> </div>
+                    </td>
+                    </tr>
+                    </table>
+                </div>
+                <!-- 分页 end --
+            <!-- end main -->
+            <div class="clear"> </div>
+        </div>
+    <div class="clear"> </div>
+    <p class="footer-class-in">Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></p>
+    </div>
+</div>
+</body>
+</html>
