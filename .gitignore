@@ -44,3 +44,4 @@ nbdist/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+demo/src/main/resources/static/index_data2.html
