@@ -7,6 +7,13 @@ CREATE TABLE data_real_time(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
+	turnoverratio DOUBLE NULL,
+	amount DOUBLE NULL,
+	per DOUBLE NULL,
+	pb DOUBLE NULL,
+	mktcap DOUBLE NULL,
+	nmc DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -19,6 +26,7 @@ CREATE TABLE data_days(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -31,6 +39,7 @@ CREATE TABLE data_weeks(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -44,6 +53,7 @@ CREATE TABLE data_months(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
 	PRIMARY KEY (id)
 );
 
@@ -81,6 +91,7 @@ CREATE TABLE warehouse_data_days(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
 	-- ma5 DOUBLE NOT NULL,
 	-- ma10 DOUBLE NOT NULL,
 	-- ma20 DOUBLE NOT NULL,
@@ -96,6 +107,7 @@ CREATE TABLE warehouse_data_weeks(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
 	-- ma5 DOUBLE NOT NULL,
 	-- ma10 DOUBLE NOT NULL,
 	-- ma20 DOUBLE NOT NULL,
@@ -111,6 +123,7 @@ CREATE TABLE warehouse_data_months(
 	high_value DOUBLE NULL,
 	low_value DOUBLE NULL,
 	volume_value DOUBLE NULL,
+	p_change DOUBLE NULL,
 	-- ma5 DOUBLE NOT NULL,
 	-- ma10 DOUBLE NOT NULL,
 	-- ma20 DOUBLE NOT NULL,
