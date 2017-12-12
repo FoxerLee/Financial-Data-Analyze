@@ -1,4 +1,4 @@
-package edu.tongji.demo.Mapping;
+package edu.tongji.demo.Mapper;
 
 import edu.tongji.demo.Model.CompanyInfo;
 import org.apache.ibatis.annotations.Mapper;

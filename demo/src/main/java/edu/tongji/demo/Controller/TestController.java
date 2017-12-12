@@ -1,7 +1,7 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapping.CompanyInfoMapper;
-import edu.tongji.demo.Mapping.ConnectMapper;
+import edu.tongji.demo.Mapper.CompanyInfoMapper;
+import edu.tongji.demo.Mapper.ConnectMapper;
 import edu.tongji.demo.Model.CompanyInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

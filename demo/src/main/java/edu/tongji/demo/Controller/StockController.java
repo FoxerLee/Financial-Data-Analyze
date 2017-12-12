@@ -1,10 +1,10 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapping.ConnectMapper;
-import edu.tongji.demo.Mapping.DataWeeksMapper;
-import edu.tongji.demo.Mapping.IndustryMapper;
-import edu.tongji.demo.Model.Connect;
-import edu.tongji.demo.Model.DataWeeks;
+import edu.tongji.demo.Mapper.ConnectMapper;
+import edu.tongji.demo.Mapper.DataDaysMapper;
+import edu.tongji.demo.Mapper.IndustryMapper;
+import edu.tongji.demo.Models.Connect;
+import edu.tongji.demo.Models.BriefDataDays;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class StockController {
     private ConnectMapper connectMapper;
 
     @Autowired
-    private DataWeeksMapper dataWeeksMapper;
+    private DataDaysMapper dataDaysMapper;
 
     @GetMapping("/GetAll")
     public Object GetAllStockInfo(){
@@ -66,7 +66,20 @@ public class StockController {
      */
     @GetMapping("/Industry")
     public Object GetStocksOfIndustry(@Param(value = "name") String name){
-        ArrayList<DataWeeks> dataWeeks =dataWeeksMapper.getStocksByIndustry(name);
-        return dataWeeks;
+        try{
+            ArrayList<BriefDataDays> dataDays =dataDaysMapper.getStocksByIndustry(name);
+            if (dataDays == null)
+                return "404";
+            else{
+//                for(int i = 0; i < dataDays.size(); i++)
+//                    System.out.print(dataDays.get(0).getTradingDay());
+                return dataDays;
+            }
+        } catch (Exception e){
+            //未知错误
+            return "400";
+        }
+
+
     }
 }
