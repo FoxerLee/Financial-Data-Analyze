@@ -4,6 +4,7 @@ import edu.tongji.demo.Mapper.ConnectMapper;
 import edu.tongji.demo.Mapper.DataDaysMapper;
 import edu.tongji.demo.Mapper.IndustryMapper;
 import edu.tongji.demo.Model.Connect;
+import edu.tongji.demo.Model.DataDays;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class StockController {
         return industryMapper.getAllIndustryInfor();
     }
 
+    /**
+     * 通过code或者name获得connect的信息
+     * @param content
+     * @return
+     */
     @PostMapping("/GetOne")
     public Object GetSpecificInfo(@RequestBody String content){
         int i = 0;
@@ -63,22 +69,15 @@ public class StockController {
      * @param name
      * @return
      */
-    @GetMapping("/Industry")
-    public Object GetStocksOfIndustry(@Param(value = "name") String name){
-        try{
-            ArrayList<BriefDataDays> dataDays =dataDaysMapper.getStocksByIndustry(name);
-            if (dataDays == null)
-                return "404";
-            else{
-//                for(int i = 0; i < dataDays.size(); i++)
-//                    System.out.print(dataDays.get(0).getTradingDay());
-                return dataDays;
-            }
-        } catch (Exception e){
-            //未知错误
-            return "400";
-        }
-
-
-    }
+//    @GetMapping("/Industry")
+//    public Object GetStocksOfIndustry(@Param(value = "name") String name){
+//        try{
+//            ArrayList<Connect> connectArrayList = connectMapper.getDataByName()
+//        } catch (Exception e){
+//            //未知错误
+//            return "400";
+//        }
+//
+//
+//    }
 }

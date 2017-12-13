@@ -18,6 +18,13 @@ public class UserController {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
+    /**
+     * 用户输入名字和password身份验证通过
+     * @param verification
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping("/login")
     @ResponseBody
     public String Vefification(@RequestBody String verification, HttpServletRequest request,  HttpServletResponse response){
@@ -42,7 +49,7 @@ public class UserController {
     }
 
     /**
-     * 注销用户，删除session里的cookie
+     * 注销用户，删除注册的cookie
      * @param request
      * @param response
      */
@@ -60,12 +67,25 @@ public class UserController {
         }
     }
 
+    /**
+     * 用户注册账户
+     * @param information
+     * @param request
+     * @param response
+     * @return
+     */
     @PostMapping("/signup")
     @ResponseBody
     public String SignUp(@RequestBody String information, HttpServletRequest request, HttpServletResponse response){
         return null;
     }
 
+    /**
+     * 每个页面的身份验证
+     * @param response
+     * @param request
+     * @return
+     */
     @GetMapping("/test")
     public Object test(HttpServletResponse response, HttpServletRequest request){
         HttpSession session = request.getSession(false);
