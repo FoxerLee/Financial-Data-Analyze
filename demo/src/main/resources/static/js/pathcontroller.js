@@ -7,7 +7,7 @@ umService.config(
         $routeProvider
     .when('/', {
             controller: ListController,
-            templateUrl: '../index.html'
+            templateUrl: '../home.html'
         })
 
     .when('/get/:id', {

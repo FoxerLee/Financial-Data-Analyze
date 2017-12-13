@@ -79,30 +79,4 @@ public class UserController {
     public String SignUp(@RequestBody String information, HttpServletRequest request, HttpServletResponse response){
         return null;
     }
-
-    /**
-     * 每个页面的身份验证
-     * @param response
-     * @param request
-     * @return
-     */
-    @GetMapping("/test")
-    public Object test(HttpServletResponse response, HttpServletRequest request){
-        HttpSession session = request.getSession(false);
-        if(session == null){
-            return "unregistered!";
-        }
-        else{
-            Cookie[] cookies = request.getCookies();
-            if(cookies == null)
-                return "no cookies?";
-            else{
-                for (int i = 0; i < cookies.length; i++){
-                    if(cookies[i].getName().equals("fnan") && cookies[i].getValue().equals(session.getAttribute("name")))
-                        return "verifying successfully!";
-                }
-                return "verifying failed!";
-            }
-        }
-    }
 }
