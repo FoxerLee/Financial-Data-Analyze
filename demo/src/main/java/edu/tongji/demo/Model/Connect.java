@@ -1,4 +1,4 @@
-package edu.tongji.demo.Models;
+package edu.tongji.demo.Model;
 
 public class Connect {
     private String code;

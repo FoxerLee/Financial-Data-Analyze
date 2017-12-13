@@ -1,7 +1,7 @@
 //package edu.tongji.demo.Controller;
 //
 //import edu.tongji.demo.Mapper.ConnectMapper;
-//import edu.tongji.demo.Models.Connect;
+//import edu.tongji.demo.Model.Connect;
 //import net.sf.json.JSONObject;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.jackson.JsonComponent;

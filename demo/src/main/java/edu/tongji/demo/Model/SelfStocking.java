@@ -1,6 +1,6 @@
 package edu.tongji.demo.Model;
 
-public class SelfStockingKey {
+public class SelfStocking {
     private Integer user_id;
 
     private String code;

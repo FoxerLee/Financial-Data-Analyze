@@ -21,7 +21,7 @@ public class DataWeeks {
 
     private Double volume_value;
 
-    private String c_name;
+    private Double p_change;
 
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class DataWeeks {
         this.volume_value = volume_value;
     }
 
-    public String getC_name() {
-        return c_name;
+    public Double getP_change() {
+        return p_change;
     }
 
-    public void setC_name(String c_name) {
-        this.c_name = c_name;
+    public void setP_change(Double p_change) {
+        this.p_change = p_change;
     }
 }
