@@ -5,7 +5,7 @@ public class Connect {
 
     private String name;
 
-    private String cName;
+    private String c_name;
 
     public String getCode() {
         return code;
@@ -24,10 +24,10 @@ public class Connect {
     }
 
     public String getcName() {
-        return cName;
+        return c_name;
     }
 
     public void setcName(String cName) {
-        this.cName = cName == null ? null : cName.trim();
+        this.c_name = cName == null ? null : cName.trim();
     }
 }
