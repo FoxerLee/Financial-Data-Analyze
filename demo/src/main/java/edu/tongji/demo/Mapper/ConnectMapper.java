@@ -14,4 +14,7 @@ public interface ConnectMapper {
 
     @Select("select * from connect where name = \'${name}\'")
     ArrayList<Connect> getDataByName(@Param("name") String name);
+
+    @Select("select * from connect where c_name = \'${c_name}\' or c_name = \'${c_name}\n\'")
+    ArrayList<Connect> getDataByCName(@Param("c_name")String c_name);
 }

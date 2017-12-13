@@ -4,7 +4,6 @@ import edu.tongji.demo.Mapper.ConnectMapper;
 import edu.tongji.demo.Mapper.DataDaysMapper;
 import edu.tongji.demo.Mapper.IndustryMapper;
 import edu.tongji.demo.Model.Connect;
-import edu.tongji.demo.Model.DataDays;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/Stock")
+@RequestMapping("/stock")
 public class StockController {
 
     @Autowired
@@ -25,7 +24,7 @@ public class StockController {
     @Autowired
     private DataDaysMapper dataDaysMapper;
 
-    @GetMapping("/GetAll")
+    @GetMapping("/all")
     public Object GetAllStockInfo(){
         return industryMapper.getAllIndustryInfor();
     }
@@ -35,7 +34,7 @@ public class StockController {
      * @param content
      * @return
      */
-    @PostMapping("/GetOne")
+    @PostMapping("/one")
     public Object GetSpecificInfo(@RequestBody String content){
         int i = 0;
         JSONObject jsonObject;
@@ -69,15 +68,53 @@ public class StockController {
      * @param name
      * @return
      */
-//    @GetMapping("/Industry")
-//    public Object GetStocksOfIndustry(@Param(value = "name") String name){
-//        try{
-//            ArrayList<Connect> connectArrayList = connectMapper.getDataByName()
-//        } catch (Exception e){
-//            //未知错误
-//            return "400";
-//        }
-//
-//
-//    }
+    @GetMapping("/industry")
+    public Object GetStocksOfIndustry(@Param(value = "name") String name){
+        /**
+         * 内部类定义传输数据的格式
+         */
+        class Data{
+            private String name;
+            private Double p_change;
+            public Data(String name, Double p_change){
+                this.name = name;
+                this.p_change = p_change;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public Double getP_change() {
+                return p_change;
+            }
+
+            public void setP_change(Double p_change) {
+                this.p_change = p_change;
+            }
+        }
+        try{
+            ArrayList<Connect> connectArrayList = connectMapper.getDataByCName(name);
+            if(connectArrayList == null)
+                return "no information";
+            ArrayList<Data> dataDays = new ArrayList<>();
+            for (int i = 0; i < connectArrayList.size(); i++){
+                Double p_change = 0.0;
+                try{
+                    p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
+                } catch (Exception e){
+                    continue;
+                }
+                dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
+            }
+            return dataDays;
+        } catch (Exception e){
+            //未知错误
+            return "400";
+        }
+    }
 }

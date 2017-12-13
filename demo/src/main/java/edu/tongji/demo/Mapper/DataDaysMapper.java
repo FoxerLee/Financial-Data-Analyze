@@ -10,6 +10,6 @@ import java.util.ArrayList;
 @Mapper
 public interface DataDaysMapper {
 
-    @Select("select code, p_change from data_days where code = \'${code}\'"  )
-    ArrayList<DataDays> getPChangeByCode(@Param(value = "code")String code);
+    @Select("select p_change from data_days where code = \'${code}\'"  )
+    DataDays getPChangeByCode(@Param(value = "code")String code);
 }
