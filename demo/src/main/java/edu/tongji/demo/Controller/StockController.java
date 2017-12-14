@@ -115,6 +115,8 @@ public class StockController {
                     return "no information";
                 ArrayList<Data> dataDays = new ArrayList<>();
                 for (int i = 0; i < connectArrayList.size(); i++){
+                    if (i == 50)
+                        break;
                     Double p_change = 0.0;
                     try{
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
