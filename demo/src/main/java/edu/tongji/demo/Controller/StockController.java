@@ -121,7 +121,7 @@ public class StockController {
                     try{
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
                     } catch (Exception e){
-                        continue;
+                        System.out.println(connectArrayList.get(i).getCode());
                     }
                     dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
                 }

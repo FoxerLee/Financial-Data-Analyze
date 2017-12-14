@@ -11,4 +11,7 @@ import java.util.ArrayList;
 public interface NewsMapper {
     @Select("select * from news where ${code} = code")
     ArrayList<News> getNews(@Param(value = "code") String code);
+
+    @Select("select name, url, click from news where \'${code}\' = code")
+    ArrayList<News> getEveryNews(@Param(value = "code")String code);
 }
