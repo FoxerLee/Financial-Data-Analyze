@@ -44,9 +44,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <p class="content">
 
-    <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;A股行业<span class="heat-map-title2">按成交量从前到后排列</span></p>
+    <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;A股行业<span class="heat-map-title2">按成交额从前到后排列</span></p>
 
-    <div ng-repeat="n in industry" id="industry" class="content-grid" onclick="display(id)">
+    <div ng-repeat="n in industry" id="{{n.name}}" class="content-grid" onclick="display(id)">
         <a class="b-link-stripe b-animate-go  thickbox">
             <div class={{n.style}}>{{n.name}}</div>
             <div class="b-wrapper">
@@ -74,9 +74,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li class="insert">&nbsp;&nbsp;&nbsp;</li>
         </ul>
         <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;金融行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
-        <div ng-click="industry=x.id" ng-repeat="x in names"  class="content-grid">
+        <div ng-repeat="m in single"  class="content-grid">
             <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-                <div id={{industry}} class={{x.style}}>{{x.id}}</div>
+                <div id={{m.name}} class={{m.style}}>{{m.name}}</div>
             </a>
         </div>
         <ul>
@@ -88,58 +88,142 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="clear"> </div>
 </div>
 <div class="clear"> </div>
-<pre>
-			{{industry}}
-		</pre>
 
 </body>
 </html>
 <script type="text/javascript">
     //alert("hello");
+    var app = angular.module('myApp', []);
+    var pr='';
+    var temp_range='';
+    var float_range;
     function display(id){
-        var x,y;
-        var name;
-        var str='';
-        var index;
-        var index2;
-        x=document.getElementById(id);
-        name=x.innerHTML;
-        for(var i=0;i<name.length-1;i++){
-            var z=name[i]+name[i+1];
-            if(z==="</"){
-                index=i-1;
-                break;
-            }
-        }
-        for(i=index;i>0;i--){
-            if(name[i]==='>'){
-                index2=i+1;
-                break;
-            }
-        }
-        for(i=index2;i<index+1;i++){
-            str=str+name[i];
-        }
+        //var x,y;
+        //var name;
+        //var str='';
+        //var index;
+        //var index2;
+        //x=document.getElementById(id);
+        //name=x.innerHTML;
+        //for(var i=0;i<name.length-1;i++){
+            //var z=name[i]+name[i+1];
+           // if(z==="</"){
+                //index=i-1;
+               // break;
+           // }
+        //}
+        //for(i=index;i>0;i--){
+            //if(name[i]==='>'){
+               // index2=i+1;
+                //break;
+            //}
+        //}
+       // for(i=index2;i<index+1;i++){
+            //str=str+name[i];
+        //}
         y=document.getElementById("individual");
-        y.innerHTML="&nbsp;&nbsp;&nbsp;"+str+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
+        y.innerHTML="&nbsp;&nbsp;&nbsp;"+id+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
+        app.controller('siteCtrl', function($scope, $http) {
+            $http.get("http://localhost:8080/Stock/Industry?name="+id)
+                    .then(function (response) {
+                        var temp2 = angular.fromJson(response.data);
+                        $scope.single = [
+                            {name: " ", style: "cc6"}
+                        ];
+
+
+                        for (var i = 0; i < 49; i++) {
+                            pr = String(temp2[i].priceRange);
+                            temp_range = pr.substring(0, pr.length - 1);
+                            // alert();
+                            // for(var j=pr.length -1;j>0;j--){
+                            //     if(pr[i]==='%'){
+                            //         index=i;
+                            //     }
+                            // }
+                            // for(j=0;j<index;j++){
+                            //     temp_range=temp_range+pr[j];
+                            // // }
+                            //alert(temp_range)
+                            float_range = parseFloat(temp_range);
+                            temp_range = "";
+
+                            if (i === 0) {
+                                $scope.single.splice(0, 1);
+                            }
+                            if (float_range >= 1.5) {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc1"
+                                });
+                            }
+                            else if (1.0 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc2"
+                                });
+                            }
+                            else if (0.5 <= float_range) {
+
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc3"
+                                });
+                            }
+                            else if (0.0 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc4"
+                                });
+                            }
+                            else if (-0.5 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc5"
+                                });
+                            }
+                            else if (-1.0 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc6"
+                                });
+                            }
+                            else if (-1.5 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc7"
+                                });
+                            }
+                            else {
+                                $scope.single.splice(i, 0, {
+                                    name: temp2[i].name,
+                                    style: "cc8"
+                                });
+
+                            }
+                        }
+                    });
+
+
+        });
 
     }
 
 
-    var app = angular.module('myApp', []);
-    var style = new Array(49);
-    var index =0;
-    var pr='';
-    var temp_range='';
+
+
+
     app.controller('siteCtrl', function($scope, $http) {
         $http.get("http://localhost:8080/Stock/GetAll")
             .then(function (response) {
-                var temp = angular.fromJson(response.data)
-                $scope.industry= [
-                    {name:" ",turnover_p:0,price:0,price_range:0,style:"cc6"}
+                var temp = angular.fromJson(response.data);
+                $scope.industry = [
+                    {name: " ", turnover_p: 0, price: 0, price_range: 0, style: "cc6"}
                 ];
-                for(var i=0;i<49;i++){
-                    pr=String(temp[i].priceRange);
+
+
+                for (var i = 0; i < 49; i++) {
+                    pr = String(temp[i].priceRange);
                     temp_range = pr.substring(0, pr.length - 1);
                     // alert();
                     // for(var j=pr.length -1;j>0;j--){
@@ -151,40 +235,90 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     //     temp_range=temp_range+pr[j];
                     // // }
                     //alert(temp_range)
-                    float_range=parseFloat(temp_range);
-                    temp_range = ""
+                    float_range = parseFloat(temp_range);
+                    temp_range = "";
 
-                    if(i===0){
-                        $scope.industry.splice(0,1);
+                    if (i === 0) {
+                        $scope.industry.splice(0, 1);
                     }
-                    if(float_range>=1.5){
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc1"});
+                    if (float_range >= 1.5) {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc1"
+                        });
                     }
-                    else if(1.0<=float_range){
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc2"});
+                    else if (1.0 <= float_range) {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc2"
+                        });
                     }
-                    else if(0.5<=float_range){
+                    else if (0.5 <= float_range) {
 
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc3"});
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc3"
+                        });
                     }
-                    else if(0.0<=float_range){
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc4"});
+                    else if (0.0 <= float_range) {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc4"
+                        });
                     }
-                    else if(-0.5<=float_range){
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc5"});
+                    else if (-0.5 <= float_range) {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc5"
+                        });
                     }
-                    else if(-1.0<=float_range){
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc6"});
+                    else if (-1.0 <= float_range) {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc6"
+                        });
                     }
-                    else if(-1.5<=float_range){
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc7"});
+                    else if (-1.5 <= float_range) {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc7"
+                        });
                     }
-                    else{
-                        $scope.industry.splice(i,0,{name:temp[i].name,turnover_p:temp[i].turnoverP,price:temp[i].price,price_range:temp[i].priceRange,style:"cc8"});
+                    else {
+                        $scope.industry.splice(i, 0, {
+                            name: temp[i].name,
+                            turnover_p: temp[i].turnoverP,
+                            price: temp[i].price,
+                            price_range: temp[i].priceRange,
+                            style: "cc8"
+                        });
+
                     }
                 }
-
             });
+
+
     });
 
 
