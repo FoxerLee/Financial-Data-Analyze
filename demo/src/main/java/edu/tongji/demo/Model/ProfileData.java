@@ -9,15 +9,15 @@ public class ProfileData {
 
     private Double roe;
 
-    private Double netProfitRatio;
+    private Double net_profitRatio;
 
-    private Double grossProfitRatio;
+    private Double gross_profitRatio;
 
-    private Double netProfits;
+    private Double net_profits;
 
     private Double eps;
 
-    private Double businessIncome;
+    private Double business_income;
 
     private Double bips;
 
@@ -53,28 +53,28 @@ public class ProfileData {
         this.roe = roe;
     }
 
-    public Double getNetProfitRatio() {
-        return netProfitRatio;
+    public Double getNet_profitRatio() {
+        return net_profitRatio;
     }
 
-    public void setNetProfitRatio(Double netProfitRatio) {
-        this.netProfitRatio = netProfitRatio;
+    public void setNet_profitRatio(Double net_profitRatio) {
+        this.net_profitRatio = net_profitRatio;
     }
 
-    public Double getGrossProfitRatio() {
-        return grossProfitRatio;
+    public Double getGross_profitRatio() {
+        return gross_profitRatio;
     }
 
-    public void setGrossProfitRatio(Double grossProfitRatio) {
-        this.grossProfitRatio = grossProfitRatio;
+    public void setGross_profitRatio(Double gross_profitRatio) {
+        this.gross_profitRatio = gross_profitRatio;
     }
 
-    public Double getNetProfits() {
-        return netProfits;
+    public Double getNet_profits() {
+        return net_profits;
     }
 
-    public void setNetProfits(Double netProfits) {
-        this.netProfits = netProfits;
+    public void setNet_profits(Double net_profits) {
+        this.net_profits = net_profits;
     }
 
     public Double getEps() {
@@ -85,12 +85,12 @@ public class ProfileData {
         this.eps = eps;
     }
 
-    public Double getBusinessIncome() {
-        return businessIncome;
+    public Double getBusiness_income() {
+        return business_income;
     }
 
-    public void setBusinessIncome(Double businessIncome) {
-        this.businessIncome = businessIncome;
+    public void setBusiness_income(Double business_income) {
+        this.business_income = business_income;
     }
 
     public Double getBips() {

@@ -1,18 +1,18 @@
 package edu.tongji.demo.Model;
 
 public class UserInfo {
-    private Integer userId;
+    private Integer user_id;
 
     private String password;
 
     private String name;
 
     public Integer getUserId() {
-        return userId;
+        return user_id;
     }
 
     public void setUserId(Integer userId) {
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public String getPassword() {

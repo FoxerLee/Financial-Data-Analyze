@@ -7,13 +7,13 @@ public class CashFlowData {
 
     private String name;
 
-    private Double cfSales;
+    private Double cf_sales;
 
     private Double rateofreturn;
 
-    private Double cfNm;
+    private Double cf_nm;
 
-    private Double cfLiabilities;
+    private Double cf_liabilities;
 
     private Double cashflowratio;
 
@@ -41,14 +41,6 @@ public class CashFlowData {
         this.name = name == null ? null : name.trim();
     }
 
-    public Double getCfSales() {
-        return cfSales;
-    }
-
-    public void setCfSales(Double cfSales) {
-        this.cfSales = cfSales;
-    }
-
     public Double getRateofreturn() {
         return rateofreturn;
     }
@@ -57,27 +49,35 @@ public class CashFlowData {
         this.rateofreturn = rateofreturn;
     }
 
-    public Double getCfNm() {
-        return cfNm;
-    }
-
-    public void setCfNm(Double cfNm) {
-        this.cfNm = cfNm;
-    }
-
-    public Double getCfLiabilities() {
-        return cfLiabilities;
-    }
-
-    public void setCfLiabilities(Double cfLiabilities) {
-        this.cfLiabilities = cfLiabilities;
-    }
-
     public Double getCashflowratio() {
         return cashflowratio;
     }
 
     public void setCashflowratio(Double cashflowratio) {
         this.cashflowratio = cashflowratio;
+    }
+
+    public Double getCf_sales() {
+        return cf_sales;
+    }
+
+    public void setCf_sales(Double cf_sales) {
+        this.cf_sales = cf_sales;
+    }
+
+    public Double getCf_nm() {
+        return cf_nm;
+    }
+
+    public void setCf_nm(Double cf_nm) {
+        this.cf_nm = cf_nm;
+    }
+
+    public Double getCf_liabilities() {
+        return cf_liabilities;
+    }
+
+    public void setCf_liabilities(Double cf_liabilities) {
+        this.cf_liabilities = cf_liabilities;
     }
 }

@@ -1,6 +1,7 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapping.NewsMapper;
+import edu.tongji.demo.Mapper.NewsMapper;
+import edu.tongji.demo.Verification;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,9 @@ public class NewsController {
 
     @GetMapping("/user")
     public Object getNews(@Param(value = "code") String code){
-        return newsMapper.getNews(code);
+        if (!Verification.verify())
+            return "unregistered";
+        else
+            return newsMapper.getNews(code);
     }
 }

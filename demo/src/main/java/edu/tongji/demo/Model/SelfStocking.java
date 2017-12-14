@@ -1,16 +1,16 @@
 package edu.tongji.demo.Model;
 
-public class SelfStockingKey {
-    private Integer userId;
+public class SelfStocking {
+    private Integer user_id;
 
     private String code;
 
     public Integer getUserId() {
-        return userId;
+        return user_id;
     }
 
     public void setUserId(Integer userId) {
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public String getCode() {
