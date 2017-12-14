@@ -3,13 +3,13 @@
 <head>
     <title>Home</title>
     <!-- jQuery-->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/angular.js"></script>
-    <script src="../static/js/angular-route.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
 
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="../static/css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;A股行业<span class="heat-map-title2">按成交额从前到后排列</span></p>
 
-    <div ng-repeat="n in industry" id="{{n.name}}" class="content-grid" onclick="display(id)">
+    <div ng-repeat="n in industry" ng-click="display(n.name)" id="{{n.name}}" class="content-grid" >
         <a class="b-link-stripe b-animate-go  thickbox">
             <div class={{n.style}}>{{n.name}}</div>
             <div class="b-wrapper">
@@ -73,21 +73,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li class="insert">&nbsp;&nbsp;&nbsp;</li>
             <li class="insert">&nbsp;&nbsp;&nbsp;</li>
         </ul>
-        <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;金融行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
+        <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;化工行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
         <div ng-repeat="m in single"  class="content-grid">
             <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-                <div id={{m.name}} class={{m.style}}>{{m.name}}</div>
+                <div id={{m.name}} class={{m.style}} ng-click="goto(id)">{{m.name}}</div>
             </a>
         </div>
-        <ul>
-            <li class="insert">&nbsp;&nbsp;&nbsp;</li>
-            <li class="insert"><img src="images/bar.png"></li>
-        </ul>
+
 
     </div>
-    <div class="clear"> </div>
+
 </div>
-<div class="clear"> </div>
 
 </body>
 </html>
@@ -135,16 +131,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         for (var i = 0; i < 49; i++) {
                             pr = String(temp2[i].priceRange);
                             temp_range = pr.substring(0, pr.length - 1);
-                            // alert();
-                            // for(var j=pr.length -1;j>0;j--){
-                            //     if(pr[i]==='%'){
-                            //         index=i;
-                            //     }
-                            // }
-                            // for(j=0;j<index;j++){
-                            //     temp_range=temp_range+pr[j];
-                            // // }
-                            //alert(temp_range)
                             float_range = parseFloat(temp_range);
                             temp_range = "";
 
@@ -165,161 +151,175 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             }
                             else if (0.5 <= float_range) {
 
-                                $scope.single.splice(i, 0, {
-                                    name: temp2[i].name,
-                                    style: "cc3"
-                                });
-                            }
-                            else if (0.0 <= float_range) {
-                                $scope.single.splice(i, 0, {
-                                    name: temp2[i].name,
-                                    style: "cc4"
-                                });
-                            }
-                            else if (-0.5 <= float_range) {
-                                $scope.single.splice(i, 0, {
-                                    name: temp2[i].name,
-                                    style: "cc5"
-                                });
-                            }
-                            else if (-1.0 <= float_range) {
-                                $scope.single.splice(i, 0, {
-                                    name: temp2[i].name,
-                                    style: "cc6"
-                                });
-                            }
-                            else if (-1.5 <= float_range) {
-                                $scope.single.splice(i, 0, {
-                                    name: temp2[i].name,
-                                    style: "cc7"
-                                });
-                            }
-                            else {
-                                $scope.single.splice(i, 0, {
-                                    name: temp2[i].name,
-                                    style: "cc8"
-                                });
-
-                            }
-                        }
-                    });
-
-
-        });
-
-    }
-
-
-
-
-
     app.controller('siteCtrl', function($scope, $http) {
         $http.get("http://localhost:8080/stock/all")
-            .then(function (response) {
-                var temp = angular.fromJson(response.data);
-                $scope.industry = [
-                    {name: " ", turnover_p: 0, price: 0, price_range: 0, style: "cc6"}
-                ];
+                .then(function (response) {
+                    var temp = angular.fromJson(response.data);
+                    $scope.industry = [
+                        {name: " ", turnover_p: 0, price: 0, price_range: 0, style: "cc6"}
+                    ];
+
+                    for (var i = 0; i < 49; i++) {
+                        pr = String(temp[i].priceRange);
+                        temp_range = pr.substring(0, pr.length - 1);
+                        float_range = parseFloat(temp_range);
+                        temp_range = "";
+
+                        if (i === 0) {
+                            $scope.industry.splice(0, 1);
+                        }
+                        if (float_range >= 1.5) {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc1"
+                            });
+                        }
+                        else if (1.0 <= float_range) {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc2"
+                            });
+                        }
+                        else if (0.5 <= float_range) {
+
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc3"
+                            });
+                        }
+                        else if (0.0 <= float_range) {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc4"
+                            });
+                        }
+                        else if (-0.5 <= float_range) {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc5"
+                            });
+                        }
+                        else if (-1.0 <= float_range) {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc6"
+                            });
+                        }
+                        else if (-1.5 <= float_range) {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc7"
+                            });
+                        }
+                        else {
+                            $scope.industry.splice(i, 0, {
+                                name: temp[i].name,
+                                turnover_p: temp[i].turnoverP,
+                                price: temp[i].price,
+                                price_range: temp[i].priceRange,
+                                style: "cc8"
+                            });
+
+                        }
+                        var singleName = String(temp[i].name);
+
+                        $http.get("http://localhost:8080/stock/industry?name="+"化工行业")
+                                .then(function (response) {
+                                    var temp2 = angular.fromJson(response.data);
+                                    $scope.single = [
+                                        {name: " ", style: "cc6"}
+                                    ];
 
 
-                for (var i = 0; i < 49; i++) {
-                    pr = String(temp[i].priceRange);
-                    temp_range = pr.substring(0, pr.length - 1);
-                    // alert();
-                    // for(var j=pr.length -1;j>0;j--){
-                    //     if(pr[i]==='%'){
-                    //         index=i;
-                    //     }
-                    // }
-                    // for(j=0;j<index;j++){
-                    //     temp_range=temp_range+pr[j];
-                    // // }
-                    //alert(temp_range)
-                    float_range = parseFloat(temp_range);
-                    temp_range = "";
+                                    for (var i = 0; i < 50; i++) {
+                                        pr = String(temp2[i].priceRange);
+                                        temp_range = pr.substring(0, pr.length - 1);
+                                        float_range = parseFloat(temp_range);
+                                        temp_range = "";
 
-                    if (i === 0) {
-                        $scope.industry.splice(0, 1);
-                    }
-                    if (float_range >= 1.5) {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc1"
-                        });
-                    }
-                    else if (1.0 <= float_range) {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc2"
-                        });
-                    }
-                    else if (0.5 <= float_range) {
+                                        if (i === 0) {
+                                            $scope.single.splice(0, 1);
+                                        }
+                                        if (float_range >= 1.5) {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc1"
+                                            });
+                                        }
+                                        else if (1.0 <= float_range) {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc2"
+                                            });
+                                        }
+                                        else if (0.5 <= float_range) {
 
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc3"
-                        });
-                    }
-                    else if (0.0 <= float_range) {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc4"
-                        });
-                    }
-                    else if (-0.5 <= float_range) {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc5"
-                        });
-                    }
-                    else if (-1.0 <= float_range) {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc6"
-                        });
-                    }
-                    else if (-1.5 <= float_range) {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc7"
-                        });
-                    }
-                    else {
-                        $scope.industry.splice(i, 0, {
-                            name: temp[i].name,
-                            turnover_p: temp[i].turnoverP,
-                            price: temp[i].price,
-                            price_range: temp[i].priceRange,
-                            style: "cc8"
-                        });
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc3"
+                                            });
+                                        }
+                                        else if (0.0 <= float_range) {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc4"
+                                            });
+                                        }
+                                        else if (-0.5 <= float_range) {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc5"
+                                            });
+                                        }
+                                        else if (-1.0 <= float_range) {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc6"
+                                            });
+                                        }
+                                        else if (-1.5 <= float_range) {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc7"
+                                            });
+                                        }
+                                        else {
+                                            $scope.single.splice(i, 0, {
+                                                name: temp2[i].name,
+                                                style: "cc8"
+                                            });
 
-                    }
+                                        }
+
+                                });
+                    };
                 }
-            });
+        });
 
 
-    });
+
+                            });
 
 
 </script>
