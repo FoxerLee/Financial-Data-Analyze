@@ -124,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         y=document.getElementById("individual");
         y.innerHTML="&nbsp;&nbsp;&nbsp;"+id+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
         app.controller('siteCtrl', function($scope, $http) {
-            $http.get("http://localhost:8080/Stock/Industry?name="+id)
+            $http.get("http://localhost:8080/stock/industry?name="+id)
                     .then(function (response) {
                         var temp2 = angular.fromJson(response.data);
                         $scope.single = [
@@ -214,7 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/Stock/GetAll")
+        $http.get("http://localhost:8080/stock/all")
             .then(function (response) {
                 var temp = angular.fromJson(response.data);
                 $scope.industry = [
