@@ -245,81 +245,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         var singleName = String(temp[i].name);
 
                         $http.get("http://localhost:8080/stock/industry?name="+"化工行业")
-                                .then(function (response) {
-                                    var temp2 = angular.fromJson(response.data);
-                                    $scope.single = [
-                                        {name: " ", style: "cc6"}
-                                    ];
-
-
-                                    for (var i = 0; i < 50; i++) {
-                                        pr = String(temp2[i].priceRange);
-                                        temp_range = pr.substring(0, pr.length - 1);
-                                        float_range = parseFloat(temp_range);
-                                        temp_range = "";
-
-                                        if (i === 0) {
-                                            $scope.single.splice(0, 1);
-                                        }
-                                        if (float_range >= 1.5) {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc1"
-                                            });
-                                        }
-                                        else if (1.0 <= float_range) {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc2"
-                                            });
-                                        }
-                                        else if (0.5 <= float_range) {
-
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc3"
-                                            });
-                                        }
-                                        else if (0.0 <= float_range) {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc4"
-                                            });
-                                        }
-                                        else if (-0.5 <= float_range) {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc5"
-                                            });
-                                        }
-                                        else if (-1.0 <= float_range) {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc6"
-                                            });
-                                        }
-                                        else if (-1.5 <= float_range) {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc7"
-                                            });
-                                        }
-                                        else {
-                                            $scope.single.splice(i, 0, {
-                                                name: temp2[i].name,
-                                                style: "cc8"
-                                            });
-
-                                        }
-
-                                });
-                    };
-                }
-        });
-
-
-
-                            });
+                                .then();
+                    }
+                })
+    })
 
 
 </script>
