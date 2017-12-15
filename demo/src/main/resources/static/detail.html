@@ -45,11 +45,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
 
 
-                <!--<div class="your-top">
-                    <i> </i>
-                    <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                <div class="your-top">
+
+                    <script language="javascript">
+                        function _submit(){
+                            document.form1.action = "http://www.google.com";
+                            document.form1.method = "get"; //post
+                            document.form1.target = "_blank"; //_self //_parent //_top
+                            document.form1.submit();
+
+                            document.form1.action = "http://www.baidu.com";
+                            document.form1.method = "get"; //post
+                            document.form1.target = "_blank";//_self //_parent //_top
+                            document.form1.submit();
+                        }
+                    </script>
+
+                    <form name="form1">
+                        <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                        <input type="button" value="提交" onclick="_submit()">
+                    </form>
+
                     <div class="clear"> </div>
-                </div>-->
+                </div>
 
             </ul>
         </div>
@@ -169,20 +187,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clear"> </div>
                 </div>
                 <div class="blog-in">
+                    <li  ng-repeat="x in news">
 
-                    <li>
-                        <span>(11-27)</span>
+
+                        <span>{{x.click}}</span>
                         [<a class="a_blue_d_all" target="_blank" href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml">资讯</a>]
-                        <a href="http://finance.sina.com.cn/stock/marketresearch/2017-11-27/doc-ifypathz6222152.shtml" target="_blank">拐点还是买点 探秘大跌后资金面“DNA”</a>
-                    </li>			    <li>
-                    <span>(11-26)</span>
-                    [<a class="a_blue_d_all" target="_blank" href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml">资讯</a>]
-                    <a href="http://finance.sina.com.cn/stock/s/2017-11-26/doc-ifypacti8359230.shtml" target="_blank">茅台6天蒸发千亿市值：外资杀回马枪 董事长...</a>
-                </li>				<li>
-                    <span>(11-24)</span>
-                    [<a class="a_blue_d_all" target="_blank" href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml">资讯</a>]
-                    <a href="http://finance.sina.com.cn/stock/s/2017-11-25/doc-ifypapmz4790639.shtml" target="_blank">另类“股王”京东方A:10月以后半数交易日...</a>
-                </li>
+                        <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
+
                     <ul class="date">
                         <li><span><a href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml" target="_blank"><i ></i>更多</a></span></li>
 
@@ -199,11 +210,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
 
                          <div class="blog-in">
-                             <h5><a href="../../../../../../../../Downloads/laji/cpts_19_eh/single.html">公司研究</a></h5>
+                             <h5>公司研究</h5>
+                             <li  ng-repeat="x in news">
+                                 <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
 
-                             <li><a title="中国平安公司深度分析:科技提升金融价值,输出四大生态圈" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3993081/index.phtml" target="_blank">中国平安公司深度分析:科技提升金融价值,输...</a></li>
-                             <li><a title="中国平安三季报点评:净利润进入加速通道,新业务价值超去年全年" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3977815/index.phtml" target="_blank">中国平安三季报点评:净利润进入加速通道,新...</a></li>
-                             <li><a title="中国平安:新业务价值增速微低于预期,净利润上升通道确定" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3971725/index.phtml" target="_blank">中国平安:新业务价值增速微低于预期,净利润...</a></li>
 
                              <ul class="date">
                                  <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=sh601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
@@ -212,11 +222,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
 
                          <div class="blog-in">
-                             <h5><a href="../../../../../../../../Downloads/laji/cpts_19_eh/single.html">行业研究</a></h5>
+                             <h5>行业研究</h5>
                              <li  ng-repeat="x in news">
                                  <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
-                            <!-- <li><a title="中国平安三季报点评:净利润进入加速通道,新业务价值超去年全年" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3977815/index.phtml" target="_blank">中国平安三季报点评:净利润进入加速通道,新...</a></li>
-                             <li><a title="中国平安:新业务价值增速微低于预期,净利润上升通道确定" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3971725/index.phtml" target="_blank">中国平安:新业务价值增速微低于预期,净利润...</a></li>-->
+
 
                              <ul class="date">
                                  <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=sh601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
