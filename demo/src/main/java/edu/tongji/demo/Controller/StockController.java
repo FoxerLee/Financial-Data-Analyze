@@ -144,8 +144,8 @@ public class StockController {
      * @param code
      * @return
      */
-    @PostMapping(value = "/brief", consumes = MediaType.ALL_VALUE)
-    public Object getBrief(String code){
+    @GetMapping(value = "/brief")
+    public Object getBrief(@Param(value = "code") String code){
         try{
             DataRealTime dataRealTimes = dataRealTimeMapper.getPresentData(code);
             if (dataRealTimes == null)
@@ -157,8 +157,8 @@ public class StockController {
         }
     }
 
-    @PostMapping(value = "/history")
-    public Object getHistory(String code){
+    @GetMapping(value = "/history")
+    public Object getHistory(@Param(value = "code") String code){
         try{
             ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
             return data;

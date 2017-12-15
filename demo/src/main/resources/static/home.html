@@ -59,6 +59,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					});
 			</script>
 
+				<form method="get" id="search_form" onkeypress="form_query()">
+					<div class="cf">
+						<label class="search-bar">
+							<input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search">
+							<a id="search" class="btn-search">
+								<i class="icon-search"></i>
+							</a>
+							<a href="javascript:;" class="btn-more"></a>
+						</label>
+					</div>
+				</form>
+				<script type="text/javaScript">
+                    var key_word;
+                    function form_query() {
+                        jQuery(document).ready(function (){
+                            jQuery('#search_form').bind("#keyword", function(){
+                                key_word = jQuery("#keyword").val();
+                                if(key_word == ""){
+                                    return false;
+                                }
+                                var options = {
+                                    url: 'news/code?code=' + key_word,
+                                    type: 'get',
+                                    dataType: 'text',
+                                    data: $("#search_form").serialize(),
+                                    success: function (data) {
+                                        if (data.length > 0){
+                                            jQuery("#user_info").html(data);
+                                        }
+                                    }
+                                };
+                                $.ajax(options);
+                                return false;
+                            });
+
+                            $('#search').click(function(){
+                                $('#search_form').submit();
+                            });
+                        });
+                    }
+				</script>
+
 			</div>
 			<div class="clear"> </div>
 		</div>
