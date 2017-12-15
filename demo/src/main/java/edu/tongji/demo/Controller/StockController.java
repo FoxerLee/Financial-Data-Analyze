@@ -1,13 +1,14 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapper.ConnectMapper;
-import edu.tongji.demo.Mapper.DataDaysMapper;
-import edu.tongji.demo.Mapper.IndustryMapper;
+import edu.tongji.demo.Mapper.*;
 import edu.tongji.demo.Model.Connect;
+import edu.tongji.demo.Model.DataRealTime;
+import edu.tongji.demo.Model.WarehouseDataDays;
 import edu.tongji.demo.Verification;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,6 +26,12 @@ public class StockController {
     @Autowired
     private DataDaysMapper dataDaysMapper;
 
+    @Autowired
+    private DataRealTimeMapper dataRealTimeMapper;
+
+    @Autowired
+    private WarehouseDataDaysMapper warehouseDataDaysMapper;
+
     @GetMapping("/all")
     public Object GetAllStockInfo(){
         Boolean judge = Verification.verify();
@@ -33,8 +40,7 @@ public class StockController {
         else
             return industryMapper.getAllIndustryInfor();
     }
-
-    /**
+        /**
      * 通过code或者name获得connect的信息
      * @param content
      * @return
@@ -121,7 +127,7 @@ public class StockController {
                     try{
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
                     } catch (Exception e){
-                        continue;
+                        System.out.println(connectArrayList.get(i).getCode());
                     }
                     dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
                 }
@@ -130,6 +136,34 @@ public class StockController {
                 //未知错误
                 return "400";
             }
+        }
+    }
+
+    /**
+     * 获取某只股票的最新信息，根据code
+     * @param code
+     * @return
+     */
+    @PostMapping(value = "/brief", consumes = MediaType.ALL_VALUE)
+    public Object getBrief(String code){
+        try{
+            DataRealTime dataRealTimes = dataRealTimeMapper.getPresentData(code);
+            if (dataRealTimes == null)
+                return "404";
+            else
+                return dataRealTimes;
+        }catch (Exception e){
+            return "400";
+        }
+    }
+
+    @PostMapping(value = "/history")
+    public Object getHistory(String code){
+        try{
+            ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
+            return data;
+        }catch (Exception e){
+            return "400";
         }
     }
 }

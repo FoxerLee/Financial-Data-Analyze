@@ -8,8 +8,7 @@
 .settings
 .springBeans
 
-*.csv
-*.txt
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

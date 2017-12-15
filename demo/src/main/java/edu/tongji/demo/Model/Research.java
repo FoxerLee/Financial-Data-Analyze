@@ -11,7 +11,7 @@ public class Research {
 
     private String url;
 
-    private Date date;
+    private String date;
 
     private String inst;
 
@@ -49,11 +49,11 @@ public class Research {
         this.url = url == null ? null : url.trim();
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
