@@ -267,6 +267,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
         alert(code);
+        $http.get("http://localhost:8080/stock/name?code=" + code)
+            .then(function (response) {$scope.stockname = response.data;});
         $http.get("http://localhost:8080/news/code?code=" + code)
             .then(function (response) {$scope.news = response.data;});
         $http.get("http://localhost:8080/research/code?code=" + code)
@@ -275,9 +277,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              .then(function (response) {$scope.datarealtime = response.data;});
         $http.get("http://localhost:8080/stock/history?code=" + code)
              .then(function (response) {$scope.datahistory = response.data;});
-        $http.get("http://localhost:8080/stock/history?code=" + code)
-            .then(function (response) {$scope.stockname = response.data;});
-        alert("end");
     });
 
 </script>

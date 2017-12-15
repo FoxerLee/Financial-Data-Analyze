@@ -169,10 +169,11 @@ public class StockController {
 
     @GetMapping(value = "/name")
     public Object getStockName(@Param(value = "code") String code){
+        String temp = "{\"name\":\"";
         try{
-            return connectMapper.getName(code);
+            return temp + connectMapper.getName(code) + "\"}";
         }catch (Exception e){
-            return "Unknown";
+            return temp + "Unknown" + "\"}";
         }
     }
 }
