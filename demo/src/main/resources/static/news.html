@@ -36,6 +36,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li><a href="detail.html" class="black1"> 个股信息</a ></li>
                 <li><a href="static/404.html" class="black2" > 个人主页</a ></li>
             </ul>
+            <form name="form1">
+                <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                <input type="button" value="提交" onclick="_submit()">
+            </form>
 
         </div>
     </div>
