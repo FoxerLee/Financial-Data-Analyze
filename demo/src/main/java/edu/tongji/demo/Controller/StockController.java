@@ -166,4 +166,13 @@ public class StockController {
             return "400";
         }
     }
+
+    @GetMapping(value = "/name")
+    public Object getStockName(@Param(value = "code") String code){
+        try{
+            return connectMapper.getName(code);
+        }catch (Exception e){
+            return "Unknown";
+        }
+    }
 }
