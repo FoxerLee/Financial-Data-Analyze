@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>detail</title>
     <!-- jQuery-->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/angular.js"></script>
-    <script src="../static/js/angular-route.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,12 +17,12 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>-->
     <!--//fonts-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Untitled Document</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="../static/js/echarts.js"></script>
+    <script src="js/echarts.js"></script>
 </head>
 <body>
 <div class="header">
@@ -47,24 +47,94 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="your-top">
 
-                    <script language="javascript">
+                   <!--<script language="javascript">
+                        var code = '000001'
                         function _submit(){
-                            document.form1.action = "http://www.google.com";
+                            document.form1.action = "http://localhost:8080/news/code?code=";
                             document.form1.method = "get"; //post
-                            document.form1.target = "_blank"; //_self //_parent //_top
                             document.form1.submit();
 
-                            document.form1.action = "http://www.baidu.com";
+                            document.form1.action = "http://localhost:8080/news/user";
+                            document.form1.method = "get"; //post
+                            document.form1.submit();
+
+                            document.form1.action = "http://localhost:8080/news/user";
+                            document.form1.method = "get"; //post
+                            document.form1.submit();
+
+                            document.form1.action = "http://localhost:8080/news/user";
+                            document.form1.method = "get"; //post
+                            document.form1.submit();
+
+                            document.form1.action = "detail.html";
                             document.form1.method = "get"; //post
 
                             document.form1.submit();
+
+                            $("#form").load(function(){
+
+                                code = $(this).contents().find("code").text();      //获取到的是json的字符串
+
+                                var j = $.parseJSON(code);                                         //json字符串转换成json对象
+
+                                console.log(j)
+
+                            })
                         }
                     </script>
 
                     <form name="form1">
-                        <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                        <input type="text" name="code" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
                         <input type="button" value="提交" onclick="_submit()">
+                    </form>-->
+
+
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:;" class="btn-more"></a>
+                            </label>
+                        </div>
                     </form>
+                    <!--<input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" onkeypress="form_query()">-->
+                    <!--<script type="text/javaScript">-->
+                        <!--var key_word;-->
+                        <!--function form_query() {-->
+                            <!--alert("eeeee");-->
+                            <!--jQuery(document).ready(function (){-->
+
+                                <!--jQuery('#search_form').bind("#keyword", function(){-->
+                                    <!--key_word = jQuery("#keyword").val();-->
+                                    <!--if(key_word == ""){-->
+                                        <!--return false;-->
+                                    <!--}-->
+                                    <!--var options = {-->
+                                        <!--url: 'news/code?code=' + key_word,-->
+                                        <!--type: 'get',-->
+                                        <!--dataType: 'text',-->
+                                        <!--data: $("#search_form").serialize(),-->
+                                        <!--success: function (data) {-->
+                                            <!--if (data.length > 0){-->
+                                                <!--jQuery("#user_info").html(data);-->
+                                            <!--}-->
+                                        <!--}-->
+                                    <!--};-->
+                                    <!--$.ajax(options);-->
+                                    <!--return false;-->
+                                <!--});-->
+
+                                <!--$('#search').click(function(){-->
+                                    <!--$('#search_form').submit();-->
+                                <!--});-->
+                            <!--});-->
+                        <!--}-->
+                    <!--</script>-->
+
+
 
                     <div class="clear"> </div>
                 </div>
@@ -175,7 +245,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-                <script type="text/javascript">hq.init();</script>-->
+                <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
                 <div id="main" style="width: 480px;height:320px;"></div>
             </div>
           <div class="work-in">
@@ -244,10 +314,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 <script>
+    function getQueryStringArgs(){
+        var qs = (location.search.length>0?location.search.substring(1):"");
+        var args = {};
+        var items = qs.length?qs.split("&"):[];
+        var item = null;
+        var name = null;
+        var value = null;
+        len = items.length;
+        for (var i = 0; i < len; i++) {
+            item = items[i].split("=");
+            name = decodeURIComponent(item[0]);
+            value = decodeURIComponent(item[1]);
+            if (name.length) {
+                args[name] = value;
+            }
+        }
+        return args;
+    }
+    var args = getQueryStringArgs();
+    var code = args["code"];
+
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/news/user?code=601888")
+        alert(code);
+        $http.get("http://localhost:8080/news/code?code=" + code)
             .then(function (response) {$scope.news = response.data;});
+        // $http.get("http://localhost:8080/research/code?code=" + code)
+        //     .then(function (response) {$scope.forum = response.data;});
+        // $http.get("http://localhost:8080/stock/brief?code=" + code)
+        //     .then(function (response) {$scope.datarealtime = response.data;});
+        // $http.get("http://localhost:8080/stock/history?code=" + code)
+        //     .then(function (response) {$scope.datahistory = response.data;});
+        alert("end");
     });
 
 </script>
