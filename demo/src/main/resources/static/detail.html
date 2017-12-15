@@ -34,8 +34,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul >
                 <li><b class="white"></b></li>
 
-
-
                 <li ><a href="home.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li class="active" ><a href="detail.html" class="black1"> 个股信息</a ></li>
@@ -53,36 +51,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             document.form1.action = "http://localhost:8080/news/code?code=";
                             document.form1.method = "get"; //post
                             document.form1.submit();
-
                             document.form1.action = "http://localhost:8080/news/user";
                             document.form1.method = "get"; //post
                             document.form1.submit();
-
                             document.form1.action = "http://localhost:8080/news/user";
                             document.form1.method = "get"; //post
                             document.form1.submit();
-
                             document.form1.action = "http://localhost:8080/news/user";
                             document.form1.method = "get"; //post
                             document.form1.submit();
-
                             document.form1.action = "detail.html";
                             document.form1.method = "get"; //post
-
                             document.form1.submit();
-
                             $("#form").load(function(){
-
                                 code = $(this).contents().find("code").text();      //获取到的是json的字符串
-
                                 var j = $.parseJSON(code);                                         //json字符串转换成json对象
-
                                 console.log(j)
-
                             })
                         }
                     </script>
-
                     <form name="form1">
                         <input type="text" name="code" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
                         <input type="button" value="提交" onclick="_submit()">
@@ -110,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="content" ng-app="myApp" ng-controller="siteCtrl">
         <div class="work">
-            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;中国平安(601318.SH)<span class="heat-map-title2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
+            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{datarealtime.code}})<span class="heat-map-title2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
             <div class="work-top">
 
                 <!--<a href="http://i.finance.sina.com.cn/zixuan,stock" target="_blank"  id="holdStatus" suda-uatrack="key=pc_hq_callup&value=hs">加入自选股</a>
@@ -139,11 +126,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>-->
                             <div class="test-top">
                                     <div class="blog-in">
-                                    <h5>{{click}}</h5>
+                                    <h5>{{datarealtime.close_value}}</h5>
                                     <p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>
 
                                     <ul class="date">
-                                        <li><span><i class="date-in"></i>@now@</span></li>
+                                        <li><span><i class="date-in"></i>{{datarealtime.trading_day}}</span></li>
                                     </ul>
                                         <ul class="date">
 
@@ -162,42 +149,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <tbody>
                                     <tr>
                                         <th>今&nbsp;&nbsp;开：</th>
-                                        <td class="@UD_open_color@">@open@</td>
+                                        <td class="@UD_open_color@">{{datarealtime.open_value}}</td>
                                         <th>昨&nbsp;&nbsp;收：</th>
-                                        <td>@preClose@</td>
+                                        <td>{{datarealtime.close_value}}</td>
                                     </tr>
                                     <tr>
 
                                         <th>最&nbsp;&nbsp;高：</th>
-                                        <td class="@UD_high_color@">@high@</td>
+                                        <td class="@UD_high_color@">{{datarealtime.high_value}}</td>
                                         <th>最&nbsp;&nbsp;低：</th>
-                                        <td class="@UD_low_color@">@low@</td>
+                                        <td class="@UD_low_color@">{{datarealtime.low_value}}</td>
                                     </tr>
                                     <tr>
                                         <th>振&nbsp;&nbsp;幅：</th>
-                                        <td>@swing@</td>
+                                        <td>{{datarealtime.p_change}}</td>
 
                                         <th>换手率：</th>
-                                        <td>@turnover@</td>
+                                        <td>{{datarealtime.turnoverratio}}</td>
                                     </tr>
                                     <tr>
                                         <th>成交额：</th>
-                                        <td>@amount@</td>
+                                        <td>{{datarealtime.volumn_value}}</td>
                                         <th>成交量：</th>
-                                        <td>@volume@</td>
+                                        <td>{{datarealtime.amount}}</td>
 
                                     </tr>
                                     <tr>
                                         <th>市净率：</th>
-                                        <td>@pb@</td>
+                                        <td>{{datarealtime.pb}}</td>
                                         <th>市盈率<sup>TTM</sup>：</th>
-                                        <td>@pe@</td>
+                                        <td>{{datarealtime.per}}</td>
                                     </tr>
                                     <tr>
                                         <th>流通市值：</th>
-                                        <td>@cvs@</td>
+                                        <td>{{datarealtime.nmc}}</td>
                                         <th>总市值：</th>
-                                        <td>@totalShare@</td>
+                                        <td>{{datarealtime.mktcap}}</td>
 
                                     </tr>
                                     </tbody>
@@ -207,11 +194,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
 
-
-
-
                 <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
-                <div id="main" style="width: 480px;height:320px;"></div>
+                <div id="main" style="width: 360px;height:240px;"></div>
             </div>
           <div class="work-in">
 
@@ -239,10 +223,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
 
                          <div class="blog-in">
-
                              <li  ng-repeat="y in research">
-                                 [<span><a>发布日期</a>{{x.}}</span>]
-                                 <a  href="{{y.url}}" target="_blank">{{y.name}}</a></li>
+                                 [<span><a>发布日期</a>{{y.date}}</span>]
+                                 <a  href="{{y.url}}" target="_blank">{{y.title}}</a></li>
                              <ul class="date">
                                  <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
 
@@ -292,6 +275,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              .then(function (response) {$scope.datarealtime = response.data;});
         $http.get("http://localhost:8080/stock/history?code=" + code)
              .then(function (response) {$scope.datahistory = response.data;});
+        $http.get("http://localhost:8080/stock/history?code=" + code)
+            .then(function (response) {$scope.stockname = response.data;});
         alert("end");
     });
 
