@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @CrossOrigin
-public class BigDataController {
+public class ErrorController {
 
-    @GetMapping("/bigdatagraph1")
-    public Object index1(){
-        return "index_data2.html";
+    @GetMapping("/error")
+    public Object index(){
+        return "error.html";
     }
 }

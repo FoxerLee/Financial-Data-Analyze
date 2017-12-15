@@ -26,7 +26,6 @@ public class ResearchController {
 //        }catch (Exception e){
 //            return "400";
 //        }
-        System.out.print(code);
         return null;
     }
 
