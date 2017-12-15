@@ -31,6 +31,7 @@ public class UserController {
         JSONObject content = JSONObject.fromObject(verification);
         UserInfo info = userInfoMapper.Vefify(content.getString("name"), content.getString("password"));
         if (info == null){
+            System.out.println("error");
             return "404";
         }
         else {
@@ -44,6 +45,7 @@ public class UserController {
             cookie.setPath("/");
             cookie.setMaxAge(60*60);
             response.addCookie(cookie);
+            System.out.print("yes!!");
             return "200";
         }
     }
