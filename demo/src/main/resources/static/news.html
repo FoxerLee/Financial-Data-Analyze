@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>news</title>
     <!-- jQuery-->
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/jquery.min.js"></script>
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/angular.js"></script>
-    <script src="../../../../../../../../Downloads/laji/cpts_19_eh/js/angular-route.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/angular-route.js"></script>
+    <script src="../static/js/angular.js"></script>
 
 
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="../../../../../../../../Downloads/laji/cpts_19_eh/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,11 +31,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li><a href="index.html" >大数据展示</a ></li>
+                <li><a href="home.html" >大数据展示</a ></li>
                 <li class="active" ><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li><a href="detail.html" class="black1"> 个股信息</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/work.html" class="black2" > 个人主页</a ></li>
+                <li><a href="static/404.html" class="black2" > 个人主页</a ></li>
             </ul>
+            <form name="form1">
+                <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                <input type="button" value="提交" onclick="_submit()">
+            </form>
 
         </div>
     </div>
@@ -72,8 +76,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <script>
                var app = angular.module('myApp', []);
                app.controller('siteCtrl', function($scope, $http) {
-               $http.get("http://192.168.0.126:8080/news/user?code=601888")
-               .then(function (response) {$scope.news = response.data;});
+                   $http.get("http://localhost:8080/news/user?code=601888")
+                       .then(function (response) {$scope.news = response.data;});
                });
 
                </script>

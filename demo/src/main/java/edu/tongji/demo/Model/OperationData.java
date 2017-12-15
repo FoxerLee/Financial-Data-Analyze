@@ -11,13 +11,13 @@ public class OperationData {
 
     private Double arturndays;
 
-    private Double inventoryTurnover;
+    private Double inventory_turnover;
 
-    private Double inventoryDays;
+    private Double inventory_days;
 
-    private Double currentassetTurnover;
+    private Double currentasset_turnover;
 
-    private Double currentassetDays;
+    private Double currentasset_days;
 
     public Integer getId() {
         return id;
@@ -59,35 +59,35 @@ public class OperationData {
         this.arturndays = arturndays;
     }
 
-    public Double getInventoryTurnover() {
-        return inventoryTurnover;
+    public Double getInventory_turnover() {
+        return inventory_turnover;
     }
 
-    public void setInventoryTurnover(Double inventoryTurnover) {
-        this.inventoryTurnover = inventoryTurnover;
+    public void setInventory_turnover(Double inventory_turnover) {
+        this.inventory_turnover = inventory_turnover;
     }
 
-    public Double getInventoryDays() {
-        return inventoryDays;
+    public Double getInventory_days() {
+        return inventory_days;
     }
 
-    public void setInventoryDays(Double inventoryDays) {
-        this.inventoryDays = inventoryDays;
+    public void setInventory_days(Double inventory_days) {
+        this.inventory_days = inventory_days;
     }
 
-    public Double getCurrentassetTurnover() {
-        return currentassetTurnover;
+    public Double getCurrentasset_turnover() {
+        return currentasset_turnover;
     }
 
-    public void setCurrentassetTurnover(Double currentassetTurnover) {
-        this.currentassetTurnover = currentassetTurnover;
+    public void setCurrentasset_turnover(Double currentasset_turnover) {
+        this.currentasset_turnover = currentasset_turnover;
     }
 
-    public Double getCurrentassetDays() {
-        return currentassetDays;
+    public Double getCurrentasset_days() {
+        return currentasset_days;
     }
 
-    public void setCurrentassetDays(Double currentassetDays) {
-        this.currentassetDays = currentassetDays;
+    public void setCurrentasset_days(Double currentasset_days) {
+        this.currentasset_days = currentasset_days;
     }
 }

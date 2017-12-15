@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <title>detail</title>
     <!-- jQuery-->
+<<<<<<< HEAD
     <script src="../js/jquery.min.js"></script>
     <script src="../js/angular.js"></script>
     <script src="../js/angular-route.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+=======
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/angular.js"></script>
+    <script src="../static/js/angular-route.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+>>>>>>> master
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,7 +31,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Untitled Document</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<<<<<<< HEAD
     <script src="../js/echarts.js"></script>
+=======
+    <script src="../static/js/echarts.js"></script>
+>>>>>>> master
 </head>
 <body>
 <div class="header">
@@ -36,50 +49,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-                <li ><a href="../../../../../../../../Downloads/laji/cpts_19_eh/index.html" >大数据展示</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/news.html" class="black" > 新闻资讯</a ></li>
+                <li ><a href="home.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li class="active" ><a href="detail.html" class="black1"> 个股信息</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/work.html" class="black2" > 个人主页</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
                 <li>
 
                 </li>
-                <form novalidate  >
 
-                <div class="your-top" ng-app="formApp" ng-controller="formCtrl">
 
-                        <input type="text" value="输入股票代码查询" ng-model="stock">
+                <div class="your-top">
 
-                        <button ng-click="search()">🔍</button>
-                        <div class="clear"> </div>
+                    <script language="javascript">
+                        function _submit(){
+                            document.form1.action = "http://www.google.com";
+                            document.form1.method = "get"; //post
+                            document.form1.target = "_blank"; //_self //_parent //_top
+                            document.form1.submit();
 
-                </div>
-                </form>
-                <pre>{{stock}}</pre>
+                            document.form1.action = "http://www.baidu.com";
+                            document.form1.method = "get"; //post
 
-                <script>
+                            document.form1.submit();
+                        }
+                    </script>
 
-                    var app = angular.module('formApp', []);
-                    app.controller('formCtrl', function($scope,$http) {
-                        $scope.stock = {};
-                    $scope.search = function() {
-                        $http({
-                            url:'http://192.168.0.117:8080/Search/Stocks',
-                            method: 'POST',
-                            data: $.param($scope.stock)
-                        }).success(function(){
-                            console.log("success!");
-                        }).error(function(){
-                            console.log("error");
-                        })
-                    };
-                });
-                </script>
+                    <form name="form1">
+                        <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                        <input type="button" value="提交" onclick="_submit()">
+                    </form>
 
-                <!--<div class="your-top">
-                    <i> </i>
-                    <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
                     <div class="clear"> </div>
-                </div>-->
+                </div>
 
             </ul>
         </div>
@@ -199,20 +200,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="clear"> </div>
                 </div>
                 <div class="blog-in">
+                    <li  ng-repeat="x in news">
 
-                    <li>
-                        <span>(11-27)</span>
+
+                        <span>{{x.click}}</span>
                         [<a class="a_blue_d_all" target="_blank" href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml">资讯</a>]
-                        <a href="http://finance.sina.com.cn/stock/marketresearch/2017-11-27/doc-ifypathz6222152.shtml" target="_blank">拐点还是买点 探秘大跌后资金面“DNA”</a>
-                    </li>			    <li>
-                    <span>(11-26)</span>
-                    [<a class="a_blue_d_all" target="_blank" href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml">资讯</a>]
-                    <a href="http://finance.sina.com.cn/stock/s/2017-11-26/doc-ifypacti8359230.shtml" target="_blank">茅台6天蒸发千亿市值：外资杀回马枪 董事长...</a>
-                </li>				<li>
-                    <span>(11-24)</span>
-                    [<a class="a_blue_d_all" target="_blank" href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml">资讯</a>]
-                    <a href="http://finance.sina.com.cn/stock/s/2017-11-25/doc-ifypapmz4790639.shtml" target="_blank">另类“股王”京东方A:10月以后半数交易日...</a>
-                </li>
+                        <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
+
                     <ul class="date">
                         <li><span><a href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml" target="_blank"><i ></i>更多</a></span></li>
 
@@ -229,11 +223,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
 
                          <div class="blog-in">
-                             <h5><a href="../../../../../../../../Downloads/laji/cpts_19_eh/single.html">公司研究</a></h5>
+                             <h5>公司研究</h5>
+                             <li  ng-repeat="x in news">
+                                 <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
 
-                             <li><a title="中国平安公司深度分析:科技提升金融价值,输出四大生态圈" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3993081/index.phtml" target="_blank">中国平安公司深度分析:科技提升金融价值,输...</a></li>
-                             <li><a title="中国平安三季报点评:净利润进入加速通道,新业务价值超去年全年" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3977815/index.phtml" target="_blank">中国平安三季报点评:净利润进入加速通道,新...</a></li>
-                             <li><a title="中国平安:新业务价值增速微低于预期,净利润上升通道确定" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3971725/index.phtml" target="_blank">中国平安:新业务价值增速微低于预期,净利润...</a></li>
 
                              <ul class="date">
                                  <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=sh601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
@@ -242,11 +235,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </div>
 
                          <div class="blog-in">
-                             <h5><a href="../../../../../../../../Downloads/laji/cpts_19_eh/single.html">行业研究</a></h5>
+                             <h5>行业研究</h5>
                              <li  ng-repeat="x in news">
                                  <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
-                            <!-- <li><a title="中国平安三季报点评:净利润进入加速通道,新业务价值超去年全年" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3977815/index.phtml" target="_blank">中国平安三季报点评:净利润进入加速通道,新...</a></li>
-                             <li><a title="中国平安:新业务价值增速微低于预期,净利润上升通道确定" href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_Show/kind/search/rptid/3971725/index.phtml" target="_blank">中国平安:新业务价值增速微低于预期,净利润...</a></li>-->
+
 
                              <ul class="date">
                                  <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=sh601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
@@ -267,14 +259,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://192.168.0.117:8080/news/user?code=601888")
+        $http.get("http://localhost:8080/news/user?code=601888")
             .then(function (response) {$scope.news = response.data;});
-    });
-
-    var app = angular.module('myApp', []);
-    app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://192.168.0.117:8080/news/user?code=601888")
-            .then(function (response) {$scope.news = response.data[0];});
     });
 
 </script>

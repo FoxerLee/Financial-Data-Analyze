@@ -3,6 +3,8 @@ from scrapy import Request
 from scrapy.spiders import Spider
 from NewSpider.items import NewspiderItem
 from NewSpider.randomHeaders import RandomHeaders
+import time
+import re
 import mysql.connector
 import sys
 
@@ -24,14 +26,24 @@ class newSpider(Spider):
     cursor.execute(sql)
     cursor.execute("Commit;")
     # 从mysql中获取待爬股票id
-    sql = 'select * from self_stocking'
-    cursor.execute(sql)
-
-    origin_codes = []
-    for user_id, code in cursor:
-        origin_codes.append(code)
-    # 去除重复
-    codes = list(set(origin_codes))
+    # sql = 'select * from self_stocking'
+    # cursor.execute(sql)
+    #
+    # origin_codes = []
+    # for user_id, code in cursor:
+    #     origin_codes.append(code)
+    # # 去除重复
+    # codes = list(set(origin_codes))
+    f = open("connect_sh.txt")
+    g = open("connect_sz.txt")
+    p = re.compile('\n')
+    codes = []
+    for i in f:
+        i = re.sub(p, '', i)
+        codes.append(i)
+    for i in g:
+        g = re.sub(p, '', i)
+        codes.append(i)
 
     start_urls = []
     for code in codes:
@@ -56,6 +68,7 @@ class newSpider(Spider):
             yield Request(start_url, headers=RandomHeaders.LoadHeader())
 
     def parse(self, response):
+        time.sleep(2)
         config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'javaEE',
                   'charset': 'utf8'}
         conn = mysql.connector.connect(**config)

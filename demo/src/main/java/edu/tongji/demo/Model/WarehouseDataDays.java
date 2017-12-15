@@ -7,17 +7,19 @@ public class WarehouseDataDays {
 
     private String code;
 
-    private Date tradingDay;
+    private String trading_day;
 
-    private Double openValue;
+    private Double open_value;
 
-    private Double closeValue;
+    private Double close_value;
 
-    private Double highValue;
+    private Double high_value;
 
-    private Double lowValue;
+    private Double low_value;
 
-    private Double volumeValue;
+    private Double volume_value;
+
+    private Double p_change;
 
     public Integer getId() {
         return id;
@@ -35,51 +37,59 @@ public class WarehouseDataDays {
         this.code = code == null ? null : code.trim();
     }
 
-    public Date getTradingDay() {
-        return tradingDay;
+    public String getTrading_day() {
+        return trading_day;
     }
 
-    public void setTradingDay(Date tradingDay) {
-        this.tradingDay = tradingDay;
+    public void setTrading_day(String trading_day) {
+        this.trading_day = trading_day;
     }
 
-    public Double getOpenValue() {
-        return openValue;
+    public Double getOpen_value() {
+        return open_value;
     }
 
-    public void setOpenValue(Double openValue) {
-        this.openValue = openValue;
+    public void setOpen_value(Double open_value) {
+        this.open_value = open_value;
     }
 
-    public Double getCloseValue() {
-        return closeValue;
+    public Double getClose_value() {
+        return close_value;
     }
 
-    public void setCloseValue(Double closeValue) {
-        this.closeValue = closeValue;
+    public void setClose_value(Double close_value) {
+        this.close_value = close_value;
     }
 
-    public Double getHighValue() {
-        return highValue;
+    public Double getHigh_value() {
+        return high_value;
     }
 
-    public void setHighValue(Double highValue) {
-        this.highValue = highValue;
+    public void setHigh_value(Double high_value) {
+        this.high_value = high_value;
     }
 
-    public Double getLowValue() {
-        return lowValue;
+    public Double getLow_value() {
+        return low_value;
     }
 
-    public void setLowValue(Double lowValue) {
-        this.lowValue = lowValue;
+    public void setLow_value(Double low_value) {
+        this.low_value = low_value;
     }
 
-    public Double getVolumeValue() {
-        return volumeValue;
+    public Double getVolume_value() {
+        return volume_value;
     }
 
-    public void setVolumeValue(Double volumeValue) {
-        this.volumeValue = volumeValue;
+    public void setVolume_value(Double volume_value) {
+        this.volume_value = volume_value;
+    }
+
+    public Double getP_change() {
+        return p_change;
+    }
+
+    public void setP_change(Double p_change) {
+        this.p_change = p_change;
     }
 }

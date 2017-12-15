@@ -1,101 +1,31 @@
 package edu.tongji.demo.Model;
 
+import java.util.Date;
+
 public class CompanyInfo {
     private Integer id;
 
     private String code;
 
-    private Double listingPrice;
+    private Double listing_price;
 
     private String name;
 
-    private String leadUnderwriter;
+    private String lead_underwriter;
 
-    private String enName;
+    private String en_name;
 
-    private String totalName;
+    private String total_name;
 
-    private String listingDate;
+    private Date listing_date;
 
-    private String establishDate;
+    private Date establish_date;
 
     private String organization;
 
     private String scope;
 
     private String market;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getLeadUnderwriter() {
-        return leadUnderwriter;
-    }
-
-    public void setLeadUnderwriter(String leadUnderwriter) {
-        this.leadUnderwriter = leadUnderwriter == null ? null : leadUnderwriter.trim();
-    }
-
-    public String getEnName() {
-        return enName;
-    }
-
-    public void setEnName(String enName) {
-        this.enName = enName == null ? null : enName.trim();
-    }
-
-    public String getTotalName() {
-        return totalName;
-    }
-
-    public void setTotalName(String totalName) {
-        this.totalName = totalName == null ? null : totalName.trim();
-    }
-
-    public String getListingDate() {
-        return listingDate;
-    }
-
-    public void setListingDate(String listingDate) {
-        this.listingDate = listingDate == null ? null : listingDate.trim();
-    }
-
-    public String getEstablishDate() {
-        return establishDate;
-    }
-
-    public void setEstablishDate(String establishDate) {
-        this.establishDate = establishDate == null ? null : establishDate.trim();
-    }
-
-    public String getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(String organization) {
-        this.organization = organization == null ? null : organization.trim();
-    }
-
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope == null ? null : scope.trim();
-    }
-
-    public String getMarket() {
-        return market;
-    }
-
-    public void setMarket(String market) {
-        this.market = market == null ? null : market.trim();
-    }
 
     public Integer getId() {
         return id;
@@ -110,14 +40,86 @@ public class CompanyInfo {
     }
 
     public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+        this.code = code;
     }
 
-    public Double getListingPrice() {
-        return listingPrice;
+    public Double getListing_price() {
+        return listing_price;
     }
 
-    public void setListingPrice(Double listingPrice) {
-        this.listingPrice = listingPrice;
+    public void setListing_price(Double listing_price) {
+        this.listing_price = listing_price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLead_underwriter() {
+        return lead_underwriter;
+    }
+
+    public void setLead_underwriter(String lead_underwriter) {
+        this.lead_underwriter = lead_underwriter;
+    }
+
+    public String getEn_name() {
+        return en_name;
+    }
+
+    public void setEn_name(String en_name) {
+        this.en_name = en_name;
+    }
+
+    public String getTotal_name() {
+        return total_name;
+    }
+
+    public void setTotal_name(String total_name) {
+        this.total_name = total_name;
+    }
+
+    public Date getListing_date() {
+        return listing_date;
+    }
+
+    public void setListing_date(Date listing_date) {
+        this.listing_date = listing_date;
+    }
+
+    public Date getEstablish_date() {
+        return establish_date;
+    }
+
+    public void setEstablish_date(Date establish_date) {
+        this.establish_date = establish_date;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public String getMarket() {
+        return market;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
     }
 }
