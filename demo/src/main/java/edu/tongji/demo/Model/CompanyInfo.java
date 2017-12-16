@@ -17,9 +17,9 @@ public class CompanyInfo {
 
     private String total_name;
 
-    private Date listing_date;
+    private String listing_date;
 
-    private Date establish_date;
+    private String establish_date;
 
     private String organization;
 
@@ -83,19 +83,19 @@ public class CompanyInfo {
         this.total_name = total_name;
     }
 
-    public Date getListing_date() {
+    public String getListing_date() {
         return listing_date;
     }
 
-    public void setListing_date(Date listing_date) {
+    public void setListing_date(String listing_date) {
         this.listing_date = listing_date;
     }
 
-    public Date getEstablish_date() {
+    public String getEstablish_date() {
         return establish_date;
     }
 
-    public void setEstablish_date(Date establish_date) {
+    public void setEstablish_date(String establish_date) {
         this.establish_date = establish_date;
     }
 

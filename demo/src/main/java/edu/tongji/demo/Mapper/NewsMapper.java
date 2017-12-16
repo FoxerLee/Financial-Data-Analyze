@@ -12,6 +12,6 @@ public interface NewsMapper {
     @Select("select * from news where ${code} = code")
     ArrayList<News> getNews(@Param(value = "code") String code);
 
-    @Select("select code, name, url, click from news where \'${code}\' = code")
+    @Select("select code, name, url, click from news where \'${code}\' = code limit 1, 6" )
     ArrayList<News> getEveryNews(@Param(value = "code")String code);
 }

@@ -100,11 +100,21 @@ public class StockController {
          * 内部类定义传输数据的格式
          */
             class Data{
+                private String code;
                 private String name;
                 private Double p_change;
-                public Data(String name, Double p_change){
+                public Data(String name, Double p_change, String code){
                     this.name = name;
                     this.p_change = p_change;
+                    this.code = code;
+                }
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
                 }
 
                 public String getName() {
@@ -133,13 +143,15 @@ public class StockController {
                     if (i == 50)
                         break;
                     Double p_change = 0.0;
+                    String code = "";
                     try{
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
+                        code = connectArrayList.get(i).getCode();
                     } catch (Exception e){
-//                        System.out.println("error" + i);
+                        System.out.println("error" + i);
                         continue;
                     }
-                    dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
+                    dataDays.add(new Data(connectArrayList.get(i).getName(), p_change, code));
                 }
                 return dataDays;
             } catch (Exception e){
@@ -171,10 +183,22 @@ public class StockController {
     public Object getHistory(@Param(value = "code") String code){
         try{
             ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
-            return data;
+            Object[] result = new Object[data.size()];
+            for(int i = 0; i < data.size(); i++){
+                Object[] temp  = new Object[6];
+                temp[0] = new String(data.get(i).getTrading_day().split(" ")[0]);
+                temp[1] = new Double(data.get(i).getOpen_value());
+                temp[2] = new Double(data.get(i).getClose_value());
+                temp[3] = new Double(data.get(i).getHigh_value());
+                temp[4] = new Double(data.get(i).getLow_value());
+                temp[5] = new Double(data.get(i).getVolume_value());
+                result[i] = temp;
+            }
+            return result;
         }catch (Exception e){
-            return "400";
+            return null;
         }
+
     }
 
     @GetMapping(value = "/name")

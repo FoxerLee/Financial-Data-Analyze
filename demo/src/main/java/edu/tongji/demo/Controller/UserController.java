@@ -91,10 +91,11 @@ public class UserController {
      * @param request
      * @param response
      */
-    @GetMapping("/withdraw")
+    @GetMapping("/logout")
+    //@AvoidDuplicatSubmission
+    @CrossOrigin
     public void Delete(HttpServletRequest request, HttpServletResponse response){
         Cookie[] cookies = request.getCookies();
-        System.out.print(cookies.length);
         for (int i = 0; i < cookies.length; i++){
             if(cookies[i].getName().equals("fnan")){
                 Cookie cookie = new Cookie("fnan", "ww");
@@ -107,14 +108,29 @@ public class UserController {
 
     /**
      * 用户注册账户
-     * @param information
-     * @param request
+     * @param name
+     * @param password
      * @param response
      * @return
      */
-    @PostMapping("/signup")
-    @ResponseBody
-    public String SignUp(@RequestBody String information, HttpServletRequest request, HttpServletResponse response){
-        return null;
+    @GetMapping("/signup")
+    public String SignUp(@Param(value = "name") String name, @Param(value = "password")String password,
+                         HttpServletResponse response) throws IOException{
+        try{
+            Integer count = userInfoMapper.Check(name);
+            System.out.print(count);
+            if(count.equals(1)){
+                response.sendRedirect("http://localhost:8080/signuppage");
+                return "400";
+            }
+            else{
+                userInfoMapper.AddUser(password, name);
+                response.sendRedirect("http://localhost:8080/loginpage");
+                return "200";
+            }
+        } catch (Exception e){
+            response.sendRedirect("http://localhost:8080/error");
+            return "404";
+        }
     }
 }

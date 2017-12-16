@@ -10,6 +10,6 @@ import java.util.ArrayList;
 @Mapper
 public interface WarehouseDataDaysMapper {
 
-    @Select("select * from warehouse_data_days where code = \'${code}\' order by trading_day desc limit 1, 4 ")
+    @Select("select * from warehouse_data_days where code = \'${code}\' order by trading_day ")
     public ArrayList<WarehouseDataDays> getWareHouseData(@Param(value = "code")String code);
 }

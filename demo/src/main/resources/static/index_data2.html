@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="header-left">
         <div class="logo">
-            <a href="login.html">登录</a>
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
@@ -386,6 +386,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 }
                             });
                     };
+
+                    $scope.check_out = function () {
+                        window.location.href="/login.html";
+                        $http.get("http://localhost:8080/user/logout");
+
+                    }
                 }
             });
 
