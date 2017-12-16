@@ -33,7 +33,6 @@ def run():
 
     print datetime.datetime.now() - start
 
-
 if __name__ == '__main__':
     run()
 
