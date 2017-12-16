@@ -16,10 +16,18 @@ public class WinnerListController {
     @Autowired
     private WinnerListMapper winnerListMapper;
 
-//    @GetMapping(value = "/all")
-//    public Object getAll(){
-//        ArrayList<WinnerList> data = winnerListMapper.getAll();
-//        ArrayList<String> reasons = new ArrayList<String>();
-//        for(int)
-//    }
+    @GetMapping(value = "/all")
+    public Object getAll(){
+        ArrayList<WinnerList> data = winnerListMapper.getAll();
+        ArrayList<String> reasons = new ArrayList<String>();
+        for(int i = 0; i < data.size(); i++){
+            if(reasons.indexOf(data.get(i).getReason()) == -1)
+                reasons.add(data.get(i).getReason());
+        }
+        Object[] result = new Object[reasons.size()];
+        for (int i = 0; i < reasons.size(); i++){
+            
+        }
+        return 200;
+    }
 }

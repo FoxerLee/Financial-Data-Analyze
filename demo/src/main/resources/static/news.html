@@ -23,10 +23,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//fonts-->
 </head>
 <body>
-<div class="header">
+<div class="header" ng-app="myApp" ng-controller="siteCtrl">
     <div class="header-left">
         <div class="logo">
-            <a href=" ">登录</a >
+            <a ng-click="check_out()">登出</a >
         </div>
         <div class="top-nav">
             <ul >
@@ -85,6 +85,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                app.controller('siteCtrl', function($scope, $http) {
                    $http.get("http://localhost:8080/news/user?code=601888")
                        .then(function (response) {$scope.news = response.data;});
+                   $scope.check_out = function () {
+                       $http.get("http://localhost:8080/loginpage");
+                   }
                });
 
                </script>
@@ -110,3 +113,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 </body>
 </html>
+<script>
+
+</script>
