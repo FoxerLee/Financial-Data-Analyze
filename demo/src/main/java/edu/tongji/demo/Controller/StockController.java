@@ -163,10 +163,22 @@ public class StockController {
     public Object getHistory(@Param(value = "code") String code){
         try{
             ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
-            return data;
+            Object[] result = new Object[data.size()];
+            for(int i = 0; i < data.size(); i++){
+                Object[] temp  = new Object[6];
+                temp[0] = new String(data.get(i).getTrading_day().split(" ")[0]);
+                temp[1] = new Double(data.get(i).getOpen_value());
+                temp[2] = new Double(data.get(i).getClose_value());
+                temp[3] = new Double(data.get(i).getHigh_value());
+                temp[4] = new Double(data.get(i).getLow_value());
+                temp[5] = new Double(data.get(i).getVolume_value());
+                result[i] = temp;
+            }
+            return result;
         }catch (Exception e){
-            return "400";
+            return null;
         }
+
     }
 
     @GetMapping(value = "/name")

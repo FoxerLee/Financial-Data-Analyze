@@ -18,15 +18,11 @@ public class ResearchController {
 
     @GetMapping("/code")
     public Object getResByCode(@Param(value = "code") String code){
-//        JSONObject jsonObject;
-//        try{
-//            jsonObject = JSONObject.fromObject(request);
-//            System.out.print(request);
-//            return researchMapper.getBriefResearchData(jsonObject.getString("code"));
-//        }catch (Exception e){
-//            return "400";
-//        }
-        return null;
+        try{
+            return researchMapper.getBriefResearchData(code);
+        }catch (Exception e){
+            return "400";
+        }
     }
 
 }

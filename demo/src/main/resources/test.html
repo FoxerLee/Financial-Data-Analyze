@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // temp_data = '{"name":1}'
+    // var rawData = JSON.parse(temp_data);
+    // alert(rawData)
+
+    var data = '[{"date": "2017-12-08","open_value": 10.65,"clode_value": 10.79,"high_value": 10.88,"low_value": 10.62,"volume_value": 6832.41},{"date": "2017-12-07",' +
+        '"open_value": 10.6,"clode_value": 10.63,"high_value": 10.69,"low_value": 10.51,"volume_value": 4542}]';
+
+    var user = JSON.parse(data);
+    alert(user.length)
+    function parseJson(data) {
+        var result = new Array();
+        for (var i = 0; i < data.length; i++){
+            if(data[i] === '[' || data[i] === '}' || data[i] === ',')
+                continue;
+            else if (data[i] === '{'){
+                i++;
+                var temp = "";
+                while(data[i] !== '}'){
+                    temp += data[i];
+                    i++;
+                }
+                var array = temp.split(",");
+                var value = new Array();
+                for(var j = 0; j < array.length; j++){
+                    value.push(array[j].split(":")[1]);
+                }
+                result.push(value);
+            }
+        }
+        return result;
+    }
+
+    parseJson(data)
+
+</script>

@@ -10,6 +10,6 @@ import java.util.ArrayList;
 @Mapper
 public interface ResearchMapper {
 
-    @Select("select code, title, url, date from research where code = \'${code}\'")
+    @Select("select code, title, url, date from research where code = \'${code}\' limit 1, 6")
     public ArrayList<Research> getBriefResearchData(@Param(value = "code")String code);
 }
