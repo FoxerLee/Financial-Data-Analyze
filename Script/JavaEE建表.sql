@@ -278,6 +278,20 @@ CREATE TABLE research(
 );
 
 
+CREATE TABLE javaEE.winnerlist(
+	id INT NOT NULL AUTO_INCREMENT,
+	code VARCHAR(60) NOT NULL,
+	name VARCHAR(100) NOT NULL,
+	p_change VARCHAR(60) NOT NULL,
+	amount DOUBLE NOT NULL,
+	buy DOUBLE NOT NULL,
+	bratio VARCHAR(60) NOT NULL,
+	sell DOUBLE NOT NULL,
+	sration VARCHAR(60) NOT NULL,
+	reason VARCHAR(600) NOT NULL,
+	PRIMARY KEY(id)
+);
+
 
 
 
