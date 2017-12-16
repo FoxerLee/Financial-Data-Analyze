@@ -5,6 +5,8 @@
     <title>ranking</title>
     <!-- jQuery-->
     <script src="js/jquery.min.js"></script>
+    <script src="../static/js/angular-route.js"></script>
+    <script src="../static/js/angular.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,11 +30,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li class="active" ><a href="../../../../../../../../Downloads/laji/cpts_19_eh/index.html" >大数据展示</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/news.html" class="black" > 新闻资讯</a ></li>
+                <li class="active" ><a href="index.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li><a href="detail.html" class="black1"> 个股信息</a ></li>
-                <li><a href="../../../../../../../../Downloads/laji/cpts_19_eh/work.html" class="black2" > 个人主页</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
             </ul>
+            <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                <div class="cf">
+                    <label class="search-bar">
+                        <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                        <a id="search" class="btn-search">
+                            <i class="icon-search"></i>
+                        </a>
+                        <a href="javascript:;" class="btn-more"></a>
+                    </label>
+                </div>
+            </form>
         </div>
     </div>
     <!---->
@@ -40,36 +53,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="work">
             <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龙虎榜</p>
             <br />
-            <div class="top-contact">
-                <h3>&nbsp;&nbsp;&nbsp;筛选</h3>
-                <div class="grid-contact">
-                    <div class="your-top">
-                        <i> </i>
-                        <input type="text" value="CODE" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
-                        <div class="clear"> </div>
+
+                <!-- <div class="price_time">
+                    <div class="price clearfix" id="trading">
+                        <div class="change">
+                            <div id="change" class="@UD_change@">@change@</div>
+                            <div id="changeP" class="@UD_change@">@changeP@</div>
+                        </div>
+                        <div id="arrow" class="arrow arrow_@UD_change@"></div>
+                        <div id="price" class="@UD_change@">@now@</div>
+                        <div class="ud_limit" id="ud_limie">
+                            <div>涨停：@up_limit@</div>
+                            <div>跌停：@down_limit@</div>
+                        </div>
                     </div>
 
-                </div>
-                <div class="grid-contact-in">
-                    <div class="your-top">
-                        <i> </i>
-                        <input type="date"  value="01-12-2017" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'DATE';}">
-                        <div class="clear"> </div>
-                    </div>
-                </div>
-                <div class="grid-contact-right">
-                    <input type="submit" value="搜索">
-                    <div class="clear"> </div>
-                </div>
+                </div>-->
+            <div class="test-top" ng-repeat="(index,l1) in rankings" ng-init="index=$index">
+            <div class="blog-in">
+                <h5>涨幅高于百分之五的股票{{l1.reason}}</h5>
+                <ul class="date">
+                </ul>
 
-                <div class="clear"> </div>
             </div>
-            <br/>
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0" >
                 <tr>
 
-                    <th scope="col" >序号</th>
                     <th scope="col" >股票代码</th>
                     <th scope="col" >股票名称</th>
                     <th scope="col" >收盘价（元）</th>
@@ -80,20 +90,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </tr>
 
                 <tr>
-                    <td colspan="8" ></td>
+                    <td colspan="7" ></td>
                 </tr>
-                <tr>
-                    <td >&nbsp;&nbsp;&nbsp;&nbsp;1</td>
+                <tr li ng-repreat="l2 in l1.items" >
+
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.name}}_{{index}}:{{$index}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6%
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6%
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;139.30</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;96010</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;139.30</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;96010</td>
                     <td><a target="_blank" href="http://finance.sina.com.cn/realstock/company/sh601318/nc.shtml">
                         <div class="fname05"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更多</span></div>
                     </a></td>
@@ -101,23 +111,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
             </table>
-            <!-- 分页 begin -->
-            <div class="page">
-                <table cellspacing="0" style="margin:0 auto;"><tr><td>
-                    <div class="pagebox" id="_function_code_page">
-                        <span class='pagebox_pre_nolink'>首页</span>  <span class='pagebox_pre_nolink'>上一页</span>  <span class='pagebox_num_nonce'>1</span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('2')">2</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('3')">3</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('4')">4</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('5')">5</a></span>  <span class='pagebox_num'><a href="javascript:void(0)" onclick="set_page_num('6')">6</a></span>  <span class='pagebox_next'><a href="javascript:void(0)" onclick="set_page_num('2')">下一页</a></span>  <span class='pagebox_next'><a href="javascript:void(0)" onclick="set_page_num('4260')">最末页</a></span> </div>
-                </td>
-                </tr>
-                </table>
-            </div>
+
+                </div></div>
             <!-- 分页 end --
         <!-- end main -->
             <div class="clear"> </div>
         </div>
     </div>
     <div class="clear"> </div>
-    <p class="footer-class-in">Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></p>
 
-</div>
+
 </body>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/news/user?code=601888")
+            .then(function (response) {$scope.rankings = response.data;});
+    });
+
+</script>
+
 </html>

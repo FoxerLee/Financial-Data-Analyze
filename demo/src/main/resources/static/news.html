@@ -36,9 +36,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li><a href="detail.html" class="black1"> 个股信息</a ></li>
                 <li><a href="static/404.html" class="black2" > 个人主页</a ></li>
             </ul>
-            <form name="form1">
-                <input type="text" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
-                <input type="button" value="提交" onclick="_submit()">
+            <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                <div class="cf">
+                    <label class="search-bar">
+                        <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                        <a id="search" class="btn-search">
+                            <i class="icon-search"></i>
+                        </a>
+                        <a href="javascript:;" class="btn-more"></a>
+                    </label>
+                </div>
             </form>
 
         </div>
@@ -56,18 +63,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                         <th scope="col" >标题</th>
-                        <th scope="col" >报告类型</th>
                         <th scope="col" >发布日期</th>
-                        <th scope="col" >点击量</th>
+                        <th scope="col" >研究者</th>
+                        <th scope="col" >研究机构</th>
                         <th scope="col" >详情</th>
 
                     </tr>
-                <tr ng-repeat="x in news">
+                <tr ng-repeat="x in research">
 
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.name}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.id}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.code}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.click}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.title}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.date}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.researcher}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.inst}}</td>
                     <td><a  href="{{x.url}}" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔎</a></td>
 
                 </tr>

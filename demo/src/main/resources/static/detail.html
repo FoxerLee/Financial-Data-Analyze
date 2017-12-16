@@ -45,35 +45,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="your-top">
 
-                   <!--<script language="javascript">
-                        var code = '000001'
-                        function _submit(){
-                            document.form1.action = "http://localhost:8080/news/code?code=";
-                            document.form1.method = "get"; //post
-                            document.form1.submit();
-                            document.form1.action = "http://localhost:8080/news/user";
-                            document.form1.method = "get"; //post
-                            document.form1.submit();
-                            document.form1.action = "http://localhost:8080/news/user";
-                            document.form1.method = "get"; //post
-                            document.form1.submit();
-                            document.form1.action = "http://localhost:8080/news/user";
-                            document.form1.method = "get"; //post
-                            document.form1.submit();
-                            document.form1.action = "detail.html";
-                            document.form1.method = "get"; //post
-                            document.form1.submit();
-                            $("#form").load(function(){
-                                code = $(this).contents().find("code").text();      //获取到的是json的字符串
-                                var j = $.parseJSON(code);                                         //json字符串转换成json对象
-                                console.log(j)
-                            })
-                        }
-                    </script>
-                    <form name="form1">
-                        <input type="text" name="code" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
-                        <input type="button" value="提交" onclick="_submit()">
-                    </form>-->
+                    <!--<script language="javascript">
+                         var code = '000001'
+                         function _submit(){
+                             document.form1.action = "http://localhost:8080/news/code?code=";
+                             document.form1.method = "get"; //post
+                             document.form1.submit();
+                             document.form1.action = "http://localhost:8080/news/user";
+                             document.form1.method = "get"; //post
+                             document.form1.submit();
+                             document.form1.action = "http://localhost:8080/news/user";
+                             document.form1.method = "get"; //post
+                             document.form1.submit();
+                             document.form1.action = "http://localhost:8080/news/user";
+                             document.form1.method = "get"; //post
+                             document.form1.submit();
+                             document.form1.action = "detail.html";
+                             document.form1.method = "get"; //post
+                             document.form1.submit();
+                             $("#form").load(function(){
+                                 code = $(this).contents().find("code").text();      //获取到的是json的字符串
+                                 var j = $.parseJSON(code);                                         //json字符串转换成json对象
+                                 console.log(j)
+                             })
+                         }
+                     </script>
+                     <form name="form1">
+                         <input type="text" name="code" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
+                         <input type="button" value="提交" onclick="_submit()">
+                     </form>-->
 
 
                     <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
@@ -108,134 +108,133 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                   }
               </script>-->
 
-                        <div class="test">
-                            <!-- <div class="price_time">
-                                <div class="price clearfix" id="trading">
-                                    <div class="change">
-                                        <div id="change" class="@UD_change@">@change@</div>
-                                        <div id="changeP" class="@UD_change@">@changeP@</div>
-                                    </div>
-                                    <div id="arrow" class="arrow arrow_@UD_change@"></div>
-                                    <div id="price" class="@UD_change@">@now@</div>
-                                    <div class="ud_limit" id="ud_limie">
-                                        <div>涨停：@up_limit@</div>
-                                        <div>跌停：@down_limit@</div>
-                                    </div>
-                                </div>
-
-                            </div>-->
-                            <div class="test-top">
-                                    <div class="blog-in">
-                                    <h5>{{datarealtime.close_value}}</h5>
-                                    <p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>
-
-                                    <ul class="date">
-                                        <li><span><i class="date-in"></i>{{datarealtime.trading_day}}</span></li>
-                                    </ul>
-                                        <ul class="date">
-
-                                        </ul>
-                                    </div>
-
-
-                                <table border="0" cellpadding="0" cellspacing="0">
-                                    <colgroup>
-                                        <col width="100" />
-                                        <col width="70" />
-                                        <col width="100" />
-                                        <col width="70" />
-
-                                    </colgroup>
-                                    <tbody>
-                                    <tr>
-                                        <th>今&nbsp;&nbsp;开：</th>
-                                        <td class="@UD_open_color@">{{datarealtime.open_value}}</td>
-                                        <th>昨&nbsp;&nbsp;收：</th>
-                                        <td>{{datarealtime.close_value}}</td>
-                                    </tr>
-                                    <tr>
-
-                                        <th>最&nbsp;&nbsp;高：</th>
-                                        <td class="@UD_high_color@">{{datarealtime.high_value}}</td>
-                                        <th>最&nbsp;&nbsp;低：</th>
-                                        <td class="@UD_low_color@">{{datarealtime.low_value}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>振&nbsp;&nbsp;幅：</th>
-                                        <td>{{datarealtime.p_change}}</td>
-
-                                        <th>换手率：</th>
-                                        <td>{{datarealtime.turnoverratio}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>成交额：</th>
-                                        <td>{{datarealtime.volumn_value}}</td>
-                                        <th>成交量：</th>
-                                        <td>{{datarealtime.amount}}</td>
-
-                                    </tr>
-                                    <tr>
-                                        <th>市净率：</th>
-                                        <td>{{datarealtime.pb}}</td>
-                                        <th>市盈率<sup>TTM</sup>：</th>
-                                        <td>{{datarealtime.per}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>流通市值：</th>
-                                        <td>{{datarealtime.nmc}}</td>
-                                        <th>总市值：</th>
-                                        <td>{{datarealtime.mktcap}}</td>
-
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-                                <br/>
+                <div class="test">
+                    <!-- <div class="price_time">
+                        <div class="price clearfix" id="trading">
+                            <div class="change">
+                                <div id="change" class="@UD_change@">@change@</div>
+                                <div id="changeP" class="@UD_change@">@changeP@</div>
+                            </div>
+                            <div id="arrow" class="arrow arrow_@UD_change@"></div>
+                            <div id="price" class="@UD_change@">@now@</div>
+                            <div class="ud_limit" id="ud_limie">
+                                <div>涨停：@up_limit@</div>
+                                <div>跌停：@down_limit@</div>
                             </div>
                         </div>
+                    </div>-->
+                    <div class="test-top">
+                        <div class="blog-in">
+                            <h5>{{datarealtime.close_value}}</h5>
+                            <p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>
+
+                            <ul class="date">
+                                <li><span><i class="date-in"></i>{{datarealtime.trading_day}}</span></li>
+                            </ul>
+                            <ul class="date">
+
+                            </ul>
+                        </div>
+
+
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <colgroup>
+                                <col width="100" />
+                                <col width="70" />
+                                <col width="100" />
+                                <col width="70" />
+
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th>今&nbsp;&nbsp;开：</th>
+                                <td class="@UD_open_color@">{{datarealtime.open_value}}</td>
+                                <th>昨&nbsp;&nbsp;收：</th>
+                                <td>{{datarealtime.close_value}}</td>
+                            </tr>
+                            <tr>
+
+                                <th>最&nbsp;&nbsp;高：</th>
+                                <td class="@UD_high_color@">{{datarealtime.high_value}}</td>
+                                <th>最&nbsp;&nbsp;低：</th>
+                                <td class="@UD_low_color@">{{datarealtime.low_value}}</td>
+                            </tr>
+                            <tr>
+                                <th>振&nbsp;&nbsp;幅：</th>
+                                <td>{{datarealtime.p_change}}</td>
+
+                                <th>换手率：</th>
+                                <td>{{datarealtime.turnoverratio}}</td>
+                            </tr>
+                            <tr>
+                                <th>成交额：</th>
+                                <td>{{datarealtime.volumn_value}}</td>
+                                <th>成交量：</th>
+                                <td>{{datarealtime.amount}}</td>
+
+                            </tr>
+                            <tr>
+                                <th>市净率：</th>
+                                <td>{{datarealtime.pb}}</td>
+                                <th>市盈率<sup>TTM</sup>：</th>
+                                <td>{{datarealtime.per}}</td>
+                            </tr>
+                            <tr>
+                                <th>流通市值：</th>
+                                <td>{{datarealtime.nmc}}</td>
+                                <th>总市值：</th>
+                                <td>{{datarealtime.mktcap}}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <br/>
+                    </div>
+                </div>
 
                 <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
                 <div id="main" style="width: 360px;height:240px;"></div>
             </div>
-          <div class="work-in">
+            <div class="work-in">
 
-            <div class="test">
-                <div class="test-in">
+                <div class="test">
+                    <div class="test-in">
 
-                    <h4 class="author" >&nbsp;&nbsp;&nbsp;股吧论坛</h4>
-                    <div class="clear"> </div>
-                </div>
-                <div class="blog-in">
-                    <li  ng-repeat="x in news">
-                        [<span><a>点击量</a>{{x.click}}</span>]
-                        <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
+                        <h4 class="author" >&nbsp;&nbsp;&nbsp;股吧论坛</h4>
+                        <div class="clear"> </div>
+                    </div>
+                    <div class="blog-in">
+                        <li  ng-repeat="x in news">
+                            [<span><a>点击量</a>{{x.click}}</span>]
+                            <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
 
-                    <ul class="date">
-                        <li><span><a href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml" target="_blank"><i ></i>更多</a></span></li>
-                    </ul>
-                </div>
-              <br/>
+                        <ul class="date">
+                            <li><span><a href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml" target="_blank"><i ></i>更多</a></span></li>
+                        </ul>
+                    </div>
+                    <br/>
 
-                     <div class="services">
-                         <div class="test-in">
-                             <h4 class="author">&nbsp;&nbsp;&nbsp;研究报告</h4>
-                             <div class="clear"> </div>
-                         </div>
+                    <div class="services">
+                        <div class="test-in">
+                            <h4 class="author">&nbsp;&nbsp;&nbsp;研究报告</h4>
+                            <div class="clear"> </div>
+                        </div>
 
-                         <div class="blog-in">
-                             <li  ng-repeat="y in research">
-                                 [<span><a>发布日期</a>{{y.date}}</span>]
-                                 <a  href="{{y.url}}" target="_blank">{{y.title}}</a></li>
-                             <ul class="date">
-                                 <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
+                        <div class="blog-in">
+                            <li  ng-repeat="y in research">
+                                [<span><a>发布日期</a>{{y.date}}</span>]
+                                <a  href="{{y.url}}" target="_blank">{{y.title}}</a></li>
+                            <ul class="date">
+                                <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
 
-                             </ul>
-                         </div>
+                            </ul>
+                        </div>
 
-                     </div></div></div>
+                    </div></div></div>
             <div class="clear"> </div>
-                </div>
         </div>
+    </div>
     <div class="clear"> </div>
 
 </div>
@@ -263,7 +262,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
     var args = getQueryStringArgs();
     var code = args["code"];
-
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
         $scope.code = code;
@@ -272,256 +270,249 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $http.get("http://localhost:8080/news/code?code=" + code)
             .then(function (response) {$scope.news = response.data;});
         $http.get("http://localhost:8080/research/code?code=" + code)
-          .then(function (response) {$scope.research = response.data;});
+            .then(function (response) {$scope.research = response.data;});
         $http.get("http://localhost:8080/stock/brief?code=" + code)
-             .then(function (response) {$scope.datarealtime = response.data;});
-
+            .then(function (response) {$scope.datarealtime = response.data;});
         $http.get("http://localhost:8080/stock/history?code=" + code)
-             .then(function (response) {
-
-
-                 //绘图
-                 var upColor = '#00da3c';
-                 var downColor = '#ec0000';
-                 var myChart = echarts.init(document.getElementById('main'));
-                 var data = splitData(response.data);
-
-                 myChart.setOption(option = {
-                     backgroundColor: '#fff',
-                     animation: false,
-                     legend: {
-                         bottom: 10,
-                         left: 'center',
-                         data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
-                     },
-                     tooltip: {
-                         trigger: 'axis',
-                         axisPointer: {
-                             type: 'cross'
-                         },
-                         backgroundColor: 'rgba(245, 245, 245, 0.8)',
-                         borderWidth: 1,
-                         borderColor: '#ccc',
-                         padding: 10,
-                         textStyle: {
-                             color: '#000'
-                         },
-                         position: function (pos, params, el, elRect, size) {
-                             var obj = {top: 10};
-                             obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-                             return obj;
-                         }
-                         // extraCssText: 'width: 170px'
-                     },
-                     axisPointer: {
-                         link: {xAxisIndex: 'all'},
-                         label: {
-                             backgroundColor: '#777'
-                         }
-                     },
-                     toolbox: {
-                         feature: {
-                             dataZoom: {
-                                 yAxisIndex: false
-                             },
-                             brush: {
-                                 type: ['lineX', 'clear']
-                             }
-                         }
-                     },
-                     brush: {
-                         xAxisIndex: 'all',
-                         brushLink: 'all',
-                         outOfBrush: {
-                             colorAlpha: 0.1
-                         }
-                     },
-                     visualMap: {
-                         show: false,
-                         seriesIndex: 5,
-                         dimension: 2,
-                         pieces: [{
-                             value: 1,
-                             color: downColor
-                         }, {
-                             value: -1,
-                             color: upColor
-                         }]
-                     },
-                     grid: [
-                         {
-                             left: '10%',
-                             right: '8%',
-                             height: '50%'
-                         },
-                         {
-                             left: '10%',
-                             right: '8%',
-                             top: '63%',
-                             height: '16%'
-                         }
-                     ],
-                     xAxis: [
-                         {
-                             type: 'category',
-                             data: data.categoryData,
-                             scale: true,
-                             boundaryGap : false,
-                             axisLine: {onZero: false},
-                             splitLine: {show: false},
-                             splitNumber: 20,
-                             min: 'dataMin',
-                             max: 'dataMax',
-                             axisPointer: {
-                                 z: 100
-                             }
-                         },
-                         {
-                             type: 'category',
-                             gridIndex: 1,
-                             data: data.categoryData,
-                             scale: true,
-                             boundaryGap : false,
-                             axisLine: {onZero: false},
-                             axisTick: {show: false},
-                             splitLine: {show: false},
-                             axisLabel: {show: false},
-                             splitNumber: 20,
-                             min: 'dataMin',
-                             max: 'dataMax'
-                             // axisPointer: {
-                             //     label: {
-                             //         formatter: function (params) {
-                             //             var seriesValue = (params.seriesData[0] || {}).value;
-                             //             return params.value
-                             //             + (seriesValue != null
-                             //                 ? '\n' + echarts.format.addCommas(seriesValue)
-                             //                 : ''
-                             //             );
-                             //         }
-                             //     }
-                             // }
-                         }
-                     ],
-                     yAxis: [
-                         {
-                             scale: true,
-                             splitArea: {
-                                 show: true
-                             }
-                         },
-                         {
-                             scale: true,
-                             gridIndex: 1,
-                             splitNumber: 2,
-                             axisLabel: {show: false},
-                             axisLine: {show: false},
-                             axisTick: {show: false},
-                             splitLine: {show: false}
-                         }
-                     ],
-                     dataZoom: [
-                         {
-                             type: 'inside',
-                             xAxisIndex: [0, 1],
-                             start: 98,
-                             end: 100
-                         },
-                         {
-                             show: true,
-                             xAxisIndex: [0, 1],
-                             type: 'slider',
-                             top: '85%',
-                             start: 98,
-                             end: 100
-                         }
-                     ],
-                     series: [
-                         {
-                             name: 'Dow-Jones index',
-                             type: 'candlestick',
-                             data: data.values,
-                             itemStyle: {
-                                 normal: {
-                                     color: upColor,
-                                     color0: downColor,
-                                     borderColor: null,
-                                     borderColor0: null
-                                 }
-                             },
-                             tooltip: {
-                                 formatter: function (param) {
-                                     param = param[0];
-                                     return [
-                                         'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
-                                         'Open: ' + param.data[0] + '<br/>',
-                                         'Close: ' + param.data[1] + '<br/>',
-                                         'Lowest: ' + param.data[2] + '<br/>',
-                                         'Highest: ' + param.data[3] + '<br/>'
-                                     ].join('');
-                                 }
-                             }
-                         },
-                         {
-                             name: 'MA5',
-                             type: 'line',
-                             data: calculateMA(5, data),
-                             smooth: true,
-                             lineStyle: {
-                                 normal: {opacity: 0.5}
-                             }
-                         },
-                         {
-                             name: 'MA10',
-                             type: 'line',
-                             data: calculateMA(10, data),
-                             smooth: true,
-                             lineStyle: {
-                                 normal: {opacity: 0.5}
-                             }
-                         },
-                         {
-                             name: 'MA20',
-                             type: 'line',
-                             data: calculateMA(20, data),
-                             smooth: true,
-                             lineStyle: {
-                                 normal: {opacity: 0.5}
-                             }
-                         },
-                         {
-                             name: 'MA30',
-                             type: 'line',
-                             data: calculateMA(30, data),
-                             smooth: true,
-                             lineStyle: {
-                                 normal: {opacity: 0.5}
-                             }
-                         },
-                         {
-                             name: 'Volume',
-                             type: 'bar',
-                             xAxisIndex: 1,
-                             yAxisIndex: 1,
-                             data: data.volumes
-                         }
-                     ]
-                 }, true);
-                 myChart.dispatchAction({
-                     type: 'brush',
-                     areas: [
-                         {
-                             brushType: 'lineX',
-                             coordRange: ['2016-06-02', '2016-06-20'],
-                             xAxisIndex: 0
-                         }
-                     ]
-                 });
-             });
+            .then(function (response) {
+                //绘图
+                var upColor = '#00da3c';
+                var downColor = '#ec0000';
+                var myChart = echarts.init(document.getElementById('main'));
+                var data = splitData(response.data);
+                myChart.setOption(option = {
+                    backgroundColor: '#fff',
+                    animation: false,
+                    legend: {
+                        bottom: 10,
+                        left: 'center',
+                        data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross'
+                        },
+                        backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                        borderWidth: 1,
+                        borderColor: '#ccc',
+                        padding: 10,
+                        textStyle: {
+                            color: '#000'
+                        },
+                        position: function (pos, params, el, elRect, size) {
+                            var obj = {top: 10};
+                            obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+                            return obj;
+                        }
+                        // extraCssText: 'width: 170px'
+                    },
+                    axisPointer: {
+                        link: {xAxisIndex: 'all'},
+                        label: {
+                            backgroundColor: '#777'
+                        }
+                    },
+                    toolbox: {
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: false
+                            },
+                            brush: {
+                                type: ['lineX', 'clear']
+                            }
+                        }
+                    },
+                    brush: {
+                        xAxisIndex: 'all',
+                        brushLink: 'all',
+                        outOfBrush: {
+                            colorAlpha: 0.1
+                        }
+                    },
+                    visualMap: {
+                        show: false,
+                        seriesIndex: 5,
+                        dimension: 2,
+                        pieces: [{
+                            value: 1,
+                            color: downColor
+                        }, {
+                            value: -1,
+                            color: upColor
+                        }]
+                    },
+                    grid: [
+                        {
+                            left: '10%',
+                            right: '8%',
+                            height: '50%'
+                        },
+                        {
+                            left: '10%',
+                            right: '8%',
+                            top: '63%',
+                            height: '16%'
+                        }
+                    ],
+                    xAxis: [
+                        {
+                            type: 'category',
+                            data: data.categoryData,
+                            scale: true,
+                            boundaryGap : false,
+                            axisLine: {onZero: false},
+                            splitLine: {show: false},
+                            splitNumber: 20,
+                            min: 'dataMin',
+                            max: 'dataMax',
+                            axisPointer: {
+                                z: 100
+                            }
+                        },
+                        {
+                            type: 'category',
+                            gridIndex: 1,
+                            data: data.categoryData,
+                            scale: true,
+                            boundaryGap : false,
+                            axisLine: {onZero: false},
+                            axisTick: {show: false},
+                            splitLine: {show: false},
+                            axisLabel: {show: false},
+                            splitNumber: 20,
+                            min: 'dataMin',
+                            max: 'dataMax'
+                            // axisPointer: {
+                            //     label: {
+                            //         formatter: function (params) {
+                            //             var seriesValue = (params.seriesData[0] || {}).value;
+                            //             return params.value
+                            //             + (seriesValue != null
+                            //                 ? '\n' + echarts.format.addCommas(seriesValue)
+                            //                 : ''
+                            //             );
+                            //         }
+                            //     }
+                            // }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            scale: true,
+                            splitArea: {
+                                show: true
+                            }
+                        },
+                        {
+                            scale: true,
+                            gridIndex: 1,
+                            splitNumber: 2,
+                            axisLabel: {show: false},
+                            axisLine: {show: false},
+                            axisTick: {show: false},
+                            splitLine: {show: false}
+                        }
+                    ],
+                    dataZoom: [
+                        {
+                            type: 'inside',
+                            xAxisIndex: [0, 1],
+                            start: 98,
+                            end: 100
+                        },
+                        {
+                            show: true,
+                            xAxisIndex: [0, 1],
+                            type: 'slider',
+                            top: '85%',
+                            start: 98,
+                            end: 100
+                        }
+                    ],
+                    series: [
+                        {
+                            name: 'Dow-Jones index',
+                            type: 'candlestick',
+                            data: data.values,
+                            itemStyle: {
+                                normal: {
+                                    color: upColor,
+                                    color0: downColor,
+                                    borderColor: null,
+                                    borderColor0: null
+                                }
+                            },
+                            tooltip: {
+                                formatter: function (param) {
+                                    param = param[0];
+                                    return [
+                                        'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
+                                        'Open: ' + param.data[0] + '<br/>',
+                                        'Close: ' + param.data[1] + '<br/>',
+                                        'Lowest: ' + param.data[2] + '<br/>',
+                                        'Highest: ' + param.data[3] + '<br/>'
+                                    ].join('');
+                                }
+                            }
+                        },
+                        {
+                            name: 'MA5',
+                            type: 'line',
+                            data: calculateMA(5, data),
+                            smooth: true,
+                            lineStyle: {
+                                normal: {opacity: 0.5}
+                            }
+                        },
+                        {
+                            name: 'MA10',
+                            type: 'line',
+                            data: calculateMA(10, data),
+                            smooth: true,
+                            lineStyle: {
+                                normal: {opacity: 0.5}
+                            }
+                        },
+                        {
+                            name: 'MA20',
+                            type: 'line',
+                            data: calculateMA(20, data),
+                            smooth: true,
+                            lineStyle: {
+                                normal: {opacity: 0.5}
+                            }
+                        },
+                        {
+                            name: 'MA30',
+                            type: 'line',
+                            data: calculateMA(30, data),
+                            smooth: true,
+                            lineStyle: {
+                                normal: {opacity: 0.5}
+                            }
+                        },
+                        {
+                            name: 'Volume',
+                            type: 'bar',
+                            xAxisIndex: 1,
+                            yAxisIndex: 1,
+                            data: data.volumes
+                        }
+                    ]
+                }, true);
+                myChart.dispatchAction({
+                    type: 'brush',
+                    areas: [
+                        {
+                            brushType: 'lineX',
+                            coordRange: ['2016-06-02', '2016-06-20'],
+                            xAxisIndex: 0
+                        }
+                    ]
+                });
+            });
     });
-
-
-
     function splitData(rawData) {
         var categoryData = [];
         var values = [];
@@ -531,14 +522,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             values.push(rawData[i]);
             volumes.push([i, rawData[i][4], rawData[i][0] > rawData[i][1] ? 1 : -1]);
         }
-
         return {
             categoryData: categoryData,
             values: values,
             volumes: volumes
         };
     }
-
     function calculateMA(dayCount, data) {
         var result = [];
         for (var i = 0, len = data.values.length; i < len; i++) {
@@ -554,20 +543,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return result;
     }
-
-
-
-
-
     // myChart.on('brushSelected', renderBrushed);
-
     // function renderBrushed(params) {
     //     var sum = 0;
     //     var min = Infinity;
     //     var max = -Infinity;
     //     var countBySeries = [];
     //     var brushComponent = params.brushComponents[0];
-
     //     var rawIndices = brushComponent.series[0].rawIndices;
     //     for (var i = 0; i < rawIndices.length; i++) {
     //         var val = data.values[rawIndices[i]][1];
@@ -575,7 +557,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     //         min = Math.min(val, min);
     //         max = Math.max(val, max);
     //     }
-
     //     panel.innerHTML = [
     //         '<h3>STATISTICS:</h3>',
     //         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
@@ -588,6 +569,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 </html>
-
-
-
