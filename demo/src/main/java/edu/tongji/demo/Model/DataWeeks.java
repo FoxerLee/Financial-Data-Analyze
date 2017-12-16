@@ -9,7 +9,7 @@ public class DataWeeks {
 
     private String name;
 
-    private Date trading_day;
+    private String trading_day;
 
     private Double open_value;
 
@@ -47,11 +47,11 @@ public class DataWeeks {
         this.name = name;
     }
 
-    public Date getTrading_day() {
+    public String getTrading_day() {
         return trading_day;
     }
 
-    public void setTrading_day(Date trading_day) {
+    public void setTrading_day(String trading_day) {
         this.trading_day = trading_day;
     }
 

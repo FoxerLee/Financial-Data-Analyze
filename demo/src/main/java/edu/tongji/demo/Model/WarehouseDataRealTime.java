@@ -7,7 +7,7 @@ public class WarehouseDataRealTime {
 
     private String code;
 
-    private Date tradingDay;
+    private String tradingDay;
 
     private Double openValue;
 
@@ -35,11 +35,11 @@ public class WarehouseDataRealTime {
         this.code = code == null ? null : code.trim();
     }
 
-    public Date getTradingDay() {
+    public String getTradingDay() {
         return tradingDay;
     }
 
-    public void setTradingDay(Date tradingDay) {
+    public void setTradingDay(String tradingDay) {
         this.tradingDay = tradingDay;
     }
 

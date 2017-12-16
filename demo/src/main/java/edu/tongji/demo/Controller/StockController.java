@@ -116,6 +116,7 @@ public class StockController {
                 }
             }
             try{
+                System.out.print("??????");
                 ArrayList<Connect> connectArrayList = connectMapper.getDataByCName(name);
                 if(connectArrayList == null)
                     return "no information";
@@ -127,7 +128,8 @@ public class StockController {
                     try{
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
                     } catch (Exception e){
-                        System.out.println(connectArrayList.get(i).getCode());
+//                        System.out.println("error" + i);
+                        continue;
                     }
                     dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
                 }

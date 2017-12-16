@@ -33,7 +33,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/style_sign.css">
-
+    <link rel="script" href="js/angular.js">
+    <link rel="script" href="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js">
 
     <!-- Modernizr JS -->
     <script src="js/modernizr-2.6.2.min.js"></script>
@@ -60,15 +61,15 @@
 
 
             <!-- Start Sign In Form -->
-            <form id="formDemo" name="formDemo" class="fh5co-form animate-box" data-animate-effect="fadeInLeft" >
+            <form id="formDemo" name="formDemo" class="fh5co-form animate-box" data-animate-effect="fadeInLeft" action="http://localhost:8080/user/login" method="get">
                 <h2>登录</h2>
                 <div class="form-group">
                     <label for="name" class="sr-only">用户名</label>
-                    <input type="text" name="model.UserName" class="form-control" id="name" placeholder="用户名" autocomplete="off">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="用户名" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="password" class="sr-only">密码</label>
-                    <input type="password" name="model.Pwd" class="form-control" id="password" placeholder="密码" autocomplete="off">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="remember"><input type="checkbox" id="remember">&nbsp;记住我</label>
@@ -103,44 +104,101 @@
 
 </body>
 </html>
-<script>
-    var judge;
-    $(function(){
-        $(document).on('click', '#subbtn', function(event) {
-            event.preventDefault();
-            var username=document.getElementById("name").value;
-            var password=document.getElementById("password").value;
-            var data=JSON.stringify({"name": username,"password": password});
-            $.ajax({
-                type:"POST",
-                url:"http://localhost:8080/user/login",
-                data:data,
-                contentType:"application/json",
-                success:function (response) {
-                    var judge = String(response);
-                    alert(response);
-                    redrect();
-                }
-            });
-        });
-    });
+<!--<script>-->
+    <!--var judge;-->
+    <!--$(function(){-->
+        <!--$(document).on('click', '#subbtn', function(event) {-->
+            <!--event.preventDefault();-->
+            <!--var username=document.getElementById("name").value;-->
+            <!--var password=document.getElementById("password").value;-->
+            <!--var data=JSON.stringify({"name": username,"password": password});-->
+            <!--$.ajax({-->
+                <!--type:"POST",-->
+                <!--url:"http://localhost:8080/user/login",-->
+                <!--data:data,-->
+                <!--contentType:"application/json",-->
+                <!--success:function (response) {-->
+                    <!--var judge = String(response);-->
+                    <!--alert(response);-->
+                    <!--redrect();-->
+                <!--}-->
+            <!--});-->
+        <!--});-->
+    <!--});-->
 
-    function redrect() {
+    <!--function redrect() {-->
 
-        if (judge === "200"){
-            alert("emmm");
-            $.ajax({
-                type:"GET",
-                url:"http://localhost:8080/bigdatagraph1",
-                contentType:"application/json",
-                success:function (response) {
-                    alert("success");
-                }
-            });
-            window.location.href="index_data2.html";
-        }
-        else{
-            $http.get("http://localhost:8080/bigdatagraph1");
-        }
-    }
-</script>
+        <!--if (judge === "200"){-->
+            <!--alert("emmm");-->
+            <!--$.ajax({-->
+                <!--type:"GET",-->
+                <!--url:"http://localhost:8080/bigdatagraph1",-->
+                <!--contentType:"application/json",-->
+                <!--success:function (response) {-->
+                    <!--alert("success");-->
+                <!--}-->
+            <!--});-->
+            <!--window.location.href="index_data2.html";-->
+        <!--}-->
+        <!--else{-->
+            <!--$http.get("http://localhost:8080/bigdatagraph1");-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+<!--<script>-->
+    <!--$(function(){-->
+        <!--$("#subbtn").click(function(){-->
+            <!--var username=document.getElementById("name").value;-->
+            <!--var password=document.getElementById("password").value;-->
+            <!--var data=JSON.stringify({"name": username,"password": password});-->
+            <!--alert(data);-->
+            <!--$.post("http://loclhost:8080/user/login",function(data,status){-->
+                <!--alert("Data: " + data + "nStatus: " + status);-->
+            <!--});-->
+        <!--});-->
+        <!--// $(document).on('click', '#subbtn', function(event) {-->
+        <!--//     event.preventDefault();-->
+        <!--//     var username=document.getElementById("name").value;-->
+        <!--//     var password=document.getElementById("password").value;-->
+        <!--//     var data=JSON.stringify({"name": username,"password": password});-->
+            <!--// $.ajax({-->
+            <!--//     type:"POST",-->
+            <!--//     url:"http://localhost:8080/user/login",-->
+            <!--//     data:data,-->
+            <!--//     contentType:"application/json",-->
+            <!--//     success:function (response) {-->
+            <!--//         var judge = String(response);-->
+            <!--//         alert(response);-->
+            <!--//         redrect();-->
+            <!--//     }-->
+            <!--// });-->
+        <!--//     $http({-->
+        <!--//         method:'post',-->
+        <!--//         url:'http://localhost:8080/user/login',-->
+        <!--//         data:data-->
+        <!--//     }).success(function(req){-->
+        <!--//         alert("success!");-->
+        <!--//     })-->
+        <!--//     alert(data);-->
+        <!--// });-->
+    <!--});-->
+
+    <!--// function redrect() {-->
+    <!--//-->
+    <!--//     if (judge === "200"){-->
+    <!--//         alert("emmm");-->
+    <!--//         // $.ajax({-->
+    <!--//         //     type:"GET",-->
+    <!--//         //     url:"http://localhost:8080/bigdatagraph1",-->
+    <!--//         //     contentType:"application/json",-->
+    <!--//         //     success:function (response) {-->
+    <!--//         //         alert("success");-->
+    <!--//         //     }-->
+    <!--//         // });-->
+    <!--//         window.location.href="index_data2.html";-->
+    <!--//     }-->
+    <!--//     else{-->
+    <!--//         $http.get("http://localhost:8080/bigdatagraph1");-->
+    <!--//     }-->
+    <!--// }-->
+<!--</script>-->
