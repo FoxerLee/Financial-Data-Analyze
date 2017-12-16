@@ -1,6 +1,7 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Mapper.ResearchMapper;
+import edu.tongji.demo.Mapper.UserInfoMapper;
 import edu.tongji.demo.Model.Research;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 @RestController
@@ -23,6 +25,9 @@ public class ResearchController {
 
     @Autowired
     private ResearchMapper researchMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @GetMapping("/code")
     public Object getResByCode(@Param(value = "code") String code){
@@ -62,13 +67,13 @@ public class ResearchController {
             for (int i = 0; i < cookies.length; i++){
                 if(cookies[i].getName().equals("fnan")){
                     name = cookies[i].getValue();
-                    System.out.println(name);
-                    return researchMapper.getPersonalStock(name);
+                    Integer id = userInfoMapper.getID(name);
+                    return researchMapper.getPersonalStock(id);
                 }
             }
             response.sendRedirect("http://localhost:8080/loginpage");
             return false;
         }
-    }
 
+    }
 }
