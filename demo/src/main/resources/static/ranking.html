@@ -7,6 +7,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/angular.js"></script>
+    <script src="js/rankingjs.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
@@ -66,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <br />
 
 
-            <div class="test-top" ng-repeat="l1 in rankings" ng-init="outerindex=$index">
+            <div class="test-top" ng-repeat="（index，l1) in rankings ng-init-"index="$index" >
             <div class="blog-in">
                 <h5>{{l1.reason}}</h5>
                 <ul class="date">
@@ -89,10 +90,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <tr>
                     <td colspan="7" ></td>
                 </tr>
-                <tr ng-repreat="l2 in l1.data track by $index" ng-init="innerIndex=$index" >
+                <tr ng-repreat="l2 in l1.data track by $index"  >
 
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.name}}
+                        <script>alert(l2);</script>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.code}}_{{index}}:{{$index}}
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
@@ -121,13 +123,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/winner/all")
-            .then(function (response) {
-                $scope.rankings = response.data;
-            });
-    });
+//    var app = angular.module('myApp', []);
+//    app.controller('siteCtrl', function($scope, $http) {
+//        $http.get("http://localhost:8080/winner/all")
+//            .then(function (response) {
+//                var temp2 = angular.fromJson(response.data);
+//                $scope.rankings = temp2;
+//            });
+//    });
 
 </script>
 
