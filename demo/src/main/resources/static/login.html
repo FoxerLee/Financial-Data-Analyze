@@ -129,14 +129,14 @@
 
         if (judge === "200"){
             alert("emmm");
-            // $.ajax({
-            //     type:"GET",
-            //     url:"http://localhost:8080/bigdatagraph1",
-            //     contentType:"application/json",
-            //     success:function (response) {
-            //         alert("success");
-            //     }
-            // });
+            $.ajax({
+                type:"GET",
+                url:"http://localhost:8080/bigdatagraph1",
+                contentType:"application/json",
+                success:function (response) {
+                    alert("success");
+                }
+            });
             window.location.href="index_data2.html";
         }
         else{
