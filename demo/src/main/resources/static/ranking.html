@@ -5,8 +5,8 @@
     <title>ranking</title>
     <!-- jQuery-->
     <script src="js/jquery.min.js"></script>
-    <script src="../static/js/angular-route.js"></script>
-    <script src="../static/js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
@@ -60,29 +60,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!---->
-    <div class="content">
+    <div class="content" ng-app="myApp" ng-controller="siteCtrl">
         <div class="work">
             <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龙虎榜</p>
             <br />
 
-                <!-- <div class="price_time">
-                    <div class="price clearfix" id="trading">
-                        <div class="change">
-                            <div id="change" class="@UD_change@">@change@</div>
-                            <div id="changeP" class="@UD_change@">@changeP@</div>
-                        </div>
-                        <div id="arrow" class="arrow arrow_@UD_change@"></div>
-                        <div id="price" class="@UD_change@">@now@</div>
-                        <div class="ud_limit" id="ud_limie">
-                            <div>涨停：@up_limit@</div>
-                            <div>跌停：@down_limit@</div>
-                        </div>
-                    </div>
 
-                </div>-->
-            <div class="test-top" ng-repeat="(index,l1) in rankings" ng-init="index=$index">
+            <div class="test-top" ng-repeat="l1 in rankings" ng-init="outerindex=$index">
             <div class="blog-in">
-                <h5>涨幅高于百分之五的股票{{l1.reason}}</h5>
+                <h5>{{l1.reason}}</h5>
                 <ul class="date">
                 </ul>
 
@@ -103,10 +89,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <tr>
                     <td colspan="7" ></td>
                 </tr>
-                <tr li ng-repreat="l2 in l1.items" >
+                <tr ng-repreat="l2 in l1.data track by $index" ng-init="innerIndex=$index" >
 
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.name}}_{{index}}:{{$index}}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.name}}
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
@@ -137,8 +123,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/news/user?code=601888")
-            .then(function (response) {$scope.rankings = response.data;});
+        $http.get("http://localhost:8080/winner/all")
+            .then(function (response) {
+                $scope.rankings = response.data;
+            });
     });
 
 </script>

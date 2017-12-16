@@ -92,11 +92,21 @@ public class StockController {
          * 内部类定义传输数据的格式
          */
             class Data{
+                private String code;
                 private String name;
                 private Double p_change;
-                public Data(String name, Double p_change){
+                public Data(String name, Double p_change, String code){
                     this.name = name;
                     this.p_change = p_change;
+                    this.code = code;
+                }
+
+                public String getCode() {
+                    return code;
+                }
+
+                public void setCode(String code) {
+                    this.code = code;
                 }
 
                 public String getName() {
@@ -125,13 +135,15 @@ public class StockController {
                     if (i == 50)
                         break;
                     Double p_change = 0.0;
+                    String code = "";
                     try{
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
+                        code = connectArrayList.get(i).getCode();
                     } catch (Exception e){
 //                        System.out.println("error" + i);
                         continue;
                     }
-                    dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
+                    dataDays.add(new Data(connectArrayList.get(i).getName(), p_change, code));
                 }
                 return dataDays;
             } catch (Exception e){

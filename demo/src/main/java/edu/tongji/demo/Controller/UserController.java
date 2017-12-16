@@ -101,7 +101,6 @@ public class UserController {
                 response.addCookie(cookie);
             }
         }
-        System.out.println("nima");
     }
 
     /**
