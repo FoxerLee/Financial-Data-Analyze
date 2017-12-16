@@ -39,10 +39,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="detail.html" class="black1"> 个股信息</a ></li>
 					<li><a href="work.html" class="black2" > 个人主页</a ></li>
 				</ul>
+				<form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+					<div class="cf">
+						<label class="search-bar">
+							<input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+							<a id="search" class="btn-search">
+								<i class="icon-search"></i>
+							</a>
+							<a href="javascript:;" class="btn-more"></a>
+						</label>
+					</div>
+				</form>
 			</div>
 		</div>
 			<!---->
-		<div class="content">
+		<div class="content" ng-app="myApp" ng-controller="siteCtrl">
 			<div class="work">
 				<p class="heat-map-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龙虎榜</p>
 				<br />
@@ -125,4 +136,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	</div>
 </body>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/news/user?code=601888")
+            .then(function (response) { $scope.reasons = response.data;});
+        $http.get("http://localhost:8080/news/user?code=601888")
+            .then(function (response) { $scope.reasons = response.data;});
+    });
+
+</script>
+
 </html>
