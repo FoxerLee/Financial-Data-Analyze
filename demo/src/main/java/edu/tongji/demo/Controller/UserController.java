@@ -23,13 +23,7 @@ public class UserController {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
-    /**
-     * 用户输入名字和password身份验证通过
-     * @param verification
-     * @param request
-     * @param response
-     * @return
-     */
+
 //    @PostMapping("/login")
 //    @ResponseBody
 //    public String Vefification(@RequestBody String verification, HttpServletRequest request,  HttpServletResponse response){
@@ -56,6 +50,15 @@ public class UserController {
 //            return "200";
 //        }
 //    }
+
+    /**
+     * 用户输入用户名和密码进行登陆
+     * @param name
+     * @param password
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @GetMapping("/login")
     public void Verification(@Param(value = "name")String name, @Param(value = "password") String password,
                              HttpServletRequest request, HttpServletResponse response) throws IOException{

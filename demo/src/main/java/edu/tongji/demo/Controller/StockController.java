@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @RestController
@@ -33,10 +36,13 @@ public class StockController {
     private WarehouseDataDaysMapper warehouseDataDaysMapper;
 
     @GetMapping("/all")
-    public Object GetAllStockInfo(){
+    public Object GetAllStockInfo(HttpServletResponse response) throws IOException{
         Boolean judge = Verification.verify();
-        if (!judge)
+        if (!judge){
+            response.sendRedirect("http://localhost:8080/loginpage");
             return "unregistered";
+        }
+
         else
             return industryMapper.getAllIndustryInfor();
     }
@@ -48,8 +54,10 @@ public class StockController {
     @PostMapping("/one")
     public Object GetSpecificInfo(@RequestBody String content){
         Boolean judge = Verification.verify();
-        if (judge == false)
+        if (judge == false) {
+
             return "unregistered";
+        }
         else{
             int i = 0;
             JSONObject jsonObject;
