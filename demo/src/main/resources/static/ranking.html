@@ -9,6 +9,7 @@
     <script src="../static/js/angular.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,27 +26,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="header-left">
         <div class="logo">
-            <a href=" ">登录</a >
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li class="active" ><a href="index.html" >大数据展示</a ></li>
+
+                <li ><a href="home.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
-                <li><a href="detail.html" class="black1"> 个股信息</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
                 <li><a href="work.html" class="black2" > 个人主页</a ></li>
-            </ul>
-            <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
-                <div class="cf">
-                    <label class="search-bar">
-                        <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
-                        <a id="search" class="btn-search">
-                            <i class="icon-search"></i>
-                        </a>
-                        <a href="javascript:;" class="btn-more"></a>
-                    </label>
+                <li>
+
+                </li>
+
+                <div class="your-top">
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:;" class="btn-more"></a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="clear"> </div>
                 </div>
-            </form>
+
+            </ul>
         </div>
     </div>
     <!---->

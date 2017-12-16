@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <title>news</title>
     <!-- jQuery-->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/angular-route.js"></script>
-    <script src="../static/js/angular.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular.js"></script>
 
 
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -26,28 +27,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" ng-app="myApp" ng-controller="siteCtrl">
     <div class="header-left">
         <div class="logo">
-            <a ng-click="check_out()">登出</a >
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li><a href="home.html" >大数据展示</a ></li>
-                <li class="active" ><a href="news.html" class="black" > 新闻资讯</a ></li>
-                <li><a href="detail.html" class="black1"> 个股信息</a ></li>
-                <li><a href="static/404.html" class="black2" > 个人主页</a ></li>
-            </ul>
-            <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
-                <div class="cf">
-                    <label class="search-bar">
-                        <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
-                        <a id="search" class="btn-search">
-                            <i class="icon-search"></i>
-                        </a>
-                        <a href="javascript:;" class="btn-more"></a>
-                    </label>
-                </div>
-            </form>
 
+                <li ><a href="home.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
+                <li>
+
+                </li>
+
+                <div class="your-top">
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:;" class="btn-more"></a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="clear"> </div>
+                </div>
+
+            </ul>
         </div>
     </div>
     <!---->
