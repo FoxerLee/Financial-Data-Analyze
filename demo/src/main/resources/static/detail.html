@@ -9,6 +9,7 @@
     <script src="js/angular-route.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="header-left">
         <div class="logo">
-            <a href=" ">登录</a >
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
@@ -36,46 +37,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <li ><a href="home.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
-                <li class="active" ><a href="detail.html" class="black1"> 个股信息</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
                 <li><a href="work.html" class="black2" > 个人主页</a ></li>
                 <li>
 
                 </li>
 
-
                 <div class="your-top">
-
-                    <!--<script language="javascript">
-                         var code = '000001'
-                         function _submit(){
-                             document.form1.action = "http://localhost:8080/news/code?code=";
-                             document.form1.method = "get"; //post
-                             document.form1.submit();
-                             document.form1.action = "http://localhost:8080/news/user";
-                             document.form1.method = "get"; //post
-                             document.form1.submit();
-                             document.form1.action = "http://localhost:8080/news/user";
-                             document.form1.method = "get"; //post
-                             document.form1.submit();
-                             document.form1.action = "http://localhost:8080/news/user";
-                             document.form1.method = "get"; //post
-                             document.form1.submit();
-                             document.form1.action = "detail.html";
-                             document.form1.method = "get"; //post
-                             document.form1.submit();
-                             $("#form").load(function(){
-                                 code = $(this).contents().find("code").text();      //获取到的是json的字符串
-                                 var j = $.parseJSON(code);                                         //json字符串转换成json对象
-                                 console.log(j)
-                             })
-                         }
-                     </script>
-                     <form name="form1">
-                         <input type="text" name="code" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
-                         <input type="button" value="提交" onclick="_submit()">
-                     </form>-->
-
-
                     <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
                         <div class="cf">
                             <label class="search-bar">
