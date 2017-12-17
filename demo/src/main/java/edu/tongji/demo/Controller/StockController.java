@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -209,4 +210,13 @@ public class StockController {
             return temp + "Unknown" + "\"}";
         }
     }
+
+    @GetMapping(value = "/jumpdetail")
+    public Object jumpDetail(@Param(value = "code") String code, HttpServletResponse response) throws IOException{
+        if (code == null)
+            code = "000001";
+        //response.sendRedirect("localhost:8080/detailspage?code=" + code);
+        return new ModelAndView("redirect:/detailspage?code=" + code);
+    }
+
 }
