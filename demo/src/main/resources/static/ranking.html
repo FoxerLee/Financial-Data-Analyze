@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <br />
 
 
-            <div class="test-top" ng-repeat="（index，l1) in rankings ng-init-"index="$index" >
+            <div class="test-top" ng-repeat="l1 in rankings">
             <div class="blog-in">
                 <h5>{{l1.reason}}</h5>
                 <ul class="date">
@@ -80,29 +80,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <th scope="col" >股票代码</th>
                     <th scope="col" >股票名称</th>
-                    <th scope="col" >收盘价（元）</th>
-                    <th scope="col" >涨幅</th>
-                    <th scope="col" >成交量（万股）</th>
-                    <th scope="col" >成交额（万元）</th>
-                    <th scope="col" >查看详情</th>
+                    <th scope="col" >当日涨跌幅</th>
+                    <th scope="col" >龙虎榜成交额 (万)</th>
+                    <th scope="col" >买入额（万）</th>
+                    <th scope="col" >买入占总成交比例</th>
+                    <th scope="col" >卖出额（万）</th>
+                    <th scope="col" >卖出占总成交比例</th>
                 </tr>
 
                 <tr>
                     <td colspan="7" ></td>
                 </tr>
-                <tr ng-repreat="l2 in l1.data track by $index"  >
+                <tr ng-repeat="l2 in l1.data">
 
                     <td>
-                        <script>alert(l2);</script>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.code}}_{{index}}:{{$index}}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.code}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.name}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.p_change}}</td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6%
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.amount}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;139.30</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;96010</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.buy}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.bratio}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sell}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sration}}</td>
                     <td><a target="_blank" href="http://finance.sina.com.cn/realstock/company/sh601318/nc.shtml">
                         <div class="fname05"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更多</span></div>
                     </a></td>

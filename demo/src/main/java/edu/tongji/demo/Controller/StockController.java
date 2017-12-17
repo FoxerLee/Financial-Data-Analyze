@@ -10,7 +10,11 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @RestController
@@ -33,10 +37,13 @@ public class StockController {
     private WarehouseDataDaysMapper warehouseDataDaysMapper;
 
     @GetMapping("/all")
-    public Object GetAllStockInfo(){
+    public Object GetAllStockInfo(HttpServletResponse response) throws IOException{
         Boolean judge = Verification.verify();
-        if (!judge)
+        if (!judge){
+            response.sendRedirect("http://localhost:8080/loginpage");
             return "unregistered";
+        }
+
         else
             return industryMapper.getAllIndustryInfor();
     }
@@ -48,8 +55,10 @@ public class StockController {
     @PostMapping("/one")
     public Object GetSpecificInfo(@RequestBody String content){
         Boolean judge = Verification.verify();
-        if (judge == false)
+        if (judge == false) {
+
             return "unregistered";
+        }
         else{
             int i = 0;
             JSONObject jsonObject;
@@ -140,7 +149,6 @@ public class StockController {
                         p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
                         code = connectArrayList.get(i).getCode();
                     } catch (Exception e){
-                        System.out.println("error" + i);
                         continue;
                     }
                     dataDays.add(new Data(connectArrayList.get(i).getName(), p_change, code));
@@ -202,4 +210,13 @@ public class StockController {
             return temp + "Unknown" + "\"}";
         }
     }
+
+    @GetMapping(value = "/jumpdetail")
+    public Object jumpDetail(@Param(value = "code") String code, HttpServletResponse response) throws IOException{
+        if (code == null)
+            code = "000001";
+        //response.sendRedirect("localhost:8080/detailspage?code=" + code);
+        return new ModelAndView("redirect:/detailspage?code=" + code);
+    }
+
 }
