@@ -210,6 +210,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 <script>
+    var url = window.location.search; //获取url中"?"符后的字串
+    var stockName ='';
+    for(var i=0;i<url.length;i++){
+        if(url[i]==='='){
+            index=i;
+        }
+    }
+    for(i=index+1;i<url.length;i++){
+        stockName=stockName+url[i];
+    }
+    alert(stockName);
     function getQueryStringArgs(){
         var qs = (location.search.length>0?location.search.substring(1):"");
         var args = {};
@@ -511,6 +522,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return result;
     }
+
     // myChart.on('brushSelected', renderBrushed);
     // function renderBrushed(params) {
     //     var sum = 0;
