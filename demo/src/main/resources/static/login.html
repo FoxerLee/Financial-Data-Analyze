@@ -33,8 +33,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/style_sign.css">
-    <link rel="script" href="js/angular.js">
     <link rel="script" href="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
 
     <!-- Modernizr JS -->
     <script src="js/modernizr-2.6.2.min.js"></script>
@@ -56,20 +58,20 @@
             </ul>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-app="myApp" ng-controller="Redirect">
         <div class="col-md-4">
 
 
             <!-- Start Sign In Form -->
-            <form id="formDemo" name="formDemo" class="fh5co-form animate-box" data-animate-effect="fadeInLeft" action="http://localhost:8080/user/login" method="get">
+            <form id="formDemo" name="formDemo" class="fh5co-form animate-box" data-animate-effect="fadeInLeft">
             <h2>登录</h2>
             <div class="form-group">
                 <label for="name" class="sr-only">用户名</label>
                 <input type="text" name="name" class="form-control" id="name" placeholder="用户名" autocomplete="off">
             </div>
             <div class="form-group">
-                <label for="password" class="sr-only">密码</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
+                <label for="_password" class="sr-only">密码</label>
+                <input type="password" name="password" class="form-control" id="_password" placeholder="密码" autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="remember"><input type="checkbox" id="remember">&nbsp;记住我</label>
@@ -78,7 +80,7 @@
                 <p>未注册？ <a href="sign-up2.html">注册</a> | <a href="forgot2.html">忘记密码?</a></p>
             </div>
             <div class="form-group">
-                <input id="subbtn" type="submit" value="登录" class="btn btn-primary" >
+                <input id="subbtn" type="text" value="登录" class="btn btn-primary" ng-click="Func()">
             </div>
         </form>
             <!-- END Sign In Form -->
@@ -104,101 +106,27 @@
 
 </body>
 </html>
-<!--<script>-->
-    <!--var judge;-->
-    <!--$(function(){-->
-        <!--$(document).on('click', '#subbtn', function(event) {-->
-            <!--event.preventDefault();-->
-            <!--var username=document.getElementById("name").value;-->
-            <!--var password=document.getElementById("password").value;-->
-            <!--var data=JSON.stringify({"name": username,"password": password});-->
-            <!--$.ajax({-->
-                <!--type:"POST",-->
-                <!--url:"http://localhost:8080/user/login",-->
-                <!--data:data,-->
-                <!--contentType:"application/json",-->
-                <!--success:function (response) {-->
-                    <!--var judge = String(response);-->
-                    <!--alert(response);-->
-                    <!--redrect();-->
-                <!--}-->
-            <!--});-->
-        <!--});-->
-    <!--});-->
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('Redirect', function ($scope, $http){
 
-    <!--function redrect() {-->
+        $scope.Func = function () {
+            var username=document.getElementById("name").value;
+            var password=document.getElementById("_password").value;
+            $http.get("http://localhost:8080/user/login?name="+username+"&password="+password)
+                .then(function (value) {
+                    if (value.data === 200)
+                        window.location.href = "index_data2.html";
+                    else if(value.data === 400){
+                        alert("用户名或密码错误！");
+                        window.location.href = "login.html";
+                    }
+                    else
+                        window.location.href = "400.html";
 
-        <!--if (judge === "200"){-->
-            <!--alert("emmm");-->
-            <!--$.ajax({-->
-                <!--type:"GET",-->
-                <!--url:"http://localhost:8080/bigdatagraph1",-->
-                <!--contentType:"application/json",-->
-                <!--success:function (response) {-->
-                    <!--alert("success");-->
-                <!--}-->
-            <!--});-->
-            <!--window.location.href="index_data2.html";-->
-        <!--}-->
-        <!--else{-->
-            <!--$http.get("http://localhost:8080/bigdatagraph1");-->
-        <!--}-->
-    <!--}-->
-<!--</script>-->
-<!--<script>-->
-    <!--$(function(){-->
-        <!--$("#subbtn").click(function(){-->
-            <!--var username=document.getElementById("name").value;-->
-            <!--var password=document.getElementById("password").value;-->
-            <!--var data=JSON.stringify({"name": username,"password": password});-->
-            <!--alert(data);-->
-            <!--$.post("http://loclhost:8080/user/login",function(data,status){-->
-                <!--alert("Data: " + data + "nStatus: " + status);-->
-            <!--});-->
-        <!--});-->
-        <!--// $(document).on('click', '#subbtn', function(event) {-->
-        <!--//     event.preventDefault();-->
-        <!--//     var username=document.getElementById("name").value;-->
-        <!--//     var password=document.getElementById("password").value;-->
-        <!--//     var data=JSON.stringify({"name": username,"password": password});-->
-            <!--// $.ajax({-->
-            <!--//     type:"POST",-->
-            <!--//     url:"http://localhost:8080/user/login",-->
-            <!--//     data:data,-->
-            <!--//     contentType:"application/json",-->
-            <!--//     success:function (response) {-->
-            <!--//         var judge = String(response);-->
-            <!--//         alert(response);-->
-            <!--//         redrect();-->
-            <!--//     }-->
-            <!--// });-->
-        <!--//     $http({-->
-        <!--//         method:'post',-->
-        <!--//         url:'http://localhost:8080/user/login',-->
-        <!--//         data:data-->
-        <!--//     }).success(function(req){-->
-        <!--//         alert("success!");-->
-        <!--//     })-->
-        <!--//     alert(data);-->
-        <!--// });-->
-    <!--});-->
+                });
+        }
+    });
 
-    <!--// function redrect() {-->
-    <!--//-->
-    <!--//     if (judge === "200"){-->
-    <!--//         alert("emmm");-->
-    <!--//         // $.ajax({-->
-    <!--//         //     type:"GET",-->
-    <!--//         //     url:"http://localhost:8080/bigdatagraph1",-->
-    <!--//         //     contentType:"application/json",-->
-    <!--//         //     success:function (response) {-->
-    <!--//         //         alert("success");-->
-    <!--//         //     }-->
-    <!--//         // });-->
-    <!--//         window.location.href="index_data2.html";-->
-    <!--//     }-->
-    <!--//     else{-->
-    <!--//         $http.get("http://localhost:8080/bigdatagraph1");-->
-    <!--//     }-->
-    <!--// }-->
-<!--</script>-->
+</script>
+

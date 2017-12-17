@@ -46,6 +46,5 @@ public class WinnerListController {
         } catch (Exception e){
             return null;
         }
-
     }
 }
