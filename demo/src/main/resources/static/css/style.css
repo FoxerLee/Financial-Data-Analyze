@@ -258,13 +258,7 @@ p.footer-class a:hover{
 	margin-top: 4%;
 	display: -webkit-inline-box;
 }
-.b-animate span{
-	display:block;
-	font-size: 1.7em;
-	padding-top: 2em;
-	display: block;
-	font-weight: 300;
-}
+
 .b-animate p{
 	padding: 0.2em 0 1em;
 	color: #fff;

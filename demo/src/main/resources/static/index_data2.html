@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;化工行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
         <div ng-repeat="m in single"  class="content-grid">
             <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-                <div id={{m.name}} class={{m.style}} onclick="goto(id)">{{m.name}}</div>
+                <div id={{m.name}} class={{m.style}} ng-click="goto(m.code)">{{m.name}}</div>
             </a>
         </div>
 
@@ -115,10 +115,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var pr='';
     var temp_range='';
     var float_range;
-    function goto(id){
+    //function goto(id){
 
-        window.location.href = "single.html?name="+encodeURI(encodeURI(id));
-    }
+        //window.location.href = "single.html?name="+encodeURI(encodeURI(id));
+    //}
 
 
 
@@ -239,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                             for (var i = 0; i < 50; i++) {
-                                pr = String(temp2[i].priceRange);
+                                pr = String(temp2[i].p_change);
                                 temp_range = pr.substring(0, pr.length - 1);
                                 // alert();
                                 // for(var j=pr.length -1;j>0;j--){
@@ -331,7 +331,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     myLen=temp2.length;
                                 }
                                 for (var i = 0; i < myLen; i++) {
-                                    pr = String(temp2[i].priceRange);
+                                    pr = String(temp2[i].p_change);
                                     temp_range = pr.substring(0, pr.length - 1);
                                     // alert();
                                     // for(var j=pr.length -1;j>0;j--){
@@ -400,12 +400,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     }
                                 }
-                                for(i=myLen;i<50;i++){
-                                    $scope.single.splice(i, 0, {
-                                        name: "林海股份",
-                                        style: "cc10"
-                                    });
-                                }
+                                //for(i=myLen;i<50;i++){
+                                    //$scope.single.splice(i, 0, {
+                                        //name: "林海股份",
+                                        //style: "cc10"
+                                   // });
+                                //}
                             });
                     };
 
@@ -413,6 +413,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         window.location.href="/login.html";
                         $http.get("http://localhost:8080/user/logout");
 
+                    };
+                    $scope.goto = function (stockCode) {
+                        $http.get("http://localhost:8080/stock/jumpdetail?code="+stockCode)
                     }
                 }
             });
