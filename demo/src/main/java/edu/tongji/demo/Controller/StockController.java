@@ -213,10 +213,10 @@ public class StockController {
 
     @GetMapping(value = "/jumpdetail")
     public Object jumpDetail(@Param(value = "code") String code, HttpServletResponse response) throws IOException{
-        if (code == null)
-            code = "000001";
-        //response.sendRedirect("localhost:8080/detailspage?code=" + code);
-        return new ModelAndView("redirect:/detailspage?code=" + code);
+        if (code == null){
+            return new ModelAndView("redirect:/detailspage");
+        }else{
+            return new ModelAndView("redirect:/detailspage?code=" + code);
+        }
     }
-
 }
