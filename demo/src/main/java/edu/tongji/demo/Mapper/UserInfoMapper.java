@@ -17,4 +17,7 @@ public interface UserInfoMapper {
 
     @Insert("insert into user_info(password, name) values(\'${password}\', \'${name}\')")
     void AddUser(@Param(value = "password")String password, @Param(value = "name")String name);
+
+    @Select("select user_id from user_info where name = \'${name}\'")
+    Integer getID(@Param(value = "name")String name);
 }
