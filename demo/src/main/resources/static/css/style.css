@@ -93,10 +93,7 @@ body a{
 .header-left3{
 	min-height:1618px;
 }
-.logo{
-	background:#fff;
-	padding: 2em;
-}
+
 .top-nav ul li {
 	list-style:none;
 }
@@ -1553,9 +1550,6 @@ ul.social-in {
 .grid9{
 	display:none;
 }
-.logo {
-  padding: 1em;
-}
 .b-animate span {
   padding-top: 1.5em;
 }
@@ -1827,13 +1821,7 @@ ul.social li span, ul.social li a {
 .header-left{
 	display:none;
 }
-.logo-in{
-	float:left;
-	width: 29%;
-}
-.logo-in img{
-	width: 100%;
-}
+
 .top-nav-in{
 	float:right;
 }
@@ -1917,9 +1905,6 @@ span.menu {
 }
 }
 @media(max-width:320px){
-.logo-in {
-  width: 36%;
-}
 .top-nav-in {
   margin-top: 0.3em;
 }

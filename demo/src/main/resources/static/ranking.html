@@ -7,8 +7,10 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/angular.js"></script>
+    <script src="js/rankingjs.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,27 +27,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="header-left">
         <div class="logo">
-            <a href=" ">登录</a >
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li class="active" ><a href="index.html" >大数据展示</a ></li>
+
+                <li ><a href="home.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
-                <li><a href="detail.html" class="black1"> 个股信息</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
                 <li><a href="work.html" class="black2" > 个人主页</a ></li>
-            </ul>
-            <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
-                <div class="cf">
-                    <label class="search-bar">
-                        <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
-                        <a id="search" class="btn-search">
-                            <i class="icon-search"></i>
-                        </a>
-                        <a href="javascript:;" class="btn-more"></a>
-                    </label>
+                <li>
+
+                </li>
+
+                <div class="your-top">
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:;" class="btn-more"></a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="clear"> </div>
                 </div>
-            </form>
+
+            </ul>
         </div>
     </div>
     <!---->
@@ -55,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <br />
 
 
-            <div class="test-top" ng-repeat="l1 in rankings" ng-init="outerindex=$index">
+            <div class="test-top" ng-repeat="l1 in rankings">
             <div class="blog-in">
                 <h5>{{l1.reason}}</h5>
                 <ul class="date">
@@ -68,28 +80,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <th scope="col" >股票代码</th>
                     <th scope="col" >股票名称</th>
-                    <th scope="col" >收盘价（元）</th>
-                    <th scope="col" >涨幅</th>
-                    <th scope="col" >成交量（万股）</th>
-                    <th scope="col" >成交额（万元）</th>
-                    <th scope="col" >查看详情</th>
+                    <th scope="col" >当日涨跌幅</th>
+                    <th scope="col" >龙虎榜成交额 (万)</th>
+                    <th scope="col" >买入额（万）</th>
+                    <th scope="col" >买入占总成交比例</th>
+                    <th scope="col" >卖出额（万）</th>
+                    <th scope="col" >卖出占总成交比例</th>
                 </tr>
 
                 <tr>
                     <td colspan="7" ></td>
                 </tr>
-                <tr ng-repreat="l2 in l1.data track by $index" ng-init="innerIndex=$index" >
+                <tr ng-repeat="l2 in l1.data">
 
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.name}}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.code}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.name}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.p_change}}</td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6%
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.amount}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;139.30</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;96010</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.buy}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.bratio}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sell}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sration}}</td>
                     <td><a target="_blank" href="http://finance.sina.com.cn/realstock/company/sh601318/nc.shtml">
                         <div class="fname05"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更多</span></div>
                     </a></td>
@@ -110,13 +125,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/winner/all")
-            .then(function (response) {
-                $scope.rankings = response.data;
-            });
-    });
+//    var app = angular.module('myApp', []);
+//    app.controller('siteCtrl', function($scope, $http) {
+//        $http.get("http://localhost:8080/winner/all")
+//            .then(function (response) {
+//                var temp2 = angular.fromJson(response.data);
+//                $scope.rankings = temp2;
+//            });
+//    });
 
 </script>
 

@@ -10,6 +10,7 @@
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,10 +32,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li class="active"><a href="index_data.html" >A股热图</a></li>
-                <li><a href="work.html" class="black" > 新闻资讯</a></li>
-                <li><a href="single.html" class="black1"> 个股信息</a></li>
-                <li><a href="work.html" class="black2" > 个人主页</a></li>
+
+                <li ><a href="home.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
+                <li>
+
+                </li>
+
+                <div class="your-top">
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:;" class="btn-more"></a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="clear"> </div>
+                </div>
+
             </ul>
         </div>
     </div>
@@ -76,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;化工行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
         <div ng-repeat="m in single"  class="content-grid">
             <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-                <div id={{m.name}} class={{m.style}} ng-click="goto(id)">{{m.name}}</div>
+                <div id={{m.name}} class={{m.style}} onclick="goto(id)">{{m.name}}</div>
             </a>
         </div>
 
@@ -93,10 +115,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var pr='';
     var temp_range='';
     var float_range;
-    //function goto(id){
+    function goto(id){
 
-    //window.location.href = "single.html?name="+id;
-    //}
+        window.location.href = "single.html?name="+encodeURI(encodeURI(id));
+    }
 
 
 
