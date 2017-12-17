@@ -4,14 +4,14 @@ import edu.tongji.demo.Mapper.*;
 import edu.tongji.demo.Model.Connect;
 import edu.tongji.demo.Model.DataRealTime;
 import edu.tongji.demo.Model.WarehouseDataDays;
-import edu.tongji.demo.Verification;
+import edu.tongji.demo.config.Verification;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -39,14 +39,16 @@ public class StockController {
 
     @GetMapping("/all")
     public Object GetAllStockInfo(HttpServletResponse response) throws IOException{
-        Boolean judge = Verification.verify();
-        if (!judge){
-            response.sendRedirect("http://localhost:8080/loginpage");
-            return "unregistered";
+        try{
+            Boolean judge = Verification.verify();
+            if (!judge){
+                return "400";
+            }
+            else
+                return industryMapper.getAllIndustryInfor();
+        }catch (Exception e){
+            return "404";
         }
-
-        else
-            return industryMapper.getAllIndustryInfor();
     }
         /**
      * 通过code或者name获得connect的信息
@@ -57,7 +59,6 @@ public class StockController {
     public Object GetSpecificInfo(@RequestBody String content){
         Boolean judge = Verification.verify();
         if (judge == false) {
-
             return "unregistered";
         }
         else{
@@ -95,9 +96,10 @@ public class StockController {
      * @return
      */
     @GetMapping("/industry")
-    public Object GetStocksOfIndustry(@Param(value = "name") String name){
-        if (!Verification.verify())
-            return "unregistered";
+    public Object GetStocksOfIndustry(@RequestParam(value = "name", defaultValue = "化工行业")  String name, HttpServletResponse response) throws IOException{
+        if (!Verification.verify()){
+            return "400";
+        }
         else {/**
          * 内部类定义传输数据的格式
          */
@@ -136,11 +138,10 @@ public class StockController {
                 }
             }
             try{
-                System.out.print("??????");
                 ArrayList<Connect> connectArrayList = connectMapper.getDataByCName(name);
-                if(connectArrayList == null)
-                    return "no information";
                 ArrayList<Data> dataDays = new ArrayList<>();
+                if(connectArrayList == null)
+                    return null;
                 for (int i = 0; i < connectArrayList.size(); i++){
                     if (i == 50)
                         break;
@@ -157,7 +158,7 @@ public class StockController {
                 return dataDays;
             } catch (Exception e){
                 //未知错误
-                return "400";
+                return "404";
             }
         }
     }
@@ -202,6 +203,11 @@ public class StockController {
 
     }
 
+    /**
+     * 根据code获取股票名称
+     * @param code
+     * @return
+     */
     @GetMapping(value = "/name")
     public Object getStockName(@Param(value = "code") String code){
         String temp = "{\"name\":\"";
@@ -212,15 +218,29 @@ public class StockController {
         }
     }
 
-    @GetMapping(value = "/jumpdetail")
-    public Object jumpDetail(@Param(value = "code") String code, HttpServletResponse response, HttpServletRequest request) throws IOException{
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods","GET");
-        response.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type");
-        if (code == null){
-            return new ModelAndView("redirect:/detailspage");
-        }else{
-            return new ModelAndView("redirect:/detailspage?code=" + code);
-        }
-    }
+    /**
+     * 返回用户持有股票的信息
+     */
+//    @GetMapping("/")
+//    public Object getPersonalStocks(HttpServletRequest request){
+//        if (!Verification.verify())
+//            return "400";
+//        else{
+//            Cookie[] cookies = request.getCookies();
+//            String name = "";
+//            for(int i = 0; i < cookies.length; i++){
+//                if(cookies[i].getName().equals("fnan"))
+//                    name = cookies[i].getValue();
+//            }
+//            if(name.equals(""))
+//                return null;
+//            else{
+//                try{
+//
+//                }catch (Exception e){
+//                    return null;
+//                }
+//            }
+//        }
+//    }
 }
