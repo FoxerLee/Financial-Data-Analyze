@@ -1,4 +1,3 @@
-
 <html>
 <head>
     <title>Home</title>
@@ -18,7 +17,6 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
     <!--//fonts-->
 
 </head>
@@ -33,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul >
                 <li><b class="white"></b></li>
 
-                <li ><a href="home.html" >大数据展示</a ></li>
+                <li ><a href="index_data2.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
                 <li><a href="work.html" class="black2" > 个人主页</a ></li>
@@ -97,8 +95,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
         <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;化工行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
         <div ng-repeat="m in single"  class="content-grid">
-            <a href="single.html" class="b-link-stripe b-animate-go  thickbox">
-                <div id={{m.name}} class={{m.style}} onclick="goto(id)">{{m.name}}</div>
+            <a class="b-link-stripe b-animate-go  thickbox">
+                <div id={{m.name}} class={{m.style}} ng-click="goto(m.code)">{{m.name}}</div>
             </a>
         </div>
 
@@ -115,10 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var pr='';
     var temp_range='';
     var float_range;
-    function goto(id){
 
-        window.location.href = "single.html?name="+encodeURI(encodeURI(id));
-    }
 
 
 
@@ -230,16 +225,119 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                     var singleName = String(temp[i].name);
 
-                    $http.get("http://localhost:8080/stock/industry?name="+"化工行业")
+
+                }
+
+                $http.get("http://localhost:8080/stock/industry?name="+"化工行业")
+                    .then(function (response) {
+                        var temp2 = angular.fromJson(response.data);
+                        $scope.single = [
+                            {code:" ",name: " ", style: "cc6"}
+                        ];
+
+
+                        for (var i = 0; i < 50; i++) {
+                            pr = String(temp2[i].p_change);
+                            temp_range = pr.substring(0, pr.length - 1);
+                            // alert();
+                            // for(var j=pr.length -1;j>0;j--){
+                            //     if(pr[i]==='%'){
+                            //         index=i;
+                            //     }
+                            // }
+                            // for(j=0;j<index;j++){
+                            //     temp_range=temp_range+pr[j];
+                            // // }
+                            //alert(temp_range)
+                            float_range = parseFloat(temp_range);
+                            temp_range = "";
+
+                            if (i === 0) {
+                                $scope.single.splice(0, 1);
+                            }
+                            if (float_range >= 1.5) {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc1"
+                                });
+                            }
+                            else if (1.0 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc2"
+                                });
+                            }
+                            else if (0.5 <= float_range) {
+
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc3"
+                                });
+                            }
+                            else if (0.0 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc4"
+                                });
+                            }
+                            else if (-0.5 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc5"
+                                });
+                            }
+                            else if (-1.0 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc6"
+                                });
+                            }
+                            else if (-1.5 <= float_range) {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc7"
+                                });
+                            }
+                            else {
+                                $scope.single.splice(i, 0, {
+                                    code: temp2[i].code,
+                                    name: temp2[i].name,
+                                    style: "cc8"
+                                });
+
+                            }
+                        }
+
+                    });
+
+
+
+                $scope.display = function(singleName){
+                    //alert(singleName);
+                    y=document.getElementById("individual");
+                    y.innerHTML="&nbsp;&nbsp;&nbsp;"+singleName+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
+                    $http.get("http://localhost:8080/stock/industry?name="+singleName)
                         .then(function (response) {
                             var temp2 = angular.fromJson(response.data);
                             $scope.single = [
-                                {name: " ", style: "cc6"}
+                                {code:" ",name: " ", style: "cc6"}
                             ];
-
-
-                            for (var i = 0; i < 50; i++) {
-                                pr = String(temp2[i].priceRange);
+                            //alert(temp2.length);
+                            if(temp2.length>50){
+                                myLen=50;
+                            }
+                            else{
+                                myLen=temp2.length;
+                            }
+                            for (var i = 0; i < myLen; i++) {
+                                pr = String(temp2[i].p_change);
                                 temp_range = pr.substring(0, pr.length - 1);
                                 // alert();
                                 // for(var j=pr.length -1;j>0;j--){
@@ -259,12 +357,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 }
                                 if (float_range >= 1.5) {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc1"
                                     });
                                 }
                                 else if (1.0 <= float_range) {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc2"
                                     });
@@ -272,148 +372,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 else if (0.5 <= float_range) {
 
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc3"
                                     });
                                 }
                                 else if (0.0 <= float_range) {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc4"
                                     });
                                 }
                                 else if (-0.5 <= float_range) {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc5"
                                     });
                                 }
                                 else if (-1.0 <= float_range) {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc6"
                                     });
                                 }
                                 else if (-1.5 <= float_range) {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc7"
                                     });
                                 }
                                 else {
                                     $scope.single.splice(i, 0, {
+                                        code: temp2[i].code,
                                         name: temp2[i].name,
                                         style: "cc8"
                                     });
 
                                 }
                             }
-
+                            //for(i=myLen;i<50;i++){
+                            //$scope.single.splice(i, 0, {
+                            //name: "林海股份",
+                            //style: "cc10"
+                            // });
+                            //}
                         });
+                };
 
+                $scope.check_out = function () {
+                    window.location.href="/login.html";
+                    $http.get("http://localhost:8080/user/logout");
 
-
-                    $scope.display = function(singleName){
-                        //alert(singleName);
-                        y=document.getElementById("individual");
-                        y.innerHTML="&nbsp;&nbsp;&nbsp;"+singleName+"个股"+"<span class=\"heat-map-title2\">按成交额从前到后排列</span>";
-                        $http.get("http://localhost:8080/stock/industry?name="+singleName)
-                            .then(function (response) {
-                                var temp2 = angular.fromJson(response.data);
-                                $scope.single = [
-                                    {name: " ", style: "cc6"}
-                                ];
-                                //alert(temp2.length);
-                                if(temp2.length>50){
-                                    myLen=50;
-                                }
-                                else{
-                                    myLen=temp2.length;
-                                }
-                                for (var i = 0; i < myLen; i++) {
-                                    pr = String(temp2[i].priceRange);
-                                    temp_range = pr.substring(0, pr.length - 1);
-                                    // alert();
-                                    // for(var j=pr.length -1;j>0;j--){
-                                    //     if(pr[i]==='%'){
-                                    //         index=i;
-                                    //     }
-                                    // }
-                                    // for(j=0;j<index;j++){
-                                    //     temp_range=temp_range+pr[j];
-                                    // // }
-                                    //alert(temp_range)
-                                    float_range = parseFloat(temp_range);
-                                    temp_range = "";
-
-                                    if (i === 0) {
-                                        $scope.single.splice(0, 1);
-                                    }
-                                    if (float_range >= 1.5) {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc1"
-                                        });
-                                    }
-                                    else if (1.0 <= float_range) {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc2"
-                                        });
-                                    }
-                                    else if (0.5 <= float_range) {
-
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc3"
-                                        });
-                                    }
-                                    else if (0.0 <= float_range) {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc4"
-                                        });
-                                    }
-                                    else if (-0.5 <= float_range) {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc5"
-                                        });
-                                    }
-                                    else if (-1.0 <= float_range) {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc6"
-                                        });
-                                    }
-                                    else if (-1.5 <= float_range) {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc7"
-                                        });
-                                    }
-                                    else {
-                                        $scope.single.splice(i, 0, {
-                                            name: temp2[i].name,
-                                            style: "cc8"
-                                        });
-
-                                    }
-                                }
-                                for(i=myLen;i<50;i++){
-                                    $scope.single.splice(i, 0, {
-                                        name: "林海股份",
-                                        style: "cc10"
-                                    });
-                                }
-                            });
-                    };
-
-                    $scope.check_out = function () {
-                        window.location.href="/login.html";
-                        $http.get("http://localhost:8080/user/logout");
-
-                    }
+                };
+                $scope.goto = function (stockCode) {
+                    window.location.href = "detail.html?code=" + stockCode;
                 }
             });
 

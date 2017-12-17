@@ -14,8 +14,6 @@ public class DetailController {
 
     @GetMapping("/detailspage")
     public Object index(@Param(value = "code")String code, HttpServletResponse response){
-        //return "detail.html"
-        System.out.println("code " + code);
         return new ModelAndView("detail.html");
     }
 }

@@ -60,12 +60,12 @@ public class UserController {
      * @throws IOException
      */
     @GetMapping("/login")
-    public void Verification(@Param(value = "name")String name, @Param(value = "password") String password,
+    public String Verification(@Param(value = "name")String name, @Param(value = "password") String password,
                              HttpServletRequest request, HttpServletResponse response) throws IOException{
         try{
             UserInfo info = userInfoMapper.Vefify(name, password);
             if (info == null){
-                response.sendRedirect("http://localhost:8080/loginpage");
+                return "400";
             }
             else {
                 //添加session
@@ -78,12 +78,11 @@ public class UserController {
                 cookie.setPath("/");
                 cookie.setMaxAge(60*60);
                 response.addCookie(cookie);
-                response.sendRedirect("http://localhost:8080/bigdatagraph1");
+                return "200";
             }
         }catch (Exception e){
-            response.sendRedirect("http://localhost:8080/error");
+            return "404";
         }
-
     }
 
     /**

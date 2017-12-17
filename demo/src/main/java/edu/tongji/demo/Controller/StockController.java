@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/stock")
+@CrossOrigin
 public class StockController {
 
     @Autowired
@@ -212,11 +213,14 @@ public class StockController {
     }
 
     @GetMapping(value = "/jumpdetail")
-    public Object jumpDetail(@Param(value = "code") String code, HttpServletResponse response) throws IOException{
-        if (code == null)
-            code = "000001";
-        //response.sendRedirect("localhost:8080/detailspage?code=" + code);
-        return new ModelAndView("redirect:/detailspage?code=" + code);
+    public Object jumpDetail(@Param(value = "code") String code, HttpServletResponse response, HttpServletRequest request) throws IOException{
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods","GET");
+        response.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type");
+        if (code == null){
+            return new ModelAndView("redirect:/detailspage");
+        }else{
+            return new ModelAndView("redirect:/detailspage?code=" + code);
+        }
     }
-
 }
