@@ -14,10 +14,10 @@ num_filt_1 = 15     #Number of filters in first conv layer
 num_filt_2 = 8      #Number of filters in second conv layer
 num_filt_3 = 8      #Number of filters in thirs conv layer
 num_fc_1 = 1024     #Number of neurons in hully connected layer
-max_iterations = 8000
+max_iterations = 500
 model_num=7         #Number of model used for voting
 voting_times=3      #Threshold of voting
-batch_size = 100
+batch_size = 20
 dropout = 0.5       #Dropout rate in the fully connected layer
 plot_row = 5        #How many rows do you want to plot in the visualization
 regularization = 1e-4
@@ -54,7 +54,7 @@ def get_stock_data(code):
     tmp = []
     X = []
     for i in range(len(ma5)):
-        if count < 10:
+        if count < 5:
             count += 1
             tmp.append(ma5[i])
         else:
@@ -66,18 +66,18 @@ def get_stock_data(code):
     # print len(ma5)
     for i in range(len(ma5)):
         if 90 >= (len(ma5) - i - 1):
-            y_.append(0)
+            y_.append(0.0)
             continue
 
         if ((data[i+90] - data[i])/data[i]) > 0.17:
-            y_.append(1)
+            y_.append(1.0)
         else:
-            y_.append(0)
+            y_.append(0.0)
 
     count = 0
     y = []
     for i in range(len(y_)):
-        if count < 10:
+        if count < 5:
             count += 1
             continue
         else:
@@ -114,7 +114,8 @@ def run(train, test):
         X_train /= np.sqrt(variance) + 1e-9
         X_test -= mean
         X_test /= np.sqrt(variance) + 1e-9
-
+    print X_train.shape
+    print y_train.shape
     epochs = np.floor(batch_size * max_iterations / N)
     print('Train with approximately %d epochs' % (epochs))
 
