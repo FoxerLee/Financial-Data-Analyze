@@ -1714,7 +1714,7 @@ function angularInit(element, bootstrap) {
  * @param {DOMElement} element DOM element which is the root of angular application.
  * @param {Array<String|Function|Array>=} modules an array of modules to load into the application.
  *     Each item in the array should be the name of a predefined module or a (DI annotated)
- *     function that will be invoked by the injector as a `config` block.
+ *     function that will be invoked by the injector as a `Service` block.
  *     See: {@link angular.module modules}
  * @param {Object=} config an object for defining configuration options for the application. The
  *     following keys are supported:
@@ -2043,7 +2043,7 @@ function setupModuleLoader(window) {
      * myModule.value('appName', 'MyCoolApp');
      *
      * // configure existing services inside initialization blocks.
-     * myModule.config(['$locationProvider', function($locationProvider) {
+     * myModule.Service(['$locationProvider', function($locationProvider) {
      *   // Configure existing providers
      *   $locationProvider.hashPrefix('!');
      * }]);
@@ -2063,7 +2063,7 @@ function setupModuleLoader(window) {
      * @param {!Array.<string>=} requires If specified then new module is being created. If
      *        unspecified then the module is being retrieved for further configuration.
      * @param {Function=} configFn Optional configuration function for the module. Same as
-     *        {@link angular.Module#config Module#config()}.
+     *        {@link angular.Module#config Module#Service()}.
      * @returns {angular.Module} new module with the {@link angular.Module} api.
      */
     return function module(name, requires, configFn) {
@@ -18292,7 +18292,7 @@ function adjustMatchers(matchers) {
  * Here is what a secure configuration for this scenario might look like:
  *
  * ```
- *  angular.module('myApp', []).config(function($sceDelegateProvider) {
+ *  angular.module('myApp', []).Service(function($sceDelegateProvider) {
  *    $sceDelegateProvider.resourceUrlWhitelist([
  *      // Allow same origin resource loads.
  *      'self',
@@ -18932,7 +18932,7 @@ function $SceProvider() {
      * @kind function
      *
      * @return {Boolean} true if SCE is enabled, false otherwise.  If you want to set the value, you
-     * have to do it at module config time on {@link ng.$sceProvider $sceProvider}.
+     * have to do it at module Service time on {@link ng.$sceProvider $sceProvider}.
      *
      * @description
      * Returns a boolean indicating if SCE is enabled.

@@ -2,6 +2,7 @@ package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Mapper.UserInfoMapper;
 import edu.tongji.demo.Model.UserInfo;
+import edu.tongji.demo.Service.UserService;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class UserController {
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+
     /**
      * 用户输入用户名和密码进行登陆
      * @param name
@@ -99,5 +101,10 @@ public class UserController {
         } catch (Exception e){
             return "404";
         }
+    }
+
+    @GetMapping("/test")
+    public Object test(){
+        return new UserService().getUserByName("test");
     }
 }

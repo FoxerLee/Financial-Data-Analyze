@@ -1,7 +1,7 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Mapper.NewsMapper;
-import edu.tongji.demo.config.Verification;
+import edu.tongji.demo.security.Verification;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
