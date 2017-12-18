@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/index")
     public Object index(){
-        return "home.html";
+        return "login.html";
     }
 }
