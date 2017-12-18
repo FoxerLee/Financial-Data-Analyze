@@ -4,12 +4,13 @@ import edu.tongji.demo.Mapper.*;
 import edu.tongji.demo.Model.Connect;
 import edu.tongji.demo.Model.DataRealTime;
 import edu.tongji.demo.Model.WarehouseDataDays;
-import edu.tongji.demo.config.Verification;
+import edu.tongji.demo.Service.StockService;
+import edu.tongji.demo.security.Verification;
+import edu.tongji.demo.Service.UserService;
 import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,7 @@ public class StockController {
     private WarehouseDataDaysMapper warehouseDataDaysMapper;
 
     @GetMapping("/all")
-    public Object GetAllStockInfo(HttpServletResponse response) throws IOException{
+    public Object GetAllStockInfo(){
         try{
             Boolean judge = Verification.verify();
             if (!judge){
@@ -221,22 +222,22 @@ public class StockController {
     /**
      * 返回用户持有股票的信息
      */
-//    @GetMapping("/")
+//    @GetMapping("/user")
 //    public Object getPersonalStocks(HttpServletRequest request){
 //        if (!Verification.verify())
 //            return "400";
 //        else{
-//            Cookie[] cookies = request.getCookies();
-//            String name = "";
-//            for(int i = 0; i < cookies.length; i++){
-//                if(cookies[i].getName().equals("fnan"))
-//                    name = cookies[i].getValue();
-//            }
-//            if(name.equals(""))
+//            UserService userService = new UserService();
+//            String name = userService.getNameByCookie(request);
+//            if (name.equals(""))
+//                return null;
+//            int id = userService.getUserByName(name);
+//            System.out.println(id);
+//            if (id < 0)
 //                return null;
 //            else{
 //                try{
-//
+//                    return new StockService().getStocksByCodes(id);
 //                }catch (Exception e){
 //                    return null;
 //                }
