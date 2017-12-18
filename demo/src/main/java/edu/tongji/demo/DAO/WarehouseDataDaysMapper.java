@@ -1,4 +1,4 @@
-package edu.tongji.demo.Mapper;
+package edu.tongji.demo.DAO;
 
 import edu.tongji.demo.Model.WarehouseDataDays;
 import org.apache.ibatis.annotations.Mapper;

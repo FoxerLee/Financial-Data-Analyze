@@ -1,37 +1,32 @@
 package edu.tongji.demo.Service;
 
-import edu.tongji.demo.Mapper.UserInfoMapper;
-import edu.tongji.demo.Mapper.WinnerListMapper;
+import edu.tongji.demo.DAO.UserInfoMapper;
+import edu.tongji.demo.DAO.WinnerListMapper;
+import edu.tongji.demo.ServiceInterface.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 @Service
-public class UserService {
+public class UserService implements UserServiceInterface{
 
     @Autowired
     private UserInfoMapper userInfoMapper;
 
-    @Autowired
-    private WinnerListMapper winnerListMapper;
-
-    public Object getUserByName(String name){
-//        try{
-//
-//        } catch (Exception e){
-//            return -2;
-//        }
-//        if (name.equals(""))
-//            return -1;
-//
-//        userInfoMapper.getID(name);
-//        return userInfoMapper.getID(name);
-        return winnerListMapper.getAll();
+    @Override
+    public Integer getUserByName(String name){
+        try{
+            if (name.equals(""))
+                return -1;
+            return userInfoMapper.getID(name);
+        } catch (Exception e){
+            return -2;
+        }
     }
 
+    @Override
     public String getNameByCookie(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         String name = "";

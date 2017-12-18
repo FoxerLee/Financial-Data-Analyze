@@ -1,22 +1,15 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapper.ResearchMapper;
-import edu.tongji.demo.Mapper.UserInfoMapper;
-import edu.tongji.demo.Model.Research;
-import net.sf.json.JSONObject;
+import edu.tongji.demo.DAO.ResearchMapper;
+import edu.tongji.demo.DAO.UserInfoMapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 @RestController

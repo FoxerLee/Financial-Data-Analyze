@@ -17286,7 +17286,7 @@ var dataFormatMixin = {
 };
 
 /**
- * Mapper to exists for merge.
+ * DAO to exists for merge.
  *
  * @public
  * @param {Array.<Object>|Array.<module:echarts/model/Component>} exists
@@ -17295,7 +17295,7 @@ var dataFormatMixin = {
  *                          index of which is the same as exists.
  */
 function mappingToExists(exists, newCptOptions) {
-    // Mapper by the order by original option (but not order of
+    // DAO by the order by original option (but not order of
     // new option) in merge mode. Because we should ensure
     // some specified index (like xAxisIndex) is consistent with
     // original option, which is easy to understand, espatially in
@@ -17307,7 +17307,7 @@ function mappingToExists(exists, newCptOptions) {
         return {exist: obj};
     });
 
-    // Mapper by id or name if specified.
+    // DAO by id or name if specified.
     each$3(newCptOptions, function (cptOption, index) {
         if (!isObject$2(cptOption)) {
             return;
@@ -19276,7 +19276,7 @@ function initBase(baseOption) {
     this._componentsMap = createHashMap({series: []});
 
     /**
-     * Mapper between filtered series list and raw series list.
+     * DAO between filtered series list and raw series list.
      * key: filtered series indices, value: raw series indices.
      * @type {Array.<nubmer>}
      * @private
@@ -34920,7 +34920,7 @@ var parseGeoJson = function (geoJson) {
 
 /**
  * Simple view coordinate system
- * Mapper given x, y to transformd view x, y
+ * DAO given x, y to transformd view x, y
  */
 
 var v2ApplyTransform$1 = applyTransform;
@@ -67524,7 +67524,7 @@ var PiecewiseModel = VisualMapModel.extend({
      * this._pieceList:
      *     The order is always [low, ..., high].
      *
-     * Mapper from location to low-high:
+     * DAO from location to low-high:
      *     If !option.inverse
      *     When vertical, top is high.
      *     When horizontal, right is high.

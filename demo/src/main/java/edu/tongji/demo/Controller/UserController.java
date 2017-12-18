@@ -1,14 +1,11 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapper.UserInfoMapper;
+import edu.tongji.demo.DAO.UserInfoMapper;
 import edu.tongji.demo.Model.UserInfo;
 import edu.tongji.demo.Service.UserService;
-import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.View;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -101,10 +98,5 @@ public class UserController {
         } catch (Exception e){
             return "404";
         }
-    }
-
-    @GetMapping("/test")
-    public Object test(){
-        return new UserService().getUserByName("test");
     }
 }

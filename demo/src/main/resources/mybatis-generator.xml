@@ -27,7 +27,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="edu.tongji.demo.Mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="edu.tongji.demo.DAO" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
