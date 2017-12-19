@@ -1,41 +1,23 @@
 package edu.tongji.demo.Service;
 
-import edu.tongji.demo.DAO.UserInfoMapper;
-import edu.tongji.demo.DAO.WinnerListMapper;
-import edu.tongji.demo.ServiceInterface.UserServiceInterface;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import edu.tongji.demo.Model.UserInfo;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-@Service
-public class UserService implements UserServiceInterface{
+public interface UserService {
 
-    @Autowired
-    private UserInfoMapper userInfoMapper;
+    Integer getIDByName(String name);
 
-    @Override
-    public Integer getUserByName(String name){
-        try{
-            if (name.equals(""))
-                return -1;
-            return userInfoMapper.getID(name);
-        } catch (Exception e){
-            return -2;
-        }
-    }
+    String getNameByCookie(HttpServletRequest request);
 
-    @Override
-    public String getNameByCookie(HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        String name = "";
-        for(int i = 0; i < cookies.length; i++){
-            if(cookies[i].getName().equals("fnan")){
-                name = cookies[i].getValue();
-                break;
-            }
-        }
-        return name;
-    }
+    void addSession(String name, String password, HttpServletRequest request, HttpServletResponse responses);
+
+    boolean verify(String name, String password);
+
+    void logout(HttpServletRequest request, HttpServletResponse response);
+
+    boolean signUp(String name, String password);
+
+    UserInfo getUserInformation(HttpServletRequest request);
 }

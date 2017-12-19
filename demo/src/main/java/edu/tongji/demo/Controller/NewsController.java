@@ -1,6 +1,7 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.DAO.NewsMapper;
+import edu.tongji.demo.Service.NewsService;
 import edu.tongji.demo.security.Verification;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class NewsController {
 
     @Autowired
-    private NewsMapper newsMapper;
+    private NewsService newsService;
 
     @GetMapping("/user")
     public Object getNews(@Param(value = "code") String code){
         if (!Verification.verify())
-            return "unregistered";
+            return "400";
         else
-            return newsMapper.getNews(code);
+            return newsService.getNewsByCode(code);
     }
 
     @GetMapping("/code")
-    public Object getEveryNews(@Param(value = "code") String code){
-        return newsMapper.getEveryNews(code);
+    public Object getBriefNews(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
+        return newsService.getBriefNewsByCode(code);
     }
 }

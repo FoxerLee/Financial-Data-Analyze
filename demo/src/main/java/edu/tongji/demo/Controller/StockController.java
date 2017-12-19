@@ -2,6 +2,7 @@ package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.DAO.*;
 import edu.tongji.demo.Service.IndustryService;
+import edu.tongji.demo.Service.SelfStockService;
 import edu.tongji.demo.Service.StockService;
 import edu.tongji.demo.Service.UserService;
 import edu.tongji.demo.security.Verification;
@@ -17,9 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 public class StockController {
 
     @Autowired
-    private ConnectMapper connectMapper;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
@@ -28,8 +26,13 @@ public class StockController {
     @Autowired
     private IndustryService industryService;
 
+    @Autowired
+    private SelfStockService selfStockService;
+
     @GetMapping("/all")
     public Object GetAllStockInfo(){
+        if (!Verification.verify())
+            return "400";
         try{
             Boolean judge = Verification.verify();
             if (!judge)
@@ -47,10 +50,8 @@ public class StockController {
      */
     @PostMapping("/one")
     public Object GetSpecificInfo(@RequestBody String content){
-        Boolean judge = Verification.verify();
-        if (judge == false) {
-            return "unregistered";
-        }
+        if (!Verification.verify())
+            return "400";
         else{
             return stockService.getStockByNameOrCode(content);
         }
@@ -77,6 +78,8 @@ public class StockController {
      */
     @GetMapping(value = "/brief")
     public Object getBrief(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
         try{
             return stockService.getStockBriefInformation(code);
         }catch (Exception e){
@@ -89,10 +92,34 @@ public class StockController {
      * @param code
      * @return
      */
-    @GetMapping(value = "/history")
-    public Object getHistory(@Param(value = "code") String code){
+    @GetMapping(value = "/history/days")
+    public Object getHistoryDays(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
         try{
-            return stockService.getStocksHistory(code);
+            return stockService.getStocksHistory(code, 1);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @GetMapping(value = "/history/weeks")
+    public Object getHistoryWeeks(@Param(value = "code")String code){
+        if(!Verification.verify())
+            return "400";
+        try{
+            return stockService.getStocksHistory(code, 2);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @GetMapping(value = "/history/months")
+    public Object getHistoryMonths(@Param(value = "code")String code){
+        if(!Verification.verify())
+            return "400";
+        try{
+            return stockService.getStocksHistory(code, 3);
         }catch (Exception e){
             return null;
         }
@@ -105,36 +132,9 @@ public class StockController {
      */
     @GetMapping(value = "/name")
     public Object getStockName(@Param(value = "code") String code){
-        String temp = "{\"name\":\"";
-        try{
-            return temp + connectMapper.getName(code) + "\"}";
-        }catch (Exception e){
-            return temp + "Unknown" + "\"}";
-        }
-    }
-
-    /**
-     * 返回用户持有股票的信息
-     */
-    @GetMapping("/user")
-    public Object getPersonalStocks(HttpServletRequest request){
         if (!Verification.verify())
             return "400";
-        else{
-            String name = userService.getNameByCookie(request);
-            if (name.equals(""))
-                return null;
-            int id = userService.getUserByName(name);
-            System.out.println(id);
-            if (id < 0)
-                return null;
-            else{
-                try{
-                    return stockService.getStocksByCodes(id);
-                }catch (Exception e){
-                    return null;
-                }
-            }
-        }
+        return stockService.getStockNameByCode(code);
     }
+
 }

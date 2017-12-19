@@ -1,16 +1,12 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.DAO.UserInfoMapper;
-import edu.tongji.demo.Model.UserInfo;
 import edu.tongji.demo.Service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @RestController
@@ -19,7 +15,7 @@ import java.io.IOException;
 public class UserController {
 
     @Autowired
-    private UserInfoMapper userInfoMapper;
+    private UserService userService;
 
     /**
      * 用户输入用户名和密码进行登陆
@@ -31,23 +27,12 @@ public class UserController {
      */
     @GetMapping("/login")
     public String Verification(@Param(value = "name")String name, @Param(value = "password") String password,
-                             HttpServletRequest request, HttpServletResponse response) throws IOException{
+                             HttpServletRequest request, HttpServletResponse response){
         try{
-            UserInfo info = userInfoMapper.Vefify(name, password);
-            if (info == null){
+            if (!userService.verify(name, password))
                 return "400";
-            }
             else {
-                //添加session
-                HttpSession session = request.getSession();
-                session.setAttribute("name", name);
-                session.setAttribute("password", password);
-                session.setMaxInactiveInterval(60*60);
-
-                Cookie cookie = new Cookie("fnan", name);
-                cookie.setPath("/");
-                cookie.setMaxAge(60*60);
-                response.addCookie(cookie);
+                userService.addSession(name, password, request, response);
                 return "200";
             }
         }catch (Exception e){
@@ -61,40 +46,24 @@ public class UserController {
      * @param response
      */
     @GetMapping("/logout")
-    //@AvoidDuplicatSubmission
     @CrossOrigin
     public void Delete(HttpServletRequest request, HttpServletResponse response){
-        Cookie[] cookies = request.getCookies();
-        for (int i = 0; i < cookies.length; i++){
-            if(cookies[i].getName().equals("fnan")){
-                Cookie cookie = new Cookie("fnan", "ww");
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-            }
-        }
+        userService.logout(request, response);
     }
 
     /**
      * 用户注册账户
      * @param name
      * @param password
-     * @param response
      * @return
      */
     @GetMapping("/signup")
-    public String SignUp(@Param(value = "name") String name, @Param(value = "password")String password,
-                         HttpServletResponse response) throws IOException{
+    public String SignUp(@Param(value = "name") String name, @Param(value = "password")String password){
         try{
-            Integer count = userInfoMapper.Check(name);
-            System.out.print(count);
-            if(count.equals(1)){
-                return "400";
-            }
-            else{
-                userInfoMapper.AddUser(password, name);
+            if(userService.signUp(name, password))
                 return "200";
-            }
+            else
+                return "400";
         } catch (Exception e){
             return "404";
         }
