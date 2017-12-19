@@ -1,22 +1,15 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.DAO.*;
-import edu.tongji.demo.Model.Connect;
-import edu.tongji.demo.Model.DataRealTime;
-import edu.tongji.demo.Model.WarehouseDataDays;
 import edu.tongji.demo.Service.IndustryService;
 import edu.tongji.demo.Service.StockService;
 import edu.tongji.demo.Service.UserService;
 import edu.tongji.demo.security.Verification;
-import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/stock")

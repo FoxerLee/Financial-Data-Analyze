@@ -4,7 +4,7 @@ import edu.tongji.demo.DAO.*;
 import edu.tongji.demo.Model.Connect;
 import edu.tongji.demo.Model.DataRealTime;
 import edu.tongji.demo.Model.SelfStocking;
-import edu.tongji.demo.Model.WarehouseDataDays;
+import edu.tongji.demo.Model.WarehouseData;
 import edu.tongji.demo.ServiceInterface.StockServiceInterface;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,8 +137,8 @@ public class StockService implements StockServiceInterface{
     }
 
     @Override
-    public Object getStocksHistory(String code){
-        ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
+    public Object getStocksHistory(String code, Class c){
+        ArrayList<WarehouseData> data = warehouseDataDaysMapper.getWareHouseData(code);
         Object[] result = new Object[data.size()];
         for(int i = 0; i < data.size(); i++){
             Object[] temp  = new Object[6];
