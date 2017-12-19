@@ -128,7 +128,9 @@
 		$scope.Register = function () {
 			var name = document.getElementById("name").value;
 			var password = document.getElementById("password").value;
-			$http.get("http://localhost:8080/user/signup")
+			var url = "http://localhost:8080/user/signup?name="+name+"&password="+password;
+			alert(url)
+			$http.get(url)
 				.then(function (value) {
 				    if (value.data === 200)
 				        window.location.href ="login.html";

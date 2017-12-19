@@ -1,30 +1,20 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.DAO.*;
-import edu.tongji.demo.Model.Connect;
-import edu.tongji.demo.Model.DataRealTime;
-import edu.tongji.demo.Model.WarehouseDataDays;
 import edu.tongji.demo.Service.IndustryService;
 import edu.tongji.demo.Service.StockService;
 import edu.tongji.demo.Service.UserService;
 import edu.tongji.demo.security.Verification;
-import net.sf.json.JSONObject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/stock")
 @CrossOrigin
 public class StockController {
-
-    @Autowired
-    private ConnectMapper connectMapper;
 
     @Autowired
     private UserService userService;
@@ -37,6 +27,8 @@ public class StockController {
 
     @GetMapping("/all")
     public Object GetAllStockInfo(){
+        if (!Verification.verify())
+            return "400";
         try{
             Boolean judge = Verification.verify();
             if (!judge)
@@ -54,10 +46,8 @@ public class StockController {
      */
     @PostMapping("/one")
     public Object GetSpecificInfo(@RequestBody String content){
-        Boolean judge = Verification.verify();
-        if (judge == false) {
-            return "unregistered";
-        }
+        if (!Verification.verify())
+            return "400";
         else{
             return stockService.getStockByNameOrCode(content);
         }
@@ -84,6 +74,8 @@ public class StockController {
      */
     @GetMapping(value = "/brief")
     public Object getBrief(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
         try{
             return stockService.getStockBriefInformation(code);
         }catch (Exception e){
@@ -98,6 +90,8 @@ public class StockController {
      */
     @GetMapping(value = "/history")
     public Object getHistory(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
         try{
             return stockService.getStocksHistory(code);
         }catch (Exception e){
@@ -112,12 +106,9 @@ public class StockController {
      */
     @GetMapping(value = "/name")
     public Object getStockName(@Param(value = "code") String code){
-        String temp = "{\"name\":\"";
-        try{
-            return temp + connectMapper.getName(code) + "\"}";
-        }catch (Exception e){
-            return temp + "Unknown" + "\"}";
-        }
+        if (!Verification.verify())
+            return "400";
+        return stockService.getStockNameByCode(code);
     }
 
     /**
@@ -131,13 +122,12 @@ public class StockController {
             String name = userService.getNameByCookie(request);
             if (name.equals(""))
                 return null;
-            int id = userService.getUserByName(name);
-            System.out.println(id);
+            int id = userService.getIDByName(name);
             if (id < 0)
                 return null;
             else{
                 try{
-                    return stockService.getStocksByCodes(id);
+                    return stockService.getStocksByUserID(id);
                 }catch (Exception e){
                     return null;
                 }

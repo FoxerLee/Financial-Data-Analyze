@@ -27,7 +27,7 @@ public class Connect {
         return c_name;
     }
 
-    public void setcName(String cName) {
-        this.c_name = cName == null ? null : cName.trim();
+    public void setcName(String c_name) {
+        this.c_name = c_name == null ? null : c_name.trim();
     }
 }

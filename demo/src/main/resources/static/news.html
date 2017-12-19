@@ -94,9 +94,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                var app = angular.module('myApp', []);
                app.controller('siteCtrl', function($scope, $http) {
                    $http.get("http://localhost:8080/research/personal")
-                       .then(function (response) {$scope.research = response.data;});
-                   $scope.check_out = function () {
-                       $http.get("http://localhost:8080/loginpage");
+                       .then(function (response) {
+                           if (response === 400)
+                               window.location.href =  "login.html";
+                           $scope.research = response.data;
+                       });
+                   $scope.check_out = function () {\
+                       window.location.href =  "login.html";
                    }
                });
 

@@ -234,15 +234,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     app.controller('siteCtrl', function($scope, $http) {
         $scope.code = code;
         $http.get("http://localhost:8080/stock/name?code=" + code)
-            .then(function (response) {$scope.stockname = response.data;});
+            .then(function (response) {
+                if (response.data === 400)
+                    window.location.href =  "login.html";
+                $scope.stockname = response.data;
+            });
         $http.get("http://localhost:8080/news/code?code=" + code)
-            .then(function (response) {$scope.news = response.data;});
+            .then(function (response) {
+                if (response.data === 400)
+                    window.location.href =  "login.html";
+                $scope.news = response.data;
+            });
         $http.get("http://localhost:8080/research/code?code=" + code)
-            .then(function (response) {$scope.research = response.data;});
+            .then(function (response) {
+                if (response.data === 400)
+                    window.location.href =  "login.html";
+                $scope.research = response.data;
+            });
         $http.get("http://localhost:8080/stock/brief?code=" + code)
-            .then(function (response) {$scope.datarealtime = response.data;});
+            .then(function (response) {
+                if (response.data === 400)
+                    window.location.href =  "login.html";
+                $scope.datarealtime = response.data;
+            });
         $http.get("http://localhost:8080/stock/history?code=" + code)
             .then(function (response) {
+                if (response.data === 400)
+                    window.location.href =  "login.html";
                 //绘图
                 var upColor = '#00da3c';
                 var downColor = '#ec0000';
