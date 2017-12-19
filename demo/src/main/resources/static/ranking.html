@@ -5,10 +5,12 @@
     <title>ranking</title>
     <!-- jQuery-->
     <script src="js/jquery.min.js"></script>
-    <script src="../static/js/angular-route.js"></script>
-    <script src="../static/js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/rankingjs.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +19,7 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>-->
     <!--//fonts-->
 
 </head>
@@ -25,57 +27,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="header-left">
         <div class="logo">
-            <a href=" ">登录</a >
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li><a href="index.html" >大数据展示</a ></li>
-                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
-                <li  class="active" ><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
-                <li><a href="work.html" class="black2" > 个人主页</a ></li>
-            </ul>
 
-            <div class="your-top">
-            <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
-                <div class="cf">
-                    <label class="search-bar">
-                        <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
-                        <a id="search" class="btn-search">
-                            <i class="icon-search"></i>
-                        </a>
-                        <a href="javascript:;" class="btn-more"></a>
-                    </label>
+                <li ><a href="index_data2.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
+                <li>
+
+                </li>
+
+                <div class="your-top">
+                    <form method="get" id="search_form" onkeypress="form_query()" action="/detail.html">
+                        <div class="cf">
+                            <label class="search-bar">
+                                <input id="keyword" placeholder="请输入股票代码" name="code" type="text" value="" class="input-search" >
+                                <a id="search" class="btn-search">
+                                    <i class="icon-search"></i>
+                                </a>
+                                <a href="javascript:;" class="btn-more"></a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="clear"> </div>
                 </div>
-            </form>
-            <div class="clear"> </div>
-        </div>
+
+            </ul>
         </div>
     </div>
     <!---->
-    <div class="content">
+    <div class="content" ng-app="myApp" ng-controller="siteCtrl">
         <div class="work">
             <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龙虎榜</p>
             <br />
 
-                <!-- <div class="price_time">
-                    <div class="price clearfix" id="trading">
-                        <div class="change">
-                            <div id="change" class="@UD_change@">@change@</div>
-                            <div id="changeP" class="@UD_change@">@changeP@</div>
-                        </div>
-                        <div id="arrow" class="arrow arrow_@UD_change@"></div>
-                        <div id="price" class="@UD_change@">@now@</div>
-                        <div class="ud_limit" id="ud_limie">
-                            <div>涨停：@up_limit@</div>
-                            <div>跌停：@down_limit@</div>
-                        </div>
-                    </div>
 
-                </div>-->
-            <div class="test-top" ng-repeat="(index,l1) in rankings" ng-init="index=$index">
+            <div class="test-top" ng-repeat="l1 in rankings">
             <div class="blog-in">
-                <h5>涨幅高于百分之五的股票{{l1.reason}}</h5>
+                <h5>{{l1.reason}}</h5>
                 <ul class="date">
                 </ul>
 
@@ -86,28 +80,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <th scope="col" >股票代码</th>
                     <th scope="col" >股票名称</th>
-                    <th scope="col" >收盘价（元）</th>
-                    <th scope="col" >涨幅</th>
-                    <th scope="col" >成交量（万股）</th>
-                    <th scope="col" >成交额（万元）</th>
-                    <th scope="col" >查看详情</th>
+                    <th scope="col" >当日涨跌幅</th>
+                    <th scope="col" >龙虎榜成交额 (万)</th>
+                    <th scope="col" >买入额（万）</th>
+                    <th scope="col" >买入占总成交比例</th>
+                    <th scope="col" >卖出额（万）</th>
+                    <th scope="col" >卖出占总成交比例</th>
                 </tr>
 
                 <tr>
                     <td colspan="7" ></td>
                 </tr>
-                <tr li ng-repreat="l2 in l1.items" >
+                <tr ng-repeat="l2 in l1.data">
 
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;601318.SH{{l2.name}}_{{index}}:{{$index}}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.code}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国平安</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;68.10</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.name}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.p_change}}</td>
                     <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6%
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.amount}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;139.30</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;96010</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.buy}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.bratio}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sell}}</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sration}}</td>
                     <td><a target="_blank" href="http://finance.sina.com.cn/realstock/company/sh601318/nc.shtml">
                         <div class="fname05"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更多</span></div>
                     </a></td>
@@ -128,11 +125,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 <script>
-    var app = angular.module('myApp', []);
-    app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/news/user?code=601888")
-            .then(function (response) {$scope.rankings = response.data;});
-    });
+   var app = angular.module('myApp', []);
+   app.controller('siteCtrl', function($scope, $http) {
+       $http.get("http://localhost:8080/winner/all")
+           .then(function (response) {
+               var temp2 = angular.fromJson(response.data);
+               $scope.rankings = temp2;
+           });
+       $scope.form_query = function () {
+           var code = document.getElementById("code").value;
+           window.location.href = "detail.html?code=" + code;
+       }
+   });
 
 </script>
 

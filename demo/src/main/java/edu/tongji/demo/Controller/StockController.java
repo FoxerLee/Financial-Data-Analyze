@@ -1,44 +1,47 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapper.*;
-import edu.tongji.demo.Model.Connect;
-import edu.tongji.demo.Model.DataRealTime;
-import edu.tongji.demo.Model.WarehouseDataDays;
-import edu.tongji.demo.Verification;
-import net.sf.json.JSONObject;
+import edu.tongji.demo.DAO.*;
+import edu.tongji.demo.Service.IndustryService;
+import edu.tongji.demo.Service.SelfStockService;
+import edu.tongji.demo.Service.StockService;
+import edu.tongji.demo.Service.UserService;
+import edu.tongji.demo.security.Verification;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/stock")
+@CrossOrigin
 public class StockController {
 
     @Autowired
-    private IndustryMapper industryMapper;
+    private UserService userService;
 
     @Autowired
-    private ConnectMapper connectMapper;
+    private StockService stockService;
 
     @Autowired
-    private DataDaysMapper dataDaysMapper;
+    private IndustryService industryService;
 
     @Autowired
-    private DataRealTimeMapper dataRealTimeMapper;
-
-    @Autowired
-    private WarehouseDataDaysMapper warehouseDataDaysMapper;
+    private SelfStockService selfStockService;
 
     @GetMapping("/all")
     public Object GetAllStockInfo(){
-        Boolean judge = Verification.verify();
-        if (!judge)
-            return "unregistered";
-        else
-            return industryMapper.getAllIndustryInfor();
+        if (!Verification.verify())
+            return "400";
+        try{
+            Boolean judge = Verification.verify();
+            if (!judge)
+                return "400";
+            else
+                return industryService.getAllIndustry();
+        }catch (Exception e){
+            return "404";
+        }
     }
         /**
      * 通过code或者name获得connect的信息
@@ -47,35 +50,10 @@ public class StockController {
      */
     @PostMapping("/one")
     public Object GetSpecificInfo(@RequestBody String content){
-        Boolean judge = Verification.verify();
-        if (judge == false)
-            return "unregistered";
+        if (!Verification.verify())
+            return "400";
         else{
-            int i = 0;
-            JSONObject jsonObject;
-            try{
-                jsonObject = JSONObject.fromObject(content);
-            } catch (Exception e){
-                return "invalid json format";
-            }
-            try{
-                String code = jsonObject.getString("code");
-                ArrayList<Connect> data;
-                if (code.matches("^[0-9]*")) {
-                    data = connectMapper.getDataByCode(code);
-                } else{
-                    data = connectMapper.getDataByName(code);
-                }
-                if(data == null)
-                    return "cannot find it";
-
-                JSONObject result = new JSONObject();
-                result.accumulate("code", data.get(0).getCode());
-                result.accumulate("name", data.get(0).getName());
-                return result;
-            }catch (Exception e){
-                return "Fail!";
-            }
+            return stockService.getStockByNameOrCode(content);
         }
     }
 
@@ -85,59 +63,11 @@ public class StockController {
      * @return
      */
     @GetMapping("/industry")
-    public Object GetStocksOfIndustry(@Param(value = "name") String name){
+    public Object GetStocksOfIndustry(@RequestParam(value = "name", defaultValue = "化工行业")  String name){
         if (!Verification.verify())
-            return "unregistered";
-        else {/**
-         * 内部类定义传输数据的格式
-         */
-            class Data{
-                private String name;
-                private Double p_change;
-                public Data(String name, Double p_change){
-                    this.name = name;
-                    this.p_change = p_change;
-                }
-
-                public String getName() {
-                    return name;
-                }
-
-                public void setName(String name) {
-                    this.name = name;
-                }
-
-                public Double getP_change() {
-                    return p_change;
-                }
-
-                public void setP_change(Double p_change) {
-                    this.p_change = p_change;
-                }
-            }
-            try{
-                System.out.print("??????");
-                ArrayList<Connect> connectArrayList = connectMapper.getDataByCName(name);
-                if(connectArrayList == null)
-                    return "no information";
-                ArrayList<Data> dataDays = new ArrayList<>();
-                for (int i = 0; i < connectArrayList.size(); i++){
-                    if (i == 50)
-                        break;
-                    Double p_change = 0.0;
-                    try{
-                        p_change = dataDaysMapper.getPChangeByCode(connectArrayList.get(i).getCode()).getP_change();
-                    } catch (Exception e){
-//                        System.out.println("error" + i);
-                        continue;
-                    }
-                    dataDays.add(new Data(connectArrayList.get(i).getName(), p_change));
-                }
-                return dataDays;
-            } catch (Exception e){
-                //未知错误
-                return "400";
-            }
+            return "400";
+        else {
+            return stockService.getStocksOfIndustry(name);
         }
     }
 
@@ -148,46 +78,63 @@ public class StockController {
      */
     @GetMapping(value = "/brief")
     public Object getBrief(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
         try{
-            DataRealTime dataRealTimes = dataRealTimeMapper.getPresentData(code);
-            if (dataRealTimes == null)
-                return "404";
-            else
-                return dataRealTimes;
+            return stockService.getStockBriefInformation(code);
         }catch (Exception e){
             return "400";
         }
     }
 
-    @GetMapping(value = "/history")
-    public Object getHistory(@Param(value = "code") String code){
+    /**
+     * 获得股票的历史数据来画日K图
+     * @param code
+     * @return
+     */
+    @GetMapping(value = "/history/days")
+    public Object getHistoryDays(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
         try{
-            ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
-            Object[] result = new Object[data.size()];
-            for(int i = 0; i < data.size(); i++){
-                Object[] temp  = new Object[6];
-                temp[0] = new String(data.get(i).getTrading_day().split(" ")[0]);
-                temp[1] = new Double(data.get(i).getOpen_value());
-                temp[2] = new Double(data.get(i).getClose_value());
-                temp[3] = new Double(data.get(i).getHigh_value());
-                temp[4] = new Double(data.get(i).getLow_value());
-                temp[5] = new Double(data.get(i).getVolume_value());
-                result[i] = temp;
-            }
-            return result;
+            return stockService.getStocksHistory(code, 1);
         }catch (Exception e){
             return null;
         }
-
     }
 
-    @GetMapping(value = "/name")
-    public Object getStockName(@Param(value = "code") String code){
-        String temp = "{\"name\":\"";
+    @GetMapping(value = "/history/weeks")
+    public Object getHistoryWeeks(@Param(value = "code")String code){
+        if(!Verification.verify())
+            return "400";
         try{
-            return temp + connectMapper.getName(code) + "\"}";
+            return stockService.getStocksHistory(code, 2);
         }catch (Exception e){
-            return temp + "Unknown" + "\"}";
+            return null;
         }
     }
+
+    @GetMapping(value = "/history/months")
+    public Object getHistoryMonths(@Param(value = "code")String code){
+        if(!Verification.verify())
+            return "400";
+        try{
+            return stockService.getStocksHistory(code, 3);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    /**
+     * 根据code获取股票名称
+     * @param code
+     * @return
+     */
+    @GetMapping(value = "/name")
+    public Object getStockName(@Param(value = "code") String code){
+        if (!Verification.verify())
+            return "400";
+        return stockService.getStockNameByCode(code);
+    }
+
 }

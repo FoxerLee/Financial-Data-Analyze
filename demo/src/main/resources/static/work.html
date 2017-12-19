@@ -16,7 +16,7 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
-    <link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.useso.com/css?family=Roboto:400,300,100,500,700,900' rel='stylesheet' type='text/css'>-->
     <!--//fonts-->
 
 </head>
@@ -29,10 +29,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <ul >
                 <li><b class="white"></b></li>
-                <li><a href="index_data.html" class="black">A股热图</a></li>
-                <li><a href="work.html" class="black1" > 新闻资讯</a></li>
-                <li><a href="about.html" class="black2"> 个股信息</a></li>
-                <li class="active"><a> 个人主页</a></li>
+                <li ><a href="index_data2.html" >大数据展示</a ></li>
+                <li><a href="news.html" class="black" > 新闻资讯</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="work.html" class="black2" > 个人主页</a ></li>
             </ul>
         </div>
     </div>
@@ -104,6 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     app.controller('siteCtrl', function($scope, $http) {
         $http.get("http://192.168.0.126:8080/news/user?code=601888")
             .then(function (response) {
+                alert(response.data);
                 $scope.stockList= response.data
             });
     });

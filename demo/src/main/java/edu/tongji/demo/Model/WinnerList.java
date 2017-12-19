@@ -8,7 +8,7 @@ public class WinnerList {
     private Double buy;
     private Double bratio;
     private Double sell;
-    private Double station;
+    private Double sration;
     private String reason;
 
     public String getCode() {
@@ -67,12 +67,12 @@ public class WinnerList {
         this.sell = sell;
     }
 
-    public Double getStation() {
-        return station;
+    public Double getSration() {
+        return sration;
     }
 
-    public void setStation(Double station) {
-        this.station = station;
+    public void setSration(Double sration) {
+        this.sration = sration;
     }
 
     public String getReason() {

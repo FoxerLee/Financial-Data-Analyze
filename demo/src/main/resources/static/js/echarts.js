@@ -2528,15 +2528,15 @@ var easing = {
 
 /**
  * 动画主控制器
- * @config target 动画对象，可以是数组，如果是数组的话会批量分发onframe等事件
- * @config life(1000) 动画时长
- * @config delay(0) 动画延迟时间
- * @config loop(true)
- * @config gap(0) 循环的间隔时间
- * @config onframe
- * @config easing(optional)
- * @config ondestroy(optional)
- * @config onrestart(optional)
+ * @ServiceImpl target 动画对象，可以是数组，如果是数组的话会批量分发onframe等事件
+ * @ServiceImpl life(1000) 动画时长
+ * @ServiceImpl delay(0) 动画延迟时间
+ * @ServiceImpl loop(true)
+ * @ServiceImpl gap(0) 循环的间隔时间
+ * @ServiceImpl onframe
+ * @ServiceImpl easing(optional)
+ * @ServiceImpl ondestroy(optional)
+ * @ServiceImpl onrestart(optional)
  *
  * TODO pause
  */
@@ -4035,7 +4035,7 @@ if (typeof window !== 'undefined') {
 
 /**
  * config默认配置项
- * @exports zrender/config
+ * @exports zrender/ServiceImpl
  * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
  */
 
@@ -14247,8 +14247,8 @@ Path.prototype = {
  * @param {string} props.type Path type
  * @param {Function} props.init Initialize
  * @param {Function} props.buildPath Overwrite buildPath method
- * @param {Object} [props.style] Extended default style config
- * @param {Object} [props.shape] Extended default shape config
+ * @param {Object} [props.style] Extended default style ServiceImpl
+ * @param {Object} [props.shape] Extended default shape ServiceImpl
  */
 Path.extend = function (defaults$$1) {
     var Sub = function (opts) {
@@ -17286,7 +17286,7 @@ var dataFormatMixin = {
 };
 
 /**
- * Mapper to exists for merge.
+ * DAO to exists for merge.
  *
  * @public
  * @param {Array.<Object>|Array.<module:echarts/model/Component>} exists
@@ -17295,7 +17295,7 @@ var dataFormatMixin = {
  *                          index of which is the same as exists.
  */
 function mappingToExists(exists, newCptOptions) {
-    // Mapper by the order by original option (but not order of
+    // DAO by the order by original option (but not order of
     // new option) in merge mode. Because we should ensure
     // some specified index (like xAxisIndex) is consistent with
     // original option, which is easy to understand, espatially in
@@ -17307,7 +17307,7 @@ function mappingToExists(exists, newCptOptions) {
         return {exist: obj};
     });
 
-    // Mapper by id or name if specified.
+    // DAO by id or name if specified.
     each$3(newCptOptions, function (cptOption, index) {
         if (!isObject$2(cptOption)) {
             return;
@@ -19276,7 +19276,7 @@ function initBase(baseOption) {
     this._componentsMap = createHashMap({series: []});
 
     /**
-     * Mapper between filtered series list and raw series list.
+     * DAO between filtered series list and raw series list.
      * key: filtered series indices, value: raw series indices.
      * @type {Array.<nubmer>}
      * @private
@@ -34920,7 +34920,7 @@ var parseGeoJson = function (geoJson) {
 
 /**
  * Simple view coordinate system
- * Mapper given x, y to transformd view x, y
+ * DAO given x, y to transformd view x, y
  */
 
 var v2ApplyTransform$1 = applyTransform;
@@ -37772,7 +37772,7 @@ SeriesModel.extend({
 
     /**
      * Init a tree data structure from data in option series
-     * @param  {Object} option  the object used to config echarts view
+     * @param  {Object} option  the object used to ServiceImpl echarts view
      * @return {module:echarts/data/List} storage initial data
      */
     getInitialData: function (option) {
@@ -47918,7 +47918,7 @@ var SankeySeries = SeriesModel.extend({
     /**
      * Init a graph data structure from data in option series
      *
-     * @param  {Object} option  the object used to config echarts view
+     * @param  {Object} option  the object used to ServiceImpl echarts view
      * @return {module:echarts/data/List} storage initial data
      */
     getInitialData: function (option) {
@@ -49734,7 +49734,7 @@ SeriesModel.extend({
         // When to show the effect, option: 'render'|'emphasis'
         showEffectOn: 'render',
 
-        // Ripple effect config
+        // Ripple effect ServiceImpl
         rippleEffect: {
             period: 4,
             // Scale of ripple
@@ -49956,7 +49956,7 @@ effectSymbolProto.updateData = function (data, idx) {
         this._effectCfg = effectCfg;
     }
     else {
-        // Not keep old effect config
+        // Not keep old effect ServiceImpl
         this._effectCfg = null;
 
         this.stopEffectAnimation();
@@ -66055,7 +66055,7 @@ var VisualMapModel = extendComponentModel({
             }
 
             // Compatible with previous logic, always give a defautl color, otherwise
-            // simple config with no inRange and outOfRange will not work.
+            // simple ServiceImpl with no inRange and outOfRange will not work.
             // Originally we use visualMap.color as the default color, but setOption at
             // the second time the default color will be erased. So we change to use
             // constant DEFAULT_COLOR.
@@ -67524,7 +67524,7 @@ var PiecewiseModel = VisualMapModel.extend({
      * this._pieceList:
      *     The order is always [low, ..., high].
      *
-     * Mapper from location to low-high:
+     * DAO from location to low-high:
      *     If !option.inverse
      *     When vertical, top is high.
      *     When horizontal, right is high.

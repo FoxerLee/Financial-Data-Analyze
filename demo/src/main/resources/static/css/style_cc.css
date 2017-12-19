@@ -83,7 +83,8 @@ body a{
   width:20%;
   float:left;
   background:#242b2e;
-  min-height: 972px;
+  min-height: 1200px;
+  margin-bottom:-3000px; padding-bottom:3000px;
 }
 .header-left1{
   min-height: 1290px;
@@ -1356,7 +1357,7 @@ ul.archive-grid li a:hover{
     margin: 0 2px 0 0;
   }
   .header-left {
-    min-height: 864px;
+    min-height: 2000px;
   }
   p.footer-class {
     font-size: 0.8em;

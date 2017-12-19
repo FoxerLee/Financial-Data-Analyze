@@ -1,12 +1,12 @@
 package edu.tongji.demo.Controller;
 
-import edu.tongji.demo.Mapper.ResearchMapper;
-import edu.tongji.demo.Model.Research;
-import net.sf.json.JSONObject;
+import edu.tongji.demo.Service.ResearchService;
+import edu.tongji.demo.security.Verification;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
@@ -14,15 +14,19 @@ import org.springframework.web.bind.annotation.*;
 public class ResearchController {
 
     @Autowired
-    private ResearchMapper researchMapper;
+    private ResearchService researchService;
 
     @GetMapping("/code")
     public Object getResByCode(@Param(value = "code") String code){
-        try{
-            return researchMapper.getBriefResearchData(code);
-        }catch (Exception e){
+        if (!Verification.verify())
             return "400";
-        }
+        return researchService.getBriefResearchByCode(code);
     }
 
+    @GetMapping("/personal")
+    public Object getResByPerson(HttpServletRequest request){
+        if (!Verification.verify())
+            return "400";
+        return researchService.getPersonalResearch(request);
+    }
 }

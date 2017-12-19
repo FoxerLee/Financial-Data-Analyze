@@ -2,7 +2,7 @@ package edu.tongji.demo.Model;
 
 import java.util.Date;
 
-public class WarehouseDataWeeks {
+public class WarehouseData {
     private Integer id;
 
     private String code;
