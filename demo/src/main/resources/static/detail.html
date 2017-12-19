@@ -65,16 +65,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="content" ng-app="myApp" ng-controller="siteCtrl">
         <div class="work">
-            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
+            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
             <div class="work-top">
 
-                <!--<a href="http://i.finance.sina.com.cn/zixuan,stock" target="_blank"  id="holdStatus" suda-uatrack="key=pc_hq_callup&value=hs">加入自选股</a>
-              <script type="text/javascript">
-                  if(/\((iPhone|iPad|iPod)/i.test(navigator.userAgent))
-                  {
-                      document.getElementById('getShortcut').style.display = 'none';
-                  }
-              </script>-->
 
                 <div class="test">
                     <!-- <div class="price_time">
@@ -162,7 +155,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
 
                 <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
-                <div id="main" style="width: 360px;height:240px;"></div>
+                <select name="select" id="select_k1" class="xla_k">
+                    <option value="日K">日K</option>
+                    <option value="周K">周K</option>
+                    <option value="月K">月K</option>
+                </select>
+                <div id="main" style="width: 480px;height:320px;"></div>
             </div>
             <div class="work-in">
 
@@ -199,7 +197,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </div>
 
-                    </div></div></div>
+                    </div>
+                </div>
+            </div>
             <div class="clear"> </div>
         </div>
     </div>
@@ -231,8 +231,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var args = getQueryStringArgs();
     var code = args["code"];
     var app = angular.module('myApp', []);
+
     app.controller('siteCtrl', function($scope, $http) {
         $scope.code = code;
+        $scope.display = function(tempcode){
+            $http.get("http://localhost:8080/stock/name?code="+tempcode)}
         $http.get("http://localhost:8080/stock/name?code=" + code)
             .then(function (response) {
                 if (response.data === 400)
@@ -257,7 +260,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     window.location.href =  "login.html";
                 $scope.datarealtime = response.data;
             });
-        $http.get("http://localhost:8080/stock/history/days?code=" + code)
+
+        var selectoption = document.getElementById("select_k1").value;
+        var temp = "http://localhost:8080/stock/history/days?code=";
+        if(select_k1 === "日K")
+            temp = "http://localhost:8080/stock/history/days?code=";
+        else if(select_k1 === "周K")
+            temp = "http://localhost:8080/stock/history/weeks?code=";
+            else if(select_k1 === "月K")
+            temp = "http://localhost:8080/stock/history/months?code=";
+        $http.get(temp + code)
             .then(function (response) {
                 if (response.data === 400)
                     window.location.href =  "login.html";
@@ -369,18 +381,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             splitNumber: 20,
                             min: 'dataMin',
                             max: 'dataMax'
-                            // axisPointer: {
-                            //     label: {
-                            //         formatter: function (params) {
-                            //             var seriesValue = (params.seriesData[0] || {}).value;
-                            //             return params.value
-                            //             + (seriesValue != null
-                            //                 ? '\n' + echarts.format.addCommas(seriesValue)
-                            //                 : ''
-                            //             );
-                            //         }
-                            //     }
-                            // }
+
                         }
                     ],
                     yAxis: [
@@ -498,6 +499,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     ]
                 });
             });
+
     });
     function splitData(rawData) {
         var categoryData = [];
@@ -529,27 +531,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return result;
     }
-    // myChart.on('brushSelected', renderBrushed);
-    // function renderBrushed(params) {
-    //     var sum = 0;
-    //     var min = Infinity;
-    //     var max = -Infinity;
-    //     var countBySeries = [];
-    //     var brushComponent = params.brushComponents[0];
-    //     var rawIndices = brushComponent.series[0].rawIndices;
-    //     for (var i = 0; i < rawIndices.length; i++) {
-    //         var val = data.values[rawIndices[i]][1];
-    //         sum += val;
-    //         min = Math.min(val, min);
-    //         max = Math.max(val, max);
-    //     }
-    //     panel.innerHTML = [
-    //         '<h3>STATISTICS:</h3>',
-    //         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
-    //         'MIN of open: ' + min.toFixed(4) + '<br>',
-    //         'MAX of open: ' + max.toFixed(4) + '<br>'
-    //     ].join(' ');
-    // }
+
 </script>
 </html>
 
