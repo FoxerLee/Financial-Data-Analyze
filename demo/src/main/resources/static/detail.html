@@ -36,12 +36,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <li ><a href="home.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
-                <li class="active" ><a href="detail.html" class="black1"> 个股信息</a ></li>
+                <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
                 <li><a href="work.html" class="black2" > 个人主页</a ></li>
                 <li>
 
                 </li>
-
 
                 <div class="your-top">
 
@@ -74,8 +73,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          <input type="text" name="code" value="输入股票代码查询" onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'CODE';}">
                          <input type="button" value="提交" onclick="_submit()">
                      </form>-->
-
-
                     <form method="get" id="search_form" onkeypress="form_query()" action="/detailspage">
                         <div class="cf">
                             <label class="search-bar">
@@ -97,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="content" ng-app="myApp" ng-controller="siteCtrl">
         <div class="work">
-            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
+            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
             <div class="work-top">
 
                 <!--<a href="http://i.finance.sina.com.cn/zixuan,stock" target="_blank"  id="holdStatus" suda-uatrack="key=pc_hq_callup&value=hs">加入自选股</a>
@@ -194,7 +191,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
 
                 <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
-                <div id="main" style="width: 360px;height:240px;"></div>
+                <div id="main" style="width: 480px;height:320px;"></div>
             </div>
             <div class="work-in">
 
@@ -231,7 +228,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                         </div>
 
-                    </div></div></div>
+                    </div>
+                </div>
+            </div>
             <div class="clear"> </div>
         </div>
     </div>
@@ -383,18 +382,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             splitNumber: 20,
                             min: 'dataMin',
                             max: 'dataMax'
-                            // axisPointer: {
-                            //     label: {
-                            //         formatter: function (params) {
-                            //             var seriesValue = (params.seriesData[0] || {}).value;
-                            //             return params.value
-                            //             + (seriesValue != null
-                            //                 ? '\n' + echarts.format.addCommas(seriesValue)
-                            //                 : ''
-                            //             );
-                            //         }
-                            //     }
-                            // }
+
                         }
                     ],
                     yAxis: [
@@ -543,27 +531,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return result;
     }
-    // myChart.on('brushSelected', renderBrushed);
-    // function renderBrushed(params) {
-    //     var sum = 0;
-    //     var min = Infinity;
-    //     var max = -Infinity;
-    //     var countBySeries = [];
-    //     var brushComponent = params.brushComponents[0];
-    //     var rawIndices = brushComponent.series[0].rawIndices;
-    //     for (var i = 0; i < rawIndices.length; i++) {
-    //         var val = data.values[rawIndices[i]][1];
-    //         sum += val;
-    //         min = Math.min(val, min);
-    //         max = Math.max(val, max);
-    //     }
-    //     panel.innerHTML = [
-    //         '<h3>STATISTICS:</h3>',
-    //         'SUM of open: ' + (sum / rawIndices.length).toFixed(4) + '<br>',
-    //         'MIN of open: ' + min.toFixed(4) + '<br>',
-    //         'MAX of open: ' + max.toFixed(4) + '<br>'
-    //     ].join(' ');
-    // }
+
 </script>
 </html>
 
