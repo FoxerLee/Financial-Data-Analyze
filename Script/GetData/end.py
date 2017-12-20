@@ -90,7 +90,8 @@ def getData(select,flag, start,end,st):
                     add_volume = row['volume']
                 add_volume = row['volume']
                 params.append((str(row['code']), inTime, row['open'], row['trade'],
-                           row['high'], row['low'], add_volume))
+                           row['high'], row['low'], add_volume, row['changepercent'], row['turnoverratio'],
+                           row['amount'], row['per'], row['pb'], row['mktcap'], row['nmc'], row['settlement']))
                 conn.close()
                 cursor.close()
     except:
