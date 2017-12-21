@@ -120,8 +120,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <div class="clear"> </div>
-
-
 </body>
 
 <script>
@@ -135,6 +133,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        $scope.form_query = function () {
            var code = document.getElementById("code").value;
            window.location.href = "detail.html?code=" + code;
+       }
+       $scope.check_out = function () {
+           window.location.href = "login.html";
+           $http.get("http://localhost:8080/user/logout");
        }
    });
 
