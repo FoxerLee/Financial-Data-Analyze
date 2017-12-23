@@ -97,6 +97,7 @@ public class UserServiceImpl implements UserService {
     public UserInfo getUserInformation(HttpServletRequest request){
         try{
             String name = getNameByCookie(request);
+            System.out.println(name);
             return userInfoMapper.getInformationByName(name);
         }catch (Exception e){
             return null;

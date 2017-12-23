@@ -7,6 +7,10 @@ public class UserInfo {
 
     private String name;
 
+    private String email;
+
+    private String nickname;
+
     public Integer getUserId() {
         return user_id;
     }
@@ -29,5 +33,21 @@ public class UserInfo {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname){
+        this.nickname = nickname;
     }
 }
