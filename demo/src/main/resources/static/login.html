@@ -113,18 +113,22 @@
         $scope.Func = function () {
             var username=document.getElementById("name").value;
             var password=document.getElementById("_password").value;
-            $http.get("http://localhost:8080/user/login?name="+username+"&password="+password)
-                .then(function (value) {
-                    if (value.data === 200)
-                        window.location.href = "index_data2.html";
-                    else if(value.data === 400){
-                        alert("用户名或密码错误！");
-                        window.location.href = "login.html";
-                    }
-                    else
-                        window.location.href = "400.html";
+            $http({
+                method:'POST',
+                url:'http://localhost:8080/user/login',
+                data:"name=" + username + "&password=" + password,
+                headers:{'Content-Type': 'application/x-www-form-urlencoded'}
+            }).then(function (value) {
+                if (value.data === 200)
+                    window.location.href = "index_data2.html";
+                else if(value.data === 400){
+                    alert("用户名或密码错误！");
+                    window.location.href = "login.html";
+                }
+                else
+                    window.location.href = "400.html";
 
-                });
+            });
         }
     });
 
