@@ -83,8 +83,19 @@ body a{
   width:20%;
   float:left;
   background:#242b2e;
-  min-height: 1200px;
-  margin-bottom:-3000px; padding-bottom:3000px;
+  padding-bottom:600px;
+}
+.header-left-ranking{
+  width:20%;
+  float:left;
+  background:#242b2e;
+  padding-bottom:1600px;
+}
+.header-left-detail{
+  width:20%;
+  float:left;
+  background:#242b2e;
+  padding-bottom:640px;
 }
 .header-left1{
   min-height: 1290px;
@@ -483,7 +494,7 @@ ul.social li  i.down{
 }
 .work-top {
   border-right: 1px solid #D5D3D3;
-  padding: 0 2% 0 0;
+  padding: 0 2% 370px 0;
 }
 .work-in {
   padding: 0 0 0 2%;
