@@ -235,7 +235,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     app.controller('siteCtrl', function($scope, $http) {
         $scope.code = code;
         $scope.display = function(tempcode){
-            $http.get("http://localhost:8080/stock/name?code="+tempcode)}
+            $http.get("http://localhost:8080/profile/stock/add?code="+tempcode)
+                .then(function (value) {
+                    if (value.data === true)
+                        alert("加入自选股成功!");
+                    else
+                        alert("已加入该自选股！");
+                })};
         $http.get("http://localhost:8080/stock/name?code=" + code)
             .then(function (response) {
                 if (response.data === 400)
@@ -263,11 +269,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         var selectoption = document.getElementById("select_k1").value;
         var temp = "http://localhost:8080/stock/history/days?code=";
-        if(select_k1 === "日K")
+        if(selectoption === "日K")
             temp = "http://localhost:8080/stock/history/days?code=";
-        else if(select_k1 === "周K")
+        else if(selectoption === "周K")
             temp = "http://localhost:8080/stock/history/weeks?code=";
-            else if(select_k1 === "月K")
+            else if(selectoption === "月K")
             temp = "http://localhost:8080/stock/history/months?code=";
         $http.get(temp + code)
             .then(function (response) {
