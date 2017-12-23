@@ -1,13 +1,13 @@
 package edu.tongji.demo.Controller;
 
+import edu.tongji.demo.Model.UserInfo;
 import edu.tongji.demo.Service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/user")
@@ -18,21 +18,19 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 用户输入用户名和密码进行登陆
-     * @param name
-     * @param password
+     * 用户登陆验证
+     * @param data
      * @param request
      * @param response
-     * @throws IOException
+     * @return
      */
-    @GetMapping("/login")
-    public String Verification(@Param(value = "name")String name, @Param(value = "password") String password,
-                             HttpServletRequest request, HttpServletResponse response){
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public @ResponseBody Object test(UserInfo data, HttpServletRequest request, HttpServletResponse response){
         try{
-            if (!userService.verify(name, password))
+            if (!userService.verify(data.getName(), data.getPassword()))
                 return "400";
             else {
-                userService.addSession(name, password, request, response);
+                userService.addSession(data.getName(), data.getPassword(), request, response);
                 return "200";
             }
         }catch (Exception e){
@@ -53,14 +51,14 @@ public class UserController {
 
     /**
      * 用户注册账户
-     * @param name
-     * @param password
+     * @param data
      * @return
      */
-    @GetMapping("/signup")
-    public String SignUp(@Param(value = "name") String name, @Param(value = "password")String password){
+    @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public @ResponseBody String SignUp(UserInfo data){
         try{
-            if(userService.signUp(name, password))
+            System.out.print(data.getName());
+            if(userService.signUp(data.getName(), data.getPassword()))
                 return "200";
             else
                 return "400";

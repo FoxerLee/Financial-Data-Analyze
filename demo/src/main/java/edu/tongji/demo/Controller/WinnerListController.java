@@ -1,7 +1,7 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.ServiceImpl.WinnerServiceImpl;
-import edu.tongji.demo.security.Verification;
+import edu.tongji.demo.Security.Verification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
