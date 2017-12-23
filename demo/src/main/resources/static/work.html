@@ -8,7 +8,8 @@
     <script src="js/angular-route.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,7 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header"  ng-app="myApp" ng-controller="siteCtrl">
     <div class="header-left">
         <div class="logo">
-            <a href="login.html">登录</a>
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
@@ -127,5 +128,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $scope.goto = function (code) {
             window.location.href = "detail.html?code=" + code;
         }
+        $scope.check_out = function () {
+            window.location.href="/login.html";
+            $http.get("http://localhost:8080/user/logout");
+
+        };
     });
 </script>
