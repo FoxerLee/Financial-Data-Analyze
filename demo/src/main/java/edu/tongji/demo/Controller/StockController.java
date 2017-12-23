@@ -1,6 +1,7 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Service.IndustryService;
+import edu.tongji.demo.Service.SelfStockService;
 import edu.tongji.demo.Service.StockService;
 import edu.tongji.demo.Service.UserService;
 import edu.tongji.demo.Security.Verification;
@@ -23,6 +24,9 @@ public class StockController {
 
     @Autowired
     private IndustryService industryService;
+
+    @Autowired
+    private SelfStockService selfStockService;
 
     @GetMapping("/all")
     public Object GetAllStockInfo(){
@@ -87,12 +91,34 @@ public class StockController {
      * @param code
      * @return
      */
-    @GetMapping(value = "/history")
-    public Object getHistory(@Param(value = "code") String code){
+    @GetMapping(value = "/history/days")
+    public Object getHistoryDays(@Param(value = "code") String code){
         if (!Verification.verify())
             return "400";
         try{
-            return stockService.getStocksHistory(code);
+            return stockService.getStocksHistory(code, 1);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @GetMapping(value = "/history/weeks")
+    public Object getHistoryWeeks(@Param(value = "code")String code){
+        if(!Verification.verify())
+            return "400";
+        try{
+            return stockService.getStocksHistory(code, 2);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @GetMapping(value = "/history/months")
+    public Object getHistoryMonths(@Param(value = "code")String code){
+        if(!Verification.verify())
+            return "400";
+        try{
+            return stockService.getStocksHistory(code, 3);
         }catch (Exception e){
             return null;
         }
@@ -110,27 +136,4 @@ public class StockController {
         return stockService.getStockNameByCode(code);
     }
 
-    /**
-     * 返回用户持有股票的信息
-     */
-    @GetMapping("/user")
-    public Object getPersonalStocks(HttpServletRequest request){
-        if (!Verification.verify())
-            return "400";
-        else{
-            String name = userService.getNameByCookie(request);
-            if (name.equals(""))
-                return null;
-            int id = userService.getIDByName(name);
-            if (id < 0)
-                return null;
-            else{
-                try{
-                    return stockService.getStocksByUserID(id);
-                }catch (Exception e){
-                    return null;
-                }
-            }
-        }
-    }
 }

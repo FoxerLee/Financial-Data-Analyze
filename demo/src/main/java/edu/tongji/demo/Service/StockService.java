@@ -12,10 +12,9 @@ public interface StockService {
 
     Object getStocksOfIndustry(String name);
 
-    Object getStocksHistory(String code);
+    Object getStocksHistory(String code, int type);
 
     Object getStockBriefInformation(String code);
 
     String getStockNameByCode(String code);
-
 }

@@ -1,5 +1,7 @@
 package edu.tongji.demo.Service;
 
+import edu.tongji.demo.Model.UserInfo;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,4 +18,6 @@ public interface UserService {
     void logout(HttpServletRequest request, HttpServletResponse response);
 
     boolean signUp(String name, String password);
+
+    UserInfo getUserInformation(HttpServletRequest request);
 }

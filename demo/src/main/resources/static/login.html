@@ -95,7 +95,7 @@
 <!-- jQuery -->
 <script src="js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
+<!--<script src="js/bootstrap.min.js"></script>--!>
 <!-- Placeholder -->
 <script src="js/jquery.placeholder.min.js"></script>
 <!-- Waypoints -->
@@ -119,16 +119,16 @@
                 data:"name=" + username + "&password=" + password,
                 headers:{'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (value) {
-                    if (value.data === 200)
-                        window.location.href = "index_data2.html";
-                    else if(value.data === 400){
-                        alert("用户名或密码错误！");
-                        window.location.href = "login.html";
-                    }
-                    else
-                        window.location.href = "400.html";
+                if (value.data === 200)
+                    window.location.href = "index_data2.html";
+                else if(value.data === 400){
+                    alert("用户名或密码错误！");
+                    window.location.href = "login.html";
+                }
+                else
+                    window.location.href = "400.html";
 
-                });
+            });
         }
     });
 

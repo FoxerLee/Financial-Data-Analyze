@@ -1,6 +1,7 @@
 package edu.tongji.demo.ServiceImpl;
 
 import edu.tongji.demo.DAO.UserInfoMapper;
+import edu.tongji.demo.Model.UserInfo;
 import edu.tongji.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,6 +90,17 @@ public class UserServiceImpl implements UserService {
             }
         }catch (Exception e){
             return false;
+        }
+    }
+
+    @Override
+    public UserInfo getUserInformation(HttpServletRequest request){
+        try{
+            String name = getNameByCookie(request);
+            System.out.println(name);
+            return userInfoMapper.getInformationByName(name);
+        }catch (Exception e){
+            return null;
         }
     }
 }

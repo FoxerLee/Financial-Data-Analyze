@@ -8,10 +8,10 @@ g = open("connect_sz.txt")
 
 h = open("sql.txt", "w")
 for i in f:
-    str = "INSERT INTO data_months VALUES (NULL,'" + i + "',now(),0,0,0,0,0);\n"
+    str = "INSERT INTO javaEE.data_months VALUES (NULL,'" + i + "',now(),0,0,0,0,0,0);\n"
     h.write(str)
 for i in g:
-    str = "INSERT INTO data_months VALUES (NULL,'" + i + "',now(),0,0,0,0,0);\n"
+    str = "INSERT INTO javaEE.data_months VALUES (NULL,'" + i + "',now(),0,0,0,0,0,0);\n"
     h.write(str)
 
 h.close()

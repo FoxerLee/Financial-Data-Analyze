@@ -4,7 +4,7 @@ import edu.tongji.demo.DAO.*;
 import edu.tongji.demo.Model.Connect;
 import edu.tongji.demo.Model.DataRealTime;
 import edu.tongji.demo.Model.SelfStocking;
-import edu.tongji.demo.Model.WarehouseDataDays;
+import edu.tongji.demo.Model.WarehouseData;
 import edu.tongji.demo.Service.StockService;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +26,12 @@ public class StockServiceImpl implements StockService {
 
     @Autowired
     private WarehouseDataDaysMapper warehouseDataDaysMapper;
+
+    @Autowired
+    private WarehouseDataWeeksMapper warehouseDataWeeksMapper;
+
+    @Autowired
+    private WarehouseDataMonthsMapper warehouseDataMonthsMapper;
 
     @Autowired
     private DataRealTimeMapper dataRealTimeMapper;
@@ -137,8 +143,14 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Object getStocksHistory(String code){
-        ArrayList<WarehouseDataDays> data = warehouseDataDaysMapper.getWareHouseData(code);
+    public Object getStocksHistory(String code, int type){
+        ArrayList<WarehouseData> data = null;
+        if (type == 1)
+            data = warehouseDataDaysMapper.getWareHouseData(code);
+        else if(type == 2)
+            data = warehouseDataWeeksMapper.getWareHouseData(code);
+        else
+            data = warehouseDataMonthsMapper.getWareHouseData(code);
         Object[] result = new Object[data.size()];
         for(int i = 0; i < data.size(); i++){
             Object[] temp  = new Object[6];

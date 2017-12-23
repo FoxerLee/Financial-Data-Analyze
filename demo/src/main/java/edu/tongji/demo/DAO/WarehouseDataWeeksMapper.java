@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Select;
 import java.util.ArrayList;
 
 @Mapper
-public interface WarehouseDataDaysMapper {
+public interface WarehouseDataWeeksMapper {
 
-    @Select("select * from warehouse_data_days where code = \'${code}\' order by trading_day ")
+    @Select("select * from warehouse_data_weeks where code = \'${code}\' order by trading_day ")
     ArrayList<WarehouseData> getWareHouseData(@Param(value = "code")String code);
 }

@@ -4,11 +4,12 @@
     <title>Work</title>
     <!-- jQuery-->
     <script src="js/jquery.min.js"></script>
-    <script src="js/angular-1.5.8/angular.js"></script>
-    <script src="js/angular-1.5.8/angular-route.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,7 +25,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header"  ng-app="myApp" ng-controller="siteCtrl">
     <div class="header-left">
         <div class="logo">
-            <a href="login.html">登录</a>
+            <a ng-click="check_out()">登出</a>
         </div>
         <div class="top-nav">
             <ul >
@@ -45,9 +46,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h3>个人信息</h3>
                     <img src="images/avantar.jpg">
                     <ul class="likes">
-                        <li><a><i > </i>昵称：{{nickname}}</a></li>
-                        <li><span><i class="like"> </i>自选：{{choice}}</span></li>
-                        <li><a><i class="comment"> </i>邮箱：{{mailbox}}</a></li>
+                        <li><a><i > </i>名字：   {{t_name}}</a></li>
+                        <li><span><i class="like"> </i>昵称：   {{nickname}}</span></li>
+                        <li><a><i class="comment"> </i>邮箱：   {{mailbox}}</a></li>
 
                     </ul>
                 </div>
@@ -56,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="feature">
                     <h3>自选股信息</h3>
                     <ul ng-repeat="x in stockList" id="choiceList" class="feature-grid">
-                        <li><i id="2" onclick="del(id)"></i><a href="single.html">{{x.id}}</a></li>
+                        <li><i id="2" ng-click="del(x.code, x.name)"></i><a ng-click="goto(x.code)">{{x.name}}</a></li>
                     </ul>
                 </div>
 
@@ -98,14 +99,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 break;
             }
         }
-
     }
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://192.168.0.126:8080/news/user?code=601888")
+        $http.get("http://localhost:8080/profile/check")
+            .then(function (value) {
+                if (value.data === 400)
+                    window.location.href = "login.html";
+                $scope.t_name = value.data.name;
+                $scope.nickname = value.data.nickname;
+                $scope.mailbox = value.data.email;
+            })
+
+        $http.get("http://localhost:8080/profile/stock/check")
             .then(function (response) {
-                alert(response.data);
                 $scope.stockList= response.data
             });
+        $scope.del = function (code, name) {
+            $http.delete("http://localhost:8080/profile/stock/delete?code=" + code)
+                .then(function (value) {
+                    alert("已成功删除自选股：" + name);
+                    $http.get("http://localhost:8080/profile/stock/check")
+                        .then(function (value2) {
+                            window.location.href = "work.html";
+                        })
+                })
+        }
+        $scope.goto = function (code) {
+            window.location.href = "detail.html?code=" + code;
+        }
+        $scope.check_out = function () {
+            window.location.href="/login.html";
+            $http.get("http://localhost:8080/user/logout");
+
+        };
     });
 </script>
