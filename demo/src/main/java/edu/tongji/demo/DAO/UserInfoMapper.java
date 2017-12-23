@@ -22,5 +22,5 @@ public interface UserInfoMapper {
     Integer getID(@Param(value = "name")String name);
 
     @Select("select * from user_info where name = \'${name}\'")
-    UserInfo getInformationByName(@Param("Name") String name);
+    UserInfo getInformationByName(@Param("name") String name);
 }

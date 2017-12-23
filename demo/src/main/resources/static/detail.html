@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/echarts.js"></script>
 </head>
 <body>
-<div class="header">
+<div class="header" ng-app="myApp" ng-controller="siteCtrl">
     <div class="header-left">
         <div class="logo">
             <a ng-click="check_out()">登出</a>
@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!---->
-    <div class="content" ng-app="myApp" ng-controller="siteCtrl">
+    <div class="content" >
         <div class="work">
             <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
             <div class="work-top">
@@ -233,6 +233,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var app = angular.module('myApp', []);
 
     app.controller('siteCtrl', function($scope, $http) {
+        $scope.check_out = function () {
+            window.location.href = "login.html";
+            $http.get("http://localhost:8080/user/logout");
+        }
         $scope.code = code;
         $scope.display = function(tempcode){
             $http.get("http://localhost:8080/profile/stock/add?code="+tempcode)

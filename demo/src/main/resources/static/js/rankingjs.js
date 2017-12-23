@@ -8,22 +8,13 @@ app.controller('siteCtrl', function($scope, $http) {
             var temp2 = angular.fromJson(response.data);
             //var temp3 = temp2[0].data[0].name;
             $scope.rankings = temp2;
-
-            // var top = "<tr>\n" +
-            //     "\n" +
-            //     "                    <th scope=\"col\" >股票代码</th>\n" +
-            //     "                    <th scope=\"col\" >股票名称</th>\n" +
-            //     "                    <th scope=\"col\" >收盘价（元）</th>\n" +
-            //     "                    <th scope=\"col\" >涨幅</th>\n" +
-            //     "                    <th scope=\"col\" >成交量（万股）</th>\n" +
-            //     "                    <th scope=\"col\" >成交额（万元）</th>\n" +
-            //     "                    <th scope=\"col\" >查看详情</th>\n" +
-            //     "                </tr>\n" +
-            //     "\n" +
-            //     "                <tr>\n" +
-            //     "                    <td colspan=\"7\" ></td>\n" +
-            //     "                </tr>"
-            //
-            // var tabledata =
         });
+    $scope.form_query = function () {
+        var code = document.getElementById("code").value;
+        window.location.href = "detail.html?code=" + code;
+    }
+    $scope.check_out = function () {
+        window.location.href = "login.html";
+        $http.get("http://localhost:8080/user/logout");
+    }
 });

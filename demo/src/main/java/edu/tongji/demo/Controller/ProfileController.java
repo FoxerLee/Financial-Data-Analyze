@@ -66,6 +66,8 @@ public class ProfileController {
 
     @GetMapping("/check")
     public Object checkUserInformation(HttpServletRequest request){
+        if (!Verification.verify())
+            return "400";
         return userService.getUserInformation(request);
     }
 }
