@@ -70,6 +70,14 @@
 					<input type="text" class="form-control" id="name" placeholder="姓名" autocomplete="off" name="name">
 				</div>
 				<div class="form-group">
+					<label for="nickname" class="sr-only">昵称</label>
+					<input type="text" class="form-control" id="nickname" placeholder="昵称" autocomplete="off" name="nickname">
+				</div>
+				<div class="form-group">
+					<label for="mailbox" class="sr-only">邮箱</label>
+					<input type="text" class="form-control" id="mailbox" placeholder="邮箱" autocomplete="off" name="mailbox">
+				</div>
+				<div class="form-group">
 					<label for="password" class="sr-only">密码</label>
 					<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off" name="password">
 				</div>
@@ -128,10 +136,12 @@
         $scope.Register = function () {
             var name = document.getElementById("name").value;
             var password = document.getElementById("password").value;
+			var nickname = document.getElementById("nickname").value;
+			var mailbox = document.getElementById("mailbox").value;
             $http({
                 method:'POST',
                 url:'http://localhost:8080/user/signup',
-                data:"name=" + name + "&password=" + password,
+                data:"name=" + name + "&password=" + password + "&nickname=" + nickname + "&mailbox=" + mailbox,
                 headers:{'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (value) {
                 if (value.data === 200)
