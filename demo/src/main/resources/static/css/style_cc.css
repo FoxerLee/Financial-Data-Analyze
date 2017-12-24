@@ -24,7 +24,10 @@ img{max-width:100%; display:block;}
 /*end reset*/
 body{
   background:#e2e1dd;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Microsoft YaHei","SimHei";
+  /*font-family: "Hiragino Sans GB", sans-serif;*/
+  /*font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Hiragino Sans GB","Hiragino Sans GB W3",serif;*/
+
 }
 body a{
   transition: 0.5s all;
