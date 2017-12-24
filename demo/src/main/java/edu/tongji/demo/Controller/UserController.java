@@ -2,14 +2,12 @@ package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Model.UserInfo;
 import edu.tongji.demo.Service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/user")

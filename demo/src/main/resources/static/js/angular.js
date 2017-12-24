@@ -2668,8 +2668,8 @@ function publishExternalAPI(angular) {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *     Any commits to this file should be reviewed with security in mind.  *
- *   Changes to this file can potentially create security vulnerabilities. *
+ *     Any commits to this file should be reviewed with Security in mind.  *
+ *   Changes to this file can potentially create Security vulnerabilities. *
  *          An approval from 2 Core members with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
@@ -6679,8 +6679,8 @@ function $TemplateCacheProvider() {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *     Any commits to this file should be reviewed with security in mind.  *
- *   Changes to this file can potentially create security vulnerabilities. *
+ *     Any commits to this file should be reviewed with Security in mind.  *
+ *   Changes to this file can potentially create Security vulnerabilities. *
  *          An approval from 2 Core members with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
@@ -7953,7 +7953,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * Retrieves or overrides the default regular expression that is used for whitelisting of safe
    * urls during a[href] sanitization.
    *
-   * The sanitization is a security measure aimed at preventing XSS attacks via html links.
+   * The sanitization is a Security measure aimed at preventing XSS attacks via html links.
    *
    * Any url about to be assigned to a[href] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
@@ -7983,7 +7983,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
    * Retrieves or overrides the default regular expression that is used for whitelisting of safe
    * urls during img[src] sanitization.
    *
-   * The sanitization is a security measure aimed at prevent XSS attacks via html links.
+   * The sanitization is a Security measure aimed at prevent XSS attacks via html links.
    *
    * Any url about to be assigned to img[src] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `imgSrcSanitizationWhitelist`
@@ -13931,8 +13931,8 @@ function $LogProvider() {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *     Any commits to this file should be reviewed with security in mind.  *
- *   Changes to this file can potentially create security vulnerabilities. *
+ *     Any commits to this file should be reviewed with Security in mind.  *
+ *   Changes to this file can potentially create Security vulnerabilities. *
  *          An approval from 2 Core members with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
@@ -18120,7 +18120,7 @@ function $$SanitizeUriProvider() {
    * Retrieves or overrides the default regular expression that is used for whitelisting of safe
    * urls during a[href] sanitization.
    *
-   * The sanitization is a security measure aimed at prevent XSS attacks via html links.
+   * The sanitization is a Security measure aimed at prevent XSS attacks via html links.
    *
    * Any url about to be assigned to a[href] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `aHrefSanitizationWhitelist`
@@ -18145,7 +18145,7 @@ function $$SanitizeUriProvider() {
    * Retrieves or overrides the default regular expression that is used for whitelisting of safe
    * urls during img[src] sanitization.
    *
-   * The sanitization is a security measure aimed at prevent XSS attacks via html links.
+   * The sanitization is a Security measure aimed at prevent XSS attacks via html links.
    *
    * Any url about to be assigned to img[src] via data-binding is first normalized and turned into
    * an absolute url. Afterwards, the url is matched against the `imgSrcSanitizationWhitelist`
@@ -18178,8 +18178,8 @@ function $$SanitizeUriProvider() {
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *     Any commits to this file should be reviewed with security in mind.  *
- *   Changes to this file can potentially create security vulnerabilities. *
+ *     Any commits to this file should be reviewed with Security in mind.  *
+ *   Changes to this file can potentially create Security vulnerabilities. *
  *          An approval from 2 Core members with history of modifying      *
  *                         this file is required.                          *
  *                                                                         *
@@ -19375,7 +19375,7 @@ function $TemplateRequestProvider() {
    * @name $templateRequest
    *
    * @description
-   * The `$templateRequest` service runs security checks then downloads the provided template using
+   * The `$templateRequest` service runs Security checks then downloads the provided template using
    * `$http` and, upon success, stores the contents inside of `$templateCache`. If the HTTP request
    * fails or the response data of the HTTP request is empty, a `$compile` error will be thrown (the
    * exception can be thwarted by setting the 2nd parameter of the function to true). Note that the
@@ -25785,7 +25785,7 @@ var ngControllerDirective = [function() {
 
           // For now, we only test on Chrome,
           // as Safari does not load the page with Protractor's injected scripts,
-          // and Firefox webdriver always disables content security policy (#6358)
+          Security
           if (browser.params.browser !== 'chrome') {
             return;
           }
