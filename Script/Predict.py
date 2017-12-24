@@ -54,7 +54,7 @@ def get_stock_data(code):
     tmp = []
     X = []
     for i in range(len(ma5)):
-        if count < 5:
+        if count < 10:
             count += 1
             tmp.append(ma5[i])
         else:
@@ -77,7 +77,7 @@ def get_stock_data(code):
     count = 0
     y = []
     for i in range(len(y_)):
-        if count < 5:
+        if count < 10:
             count += 1
             continue
         else:
@@ -116,6 +116,7 @@ def run(train, test):
         X_test /= np.sqrt(variance) + 1e-9
     print X_train.shape
     print y_train.shape
+    print type(X_train[0])
     epochs = np.floor(batch_size * max_iterations / N)
     print('Train with approximately %d epochs' % (epochs))
 
@@ -244,16 +245,16 @@ def run(train, test):
             total_rst[xx] = predict
 
         ## show the graph of voting result
-        rst_arr = np.zeros(len(total_rst[0]), dtype=np.float)
-        for i in xrange(0, len(total_rst[0])):
-            voting = 0
-            for j in xrange(0, len(total_rst)):
-                if (total_rst[j, i] == 1):
-                    voting += 1
-                if (voting > voting_times):
-                    rst_arr[i] = 1
-                else:
-                    rst_arr[i] = 0
+    rst_arr = np.zeros(len(total_rst[0]), dtype=np.float)
+    for i in xrange(0, len(total_rst[0])):
+        voting = 0
+        for j in xrange(0, len(total_rst)):
+            if (total_rst[j, i] == 1):
+                voting += 1
+            if (voting > voting_times):
+                rst_arr[i] = 1
+            else:
+                rst_arr[i] = 0
     print(rst_arr)
 
 

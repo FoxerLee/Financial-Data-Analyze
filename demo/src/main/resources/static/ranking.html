@@ -12,6 +12,7 @@
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -66,26 +67,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龙虎榜</p>
             <br />
 
+            <style>
+                .test-top{margin-top:2%}
+            </style>
 
             <div class="test-top" ng-repeat="l1 in rankings">
-            <div class="blog-in">
-                <h5>{{l1.reason}}</h5>
-                <ul class="date">
-                </ul>
 
-            </div>
+                <style>
+                    .lhbContentTitle{font-size:medium; margin: 0.5% 1%}
+                </style>
+                <div class="lhbContentTitle">{{l1.reason}}</div>
+            <!--<div class="blog-in">-->
+                <!--<h5>{{l1.reason}}</h5>-->
+                <!--<ul class="date">-->
+                <!--</ul>-->
+            <!--</div>-->
 
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+            <table width="100%" border="5%" cellspacing="0" cellpadding="0" >
                 <tr>
 
-                    <th scope="col" >股票代码</th>
-                    <th scope="col" >股票名称</th>
-                    <th scope="col" >当日涨跌幅</th>
-                    <th scope="col" >龙虎榜成交额 (万)</th>
-                    <th scope="col" >买入额（万）</th>
-                    <th scope="col" >买入占总成交比例</th>
-                    <th scope="col" >卖出额（万）</th>
-                    <th scope="col" >卖出占总成交比例</th>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">股票代码</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">股票名称</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">当日涨跌幅</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;" >龙虎榜成交额 (万)</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">买入额（万）</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">买入占总成交比例</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">卖出额（万）</td>
+                    <td scope="col" style="vertical-align:middle; text-align:center;">卖出占总成交比例</td>
                 </tr>
 
                 <tr>
@@ -93,23 +101,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </tr>
                 <tr ng-repeat="l2 in l1.data">
 
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.code}}
+                    <td style="vertical-align:middle; text-align:center;">
+                        {{l2.code}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.name}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.p_change}}</td>
-                    <td>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{l2.amount}}
+                    <td style="vertical-align:middle; text-align:center;">{{l2.name}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.p_change}}</td>
+                    <td style="vertical-align:middle; text-align:center;">
+                        {{l2.amount}}
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.buy}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.bratio}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sell}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{l2.sration}}</td>
-                    <td><a target="_blank" href="http://finance.sina.com.cn/realstock/company/sh601318/nc.shtml">
-                        <div class="fname05"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更多</span></div>
-                    </a></td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.buy}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.bratio}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.sell}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{l2.sration}}</td>
                 </tr>
-
 
             </table>
 
