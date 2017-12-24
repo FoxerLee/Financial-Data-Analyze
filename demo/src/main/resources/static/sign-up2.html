@@ -141,7 +141,7 @@
             $http({
                 method:'POST',
                 url:'http://localhost:8080/user/signup',
-                data:"name=" + name + "&password=" + password + "&nickname=" + nickname + "&mailbox=" + mailbox,
+                data:"name=" + name + "&password=" + password + "&nickname=" + nickname + "&email=" + mailbox,
                 headers:{'Content-Type': 'application/x-www-form-urlencoded'}
             }).then(function (value) {
                 if (value.data === 200)
