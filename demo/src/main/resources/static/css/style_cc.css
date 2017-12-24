@@ -537,7 +537,7 @@ ul.social li  i.down{
 .callbacks_tabs a:after {
   content: "\f111";
   font-size: 0;
-  font-family: FontAwesome;
+  font-family: "Microsoft YaHei";
   visibility: visible;
   display: block;
   height: 8px;
@@ -1252,22 +1252,21 @@ ul.archive-grid li a:hover{
 .your-top {
   border: 1px solid #e2e2e2;
   position: relative;
-  margin: 0.8em 0;
+  margin: 0.8em 1.0em;
 }
-.your-top i {
-  background: url(../images/img-sprite.png)no-repeat -9px -86px ;
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  float:left;
-  border-right: 1px solid #e2e2e2;
-}
-.your-top i.email {
-  background-position: -51px -86px ;
-}
-.your-top i.website {
-  background-position: -93px -86px ;
-}
+/*.your-top i {*/
+  /*background: url(../images/search.png) 1em 1em;*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*display: inline-block;*/
+  /*float:left;*/
+/*}*/
+/*.your-top i.email {*/
+  /*background-position: -51px -86px ;*/
+/*}*/
+/*.your-top i.website {*/
+  /*background-position: -93px -86px ;*/
+/*}*/
 .your-top input[type="text"],.grid-contact-in textarea {
   background: none;
   width: 70%;
@@ -2248,7 +2247,7 @@ ul.archive-grid li a:hover{
     shape-rendering:crispEdges;
   }
   .axis text{
-    font-family: sans-serif;
+    font-family: "Microsoft YaHei";
     font-size: 11px;
   }
 
