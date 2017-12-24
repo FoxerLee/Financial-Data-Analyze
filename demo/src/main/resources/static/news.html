@@ -13,6 +13,7 @@
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -70,20 +71,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0" >
                     <tr>
-                        <th scope="col" >标题</th>
-                        <th scope="col" >发布日期</th>
-                        <th scope="col" >研究者</th>
-                        <th scope="col" >研究机构</th>
-                        <th scope="col" >详情</th>
+                        <td scope="col" style="vertical-align:middle; text-align:center;" >标题</td>
+                        <td scope="col" style="vertical-align:middle; text-align:center;" >发布日期</td>
+                        <td scope="col" style="vertical-align:middle; text-align:center;" >研究者</td>
+                        <td scope="col" style="vertical-align:middle; text-align:center;" >研究机构</td>
+                        <td scope="col" style="vertical-align:middle; text-align:center;" >详情</td>
 
                     </tr>
                 <tr ng-repeat="x in research">
 
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.title}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.date}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.researcher}}</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.inst}}</td>
-                    <td><a  href="{{x.url}}" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🔎</a></td>
+                    <td style="vertical-align:middle; text-align:center;">{{x.title}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{x.date}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{x.researcher}}</td>
+                    <td style="vertical-align:middle; text-align:center;">{{x.inst}}</td>
+                    <td style="vertical-align:middle; text-align:center;"><a  href="{{x.url}}" target="_blank">🔎</a></td>
 
                 </tr>
 
