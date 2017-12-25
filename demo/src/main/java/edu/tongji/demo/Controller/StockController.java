@@ -2,7 +2,7 @@ package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Service.IndustryService;
 import edu.tongji.demo.Service.StockService;
-import edu.tongji.demo.security.Verification;
+import edu.tongji.demo.Security.Verification;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
