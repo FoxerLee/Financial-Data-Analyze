@@ -11,6 +11,7 @@
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -86,71 +87,67 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>-->
                     <div class="test-top">
                         <div class="blog-in">
-                            <h5>{{datarealtime.close_value}}</h5>
-                            <p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>
+                            <h5 id="miaomiao" scope="col" style="vertical-align:middle; text-align:center;">当前价：{{datarealtime.close_value}}</h5>
+                            <!--<p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>-->
 
-                            <ul class="date">
-                                <li><span><i class="date-in"></i>{{datarealtime.trading_day}}</span></li>
-                            </ul>
-                            <ul class="date">
-
-                            </ul>
                         </div>
+                        <style>
+                            .stupid{margin: 1% 2%}
+                        </style>
+                        <div class="stupid">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">涨停：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center; color: #bd362f">{{datarealtime.close_value*1.1}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">跌停：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center; color: #46a546">{{datarealtime.close_value*0.9}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">今开：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.open_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">昨收：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.settlement}}</td>
+                                </tr>
+                                <tr>
 
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">最高：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.high_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">最低：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.low_value}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">涨跌幅：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.p_change}}</td>
 
-                        <table border="0" cellpadding="0" cellspacing="0">
-                            <colgroup>
-                                <col width="100" />
-                                <col width="70" />
-                                <col width="100" />
-                                <col width="70" />
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">换手率：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.turnoverratio}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">成交额：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.volumn_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">成交量：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.amount}}</td>
 
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th>今&nbsp;&nbsp;开：</th>
-                                <td class="@UD_open_color@">{{datarealtime.open_value}}</td>
-                                <th>昨&nbsp;&nbsp;收：</th>
-                                <td>{{datarealtime.close_value}}</td>
-                            </tr>
-                            <tr>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">市净率：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.pb}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">市盈率<sup>TTM</sup>：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.per}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">流通市值：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.nmc}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">总市值：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.mktcap}}</td>
 
-                                <th>最&nbsp;&nbsp;高：</th>
-                                <td class="@UD_high_color@">{{datarealtime.high_value}}</td>
-                                <th>最&nbsp;&nbsp;低：</th>
-                                <td class="@UD_low_color@">{{datarealtime.low_value}}</td>
-                            </tr>
-                            <tr>
-                                <th>振&nbsp;&nbsp;幅：</th>
-                                <td>{{datarealtime.p_change}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                                <th>换手率：</th>
-                                <td>{{datarealtime.turnoverratio}}</td>
-                            </tr>
-                            <tr>
-                                <th>成交额：</th>
-                                <td>{{datarealtime.volumn_value}}</td>
-                                <th>成交量：</th>
-                                <td>{{datarealtime.amount}}</td>
-
-                            </tr>
-                            <tr>
-                                <th>市净率：</th>
-                                <td>{{datarealtime.pb}}</td>
-                                <th>市盈率<sup>TTM</sup>：</th>
-                                <td>{{datarealtime.per}}</td>
-                            </tr>
-                            <tr>
-                                <th>流通市值：</th>
-                                <td>{{datarealtime.nmc}}</td>
-                                <th>总市值：</th>
-                                <td>{{datarealtime.mktcap}}</td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <br/>
+                            <br/>
+                        </div>
                     </div>
                 </div>
 
@@ -160,7 +157,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <option value="周K">周K</option>
                     <option value="月K">月K</option>
                 </select>
-                <div id="main" style="width: 480px;height:320px;"></div>
+                <style>
+                    .guding{text-align:center;}
+                    #main{display:inline-block;}
+                </style>
+                <div class="guding">
+                    <div id="main" style="top:2%;left:2%;width:480px;height:320px;" ></div>
+                </div>
+
             </div>
             <div class="work-in">
 
@@ -231,7 +235,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var args = getQueryStringArgs();
     var code = args["code"];
     var app = angular.module('myApp', []);
-
     app.controller('siteCtrl', function($scope, $http) {
         $scope.check_out = function () {
             window.location.href = "login.html";
@@ -268,16 +271,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             .then(function (response) {
                 if (response.data === 400)
                     window.location.href =  "login.html";
+                var temp2 = angular.fromJson(response.data);
+                if (temp2.settlement < temp2.close_value) {
+                    document.getElementById("miaomiao").style.color="#bd362f";
+                }
+                else if (temp2.settlement > temp2.close_value){
+                    document.getElementById("miaomiao").style.color="#46a546";
+                }
                 $scope.datarealtime = response.data;
             });
-
         var selectoption = document.getElementById("select_k1").value;
         var temp = "http://localhost:8080/stock/history/days?code=";
         if(selectoption === "日K")
             temp = "http://localhost:8080/stock/history/days?code=";
         else if(selectoption === "周K")
             temp = "http://localhost:8080/stock/history/weeks?code=";
-            else if(selectoption === "月K")
+        else if(selectoption === "月K")
             temp = "http://localhost:8080/stock/history/months?code=";
         $http.get(temp + code)
             .then(function (response) {
@@ -391,7 +400,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             splitNumber: 20,
                             min: 'dataMin',
                             max: 'dataMax'
-
                         }
                     ],
                     yAxis: [
@@ -509,7 +517,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     ]
                 });
             });
-
     });
     function splitData(rawData) {
         var categoryData = [];
@@ -541,9 +548,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return result;
     }
-
 </script>
-</html>
-
-
 </html>

@@ -22,6 +22,7 @@ def getCode():
     ids = []
     for id in cursor:
         ids.append(id[0])
+
     cursor.close()
     conn.close()
     return ids

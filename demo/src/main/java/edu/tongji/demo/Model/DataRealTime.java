@@ -33,6 +33,16 @@ public class DataRealTime {
 
     private Double nmc;
 
+    private Double settlement;
+
+    public Double getSettlement() {
+        return settlement;
+    }
+
+    public void setSettlement(Double settlement) {
+        this.settlement = settlement;
+    }
+
     public Integer getId() {
         return id;
     }
