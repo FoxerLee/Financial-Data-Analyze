@@ -22,9 +22,9 @@ class newSpider(Spider):
     cursor = conn.cursor()
     name = 'news'
 
-    sql = 'delete from news'
-    cursor.execute(sql)
-    cursor.execute("Commit;")
+    # sql = 'delete from news'
+    # cursor.execute(sql)
+    # cursor.execute("Commit;")
     # 从mysql中获取待爬股票id
     # sql = 'select * from self_stocking'
     # cursor.execute(sql)
@@ -34,16 +34,32 @@ class newSpider(Spider):
     #     origin_codes.append(code)
     # # 去除重复
     # codes = list(set(origin_codes))
-    f = open("connect_sh.txt")
-    g = open("connect_sz.txt")
-    p = re.compile('\n')
+    # f = open("connect_sh.txt")
+    # g = open("connect_sz.txt")
+    # p = re.compile('\n')
+    # codes = []
+    # for i in f:
+    #     i = re.sub(p, '', i)
+    #     codes.append(i)
+    # for i in g:
+    #     g = re.sub(p, '', i)
+    #     codes.append(i)
+
+    cursor.execute("SELECT code FROM javaEE.connect;")
     codes = []
-    for i in f:
-        i = re.sub(p, '', i)
-        codes.append(i)
-    for i in g:
-        g = re.sub(p, '', i)
-        codes.append(i)
+    for code in cursor:
+        code = str(code[0])
+        codes.append(code)
+
+
+    cursor.execute("SELECT code FROM news GROUP BY code;")
+
+    codes_al = []
+    for code in cursor:
+        code = str(code[0])
+        codes_al.append(code)
+
+    codes = list(set(codes).difference(set(codes_al)))
 
     start_urls = []
     for code in codes:

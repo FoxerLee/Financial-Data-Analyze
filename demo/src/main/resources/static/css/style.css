@@ -746,7 +746,8 @@ ul.service-grid li i{
 }
 .blog-in{
 	background: #fff;
-	 padding: 1em;
+	padding: 1em;
+	position: relative;
 }
 .blog-in h5{
 	font-size:1.1em;
@@ -2125,3 +2126,4 @@ h4.author {
 	}
 
 }
+
