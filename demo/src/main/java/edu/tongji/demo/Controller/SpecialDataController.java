@@ -42,4 +42,11 @@ public class SpecialDataController {
         return specialService.getProfileData();
     }
 
+    @GetMapping("/operation")
+    public Object getOperationData(){
+        if(!Verification.verify())
+            return "400";
+        return specialService.getOperationData();
+    }
+
 }

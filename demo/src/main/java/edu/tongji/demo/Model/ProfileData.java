@@ -9,9 +9,9 @@ public class ProfileData {
 
     private Double roe;
 
-    private Double net_profitRatio;
+    private Double net_profit_ratio;
 
-    private Double gross_profitRatio;
+    private Double gross_profit_ratio;
 
     private Double net_profits;
 
@@ -53,22 +53,6 @@ public class ProfileData {
         this.roe = roe;
     }
 
-    public Double getNet_profitRatio() {
-        return net_profitRatio;
-    }
-
-    public void setNet_profitRatio(Double net_profitRatio) {
-        this.net_profitRatio = net_profitRatio;
-    }
-
-    public Double getGross_profitRatio() {
-        return gross_profitRatio;
-    }
-
-    public void setGross_profitRatio(Double gross_profitRatio) {
-        this.gross_profitRatio = gross_profitRatio;
-    }
-
     public Double getNet_profits() {
         return net_profits;
     }
@@ -99,5 +83,21 @@ public class ProfileData {
 
     public void setBips(Double bips) {
         this.bips = bips;
+    }
+
+    public Double getNet_profit_ratio() {
+        return net_profit_ratio;
+    }
+
+    public void setNet_profit_ratio(Double net_profit_ratio) {
+        this.net_profit_ratio = net_profit_ratio;
+    }
+
+    public Double getGross_profit_ratio() {
+        return gross_profit_ratio;
+    }
+
+    public void setGross_profit_ratio(Double gross_profit_ratio) {
+        this.gross_profit_ratio = gross_profit_ratio;
     }
 }
