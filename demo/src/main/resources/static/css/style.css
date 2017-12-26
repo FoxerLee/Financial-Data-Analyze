@@ -1543,8 +1543,17 @@ ul.social-in {
 .contact {
   width: 71%;
 }
-.top-nav ul li a {
-  font-size: 1em;
+.top-nav ul li  a {
+	display:block;
+	outline: none;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	padding-right: 0.7em;
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.2em;
+	text-align: right;
+	background:#30383b;
 }
 .grid9{
 	display:none;
@@ -2127,3 +2136,13 @@ ul.archive-grid li a {
 
 }
 
+.logo{
+	background:url(../images/logo3.png);
+	padding:2em;
+	color: #748f8f;
+	font-size: 1em;
+	text-align: right;
+}
+.logo a{
+	color:#748f8f;
+}
