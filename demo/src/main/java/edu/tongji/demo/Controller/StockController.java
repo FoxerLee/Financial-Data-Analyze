@@ -15,18 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/stock")
 @CrossOrigin
 public class StockController {
-
-    @Autowired
-    private UserService userService;
-
     @Autowired
     private StockService stockService;
 
     @Autowired
     private IndustryService industryService;
-
-    @Autowired
-    private SelfStockService selfStockService;
 
     @GetMapping("/all")
     public Object GetAllStockInfo(){
