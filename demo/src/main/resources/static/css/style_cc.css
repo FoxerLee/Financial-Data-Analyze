@@ -800,12 +800,12 @@ ul.feature-grid li i{
 }
 h4.author{
   float: left;
-  width: 79.38%;
-  font-size: 1em;
+  width: 90%;
+  font-size: 1.1em;
   background: #55bab7;
   color: #fff;
   padding: 1.5em;
-  font-style: italic;
+  /*font-style: italic;*/
 }
 .test-top p{
   color:#a3a3a3;
