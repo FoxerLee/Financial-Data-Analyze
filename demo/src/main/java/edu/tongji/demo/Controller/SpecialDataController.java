@@ -3,31 +3,38 @@ package edu.tongji.demo.Controller;
 import edu.tongji.demo.Model.*;
 import edu.tongji.demo.Security.Verification;
 import edu.tongji.demo.Service.SpecialService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/special")
 public class SpecialDataController {
 
+    private static int RECORD_PER_PAGE = 20;
+
     @Autowired
     private SpecialService specialService;
 
     @GetMapping("/cashflow")
-    public Object getCashFlowData(){
+    public Object getCashFlowData(@RequestParam(value = "page", defaultValue = "1") String page){
         if(!Verification.verify())
             return "400";
         try{
             ArrayList<CashFlowData> cashFlowData = specialService.getCashFloweData();
             int size = cashFlowData.size();
-            Object[] rep = new Object[size];
-            if (size == 0)
+            Object[] rep = new Object[RECORD_PER_PAGE];
+            int p = Integer.parseInt(page);
+            if (p <= 0)
                 return null;
-            for(int i = 0; i < size; i++){
+            int j = 0;
+            for(int i = (p - 1) * RECORD_PER_PAGE; i < p * RECORD_PER_PAGE && i < size; i++, j++){
                 Object[] temp = new Object[7];
                 temp[0] = cashFlowData.get(i).getCode();
                 temp[1] = cashFlowData.get(i).getName();
@@ -36,26 +43,35 @@ public class SpecialDataController {
                 temp[4] = cashFlowData.get(i).getCf_nm();
                 temp[5] = cashFlowData.get(i).getCf_liabilities();
                 temp[6] = cashFlowData.get(i).getCashflowratio();
-                rep[i] = temp;
+                rep[j] = temp;
             }
-            return rep;
+            HashMap<String, Object> result = new HashMap<>();
+            int t = size%RECORD_PER_PAGE;
+            if(t > 0)
+                t = size/RECORD_PER_PAGE + 1;
+            else
+                t = size/RECORD_PER_PAGE;
+            result.put("pageNum", t);
+            result.put("data",rep);
+            return result;
         }catch (Exception e){
-            return "404";
+            return null;
         }
-
     }
 
     @GetMapping("/debt")
-    public Object getDebtPayingData(){
+    public Object getDebtPayingData(@RequestParam(value = "page", defaultValue = "1")String page){
         if(!Verification.verify())
             return "400";
         try{
             ArrayList<DebtPayingData> debtPayingData = specialService.getDebtPayingData();
             int size = debtPayingData.size();
-            Object[] rep = new Object[size];
-            if (size == 0)
+            Object[] rep = new Object[RECORD_PER_PAGE];
+            int p = Integer.parseInt(page);
+            if(p <= 0)
                 return null;
-            for(int i = 0; i < size; i++){
+            int j = 0;
+            for(int i = (p - 1)*RECORD_PER_PAGE; i < p * RECORD_PER_PAGE && i < size; i++, j++){
                 Object[] temp = new Object[8];
                 temp[0] = debtPayingData.get(i).getCode();
                 temp[1] = debtPayingData.get(i).getName();
@@ -65,25 +81,35 @@ public class SpecialDataController {
                 temp[5] = debtPayingData.get(i).getIcratio();
                 temp[6] = debtPayingData.get(i).getSheqratio();
                 temp[7] = debtPayingData.get(i).getAdratio();
-                rep[i] = temp;
+                rep[j] = temp;
             }
-            return rep;
+            HashMap<String, Object> result = new HashMap<>();
+            int t = size%RECORD_PER_PAGE;
+            if(t > 0)
+                t = size/RECORD_PER_PAGE + 1;
+            else
+                t = size/RECORD_PER_PAGE;
+            result.put("pageNum", t);
+            result.put("data",rep);
+            return result;
         }catch (Exception e){
-            return "404";
+            return null;
         }
     }
 
     @GetMapping("/growth")
-    public Object getGrowthData(){
+    public Object getGrowthData(@RequestParam(value = "page", defaultValue = "1")String page){
         if(!Verification.verify())
             return "400";
         try{
             ArrayList<GrowthData> growthData = specialService.getGrowthData();
             int size = growthData.size();
-            Object[] rep = new Object[size];
-            if (size == 0)
+            Object[] rep = new Object[RECORD_PER_PAGE];
+            int p = Integer.parseInt(page);
+            if(p <= 0)
                 return null;
-            for(int i = 0; i < size; i++){
+            int j = 0;
+            for(int i = (p - 1)*RECORD_PER_PAGE; i < p * RECORD_PER_PAGE && i < size; i++, j++){
                 Object[] temp = new Object[8];
                 temp[0] = growthData.get(i).getCode();
                 temp[1] = growthData.get(i).getName();
@@ -93,25 +119,35 @@ public class SpecialDataController {
                 temp[5] = growthData.get(i).getTarg();
                 temp[6] = growthData.get(i).getEpsg();
                 temp[7] = growthData.get(i).getSeg();
-                rep[i] = temp;
+                rep[j] = temp;
             }
-            return rep;
+            HashMap<String, Object> result = new HashMap<>();
+            int t = size%RECORD_PER_PAGE;
+            if(t > 0)
+                t = size/RECORD_PER_PAGE + 1;
+            else
+                t = size/RECORD_PER_PAGE;
+            result.put("pageNum", t);
+            result.put("data",rep);
+            return result;
         }catch (Exception e){
-            return "404";
+            return null;
         }
     }
 
     @GetMapping("/profit")
-    public Object getProfileData(){
+    public Object getProfileData(@RequestParam(value = "page", defaultValue = "1")String page){
         if(!Verification.verify())
             return "400";
         try{
             ArrayList<ProfileData> profitData = specialService.getProfileData();
             int size = profitData.size();
-            Object[] rep = new Object[size];
-            if (size == 0)
+            Object[] rep = new Object[RECORD_PER_PAGE];
+            int p = Integer.parseInt(page);
+            if(p <= 0)
                 return null;
-            for(int i = 0; i < size; i++){
+            int j = 0;
+            for(int i = (p - 1)*RECORD_PER_PAGE; i < p * RECORD_PER_PAGE && i < size; i++, j++){
                 Object[] temp = new Object[9];
                 temp[0] = profitData.get(i).getCode();
                 temp[1] = profitData.get(i).getName();
@@ -124,23 +160,33 @@ public class SpecialDataController {
                 temp[8] = profitData.get(i).getBips();
                 rep[i] = temp;
             }
-            return rep;
+            HashMap<String, Object> result = new HashMap<>();
+            int t = size%RECORD_PER_PAGE;
+            if(t > 0)
+                t = size/RECORD_PER_PAGE + 1;
+            else
+                t = size/RECORD_PER_PAGE;
+            result.put("pageNum", t);
+            result.put("data",rep);
+            return result;
         }catch (Exception e){
-            return "404";
+            return null;
         }
     }
 
     @GetMapping("/operation")
-    public Object getOperationData(){
+    public Object getOperationData(@RequestParam(value = "page", defaultValue = "1")String page){
         if(!Verification.verify())
             return "400";
         try{
             ArrayList<OperationData> operationData = specialService.getOperationData();
             int size = operationData.size();
-            Object[] rep = new Object[size];
-            if (size == 0)
+            Object[] rep = new Object[RECORD_PER_PAGE];
+            int p = Integer.parseInt(page);
+            if(p <= 0)
                 return null;
-            for(int i = 0; i < size; i++){
+            int j = 0;
+            for(int i = (p - 1)*RECORD_PER_PAGE; i < p * RECORD_PER_PAGE && i < size; i++, j++){
                 Object[] temp = new Object[8];
                 temp[0] = operationData.get(i).getCode();
                 temp[1] = operationData.get(i).getName();
@@ -152,9 +198,17 @@ public class SpecialDataController {
                 temp[7] = operationData.get(i).getCurrentasset_days();
                 rep[i] = temp;
             }
-            return rep;
+            HashMap<String, Object> result = new HashMap<>();
+            int t = size%RECORD_PER_PAGE;
+            if(t > 0)
+                t = size/RECORD_PER_PAGE + 1;
+            else
+                t = size/RECORD_PER_PAGE;
+            result.put("pageNum", t);
+            result.put("data",rep);
+            return result;
         }catch (Exception e){
-            return "404";
+            return null;
         }
     }
 }
