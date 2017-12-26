@@ -110,7 +110,7 @@ def store(select,params):
         config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
         conn = mysql.connector.connect(**config)
         cursor=conn.cursor()
-        sql = "INSERT INTO data_real_time VALUES(NULL,%s,%s,%s,%s,%s,%s,%s)"
+        sql = "INSERT INTO data_real_time VALUES(NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         cursor.executemany(sql, params)
         # cursor.commit()
         cursor.execute("Commit;")

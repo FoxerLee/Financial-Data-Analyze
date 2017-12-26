@@ -7,11 +7,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
+
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/buttons.css"/>
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -66,7 +69,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="content" >
         <div class="work">
-            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
+            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--<button class="button button-3d button-action button-circle button-jumbo"><i class="fa fa-thumbs-up" ng-click="display(code)"></i></button>-->
+                <button class="button button-raised button-action button-circle button-jumbo" style="background: rgb(51,58,62);border-color:rgb(51,58,62)"><i class="fa fa-thumbs-up" ng-click="display(code)" ></i></button>
+                <!--<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span>-->
+            </p>
             <div class="work-top">
 
 
@@ -125,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </tr>
                                 <tr>
                                     <td scope="col" style="vertical-align:middle; text-align:center;">成交额：</td>
-                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.volumn_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.volume_value}}</td>
                                     <td scope="col" style="vertical-align:middle; text-align:center;">成交量：</td>
                                     <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.amount}}</td>
 
@@ -152,17 +159,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
 
                 <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
-                <select name="select" id="select_k1" class="xla_k">
-                    <option value="日K">日K</option>
-                    <option value="周K">周K</option>
-                    <option value="月K">月K</option>
-                </select>
+                <!--<select name="select" id="select_k1" class="xla_k">-->
+                    <!--<option value="日K">日K</option>-->
+                    <!--<option value="周K">周K</option>-->
+                    <!--<option value="月K">月K</option>-->
+                <!--</select>-->
+                <style>
+                    .l-center{
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                </style>
+                <div id="select_k1" class="showcase-examples l-center">
+                    <input type="submit" value="日K" class="button button-pill button-primary" style="background-color: #1ab5b3;">
+                    <input type="submit" value="周K" class="button button-pill button-primary" style="background-color: #1ab5b3;">
+                    <input type="submit" value="月K" class="button button-pill button-primary" style="background-color: #1ab5b3;">
+                    <!--<button class="button button-pill button-primary">Go</button>-->
+                </div>
                 <style>
                     .guding{text-align:center;}
                     #main{display:inline-block;}
                 </style>
                 <div class="guding">
-                    <div id="main" style="top:2%;left:2%;width:480px;height:320px;" ></div>
+                    <div id="main" style="top:2%;left:2%;width:470px;height:310px;" ></div>
                 </div>
 
             </div>
@@ -171,34 +191,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="test">
                     <div class="test-in">
 
-                        <h4 class="author" >&nbsp;&nbsp;&nbsp;股吧论坛</h4>
+                        <h4 class="author" >&nbsp;&nbsp;股吧论坛</h4>
                         <div class="clear"> </div>
                     </div>
                     <div class="blog-in">
-                        <li  ng-repeat="x in news">
-                            [<span><a>点击量</a>{{x.click}}</span>]
-                            <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
+                        <!--<li  ng-repeat="x in news">-->
+                            <div class="stupid" ng-repeat="x in news">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td scope="col" style="vertical-align:middle; text-align:left;padding:2%;">
+                                            <a href="{{x.url}}" target="_blank">
+                                                {{x.name}}
+                                            </a>
+                                        </td>
+                                        <td scope="col" style="vertical-align:middle; text-align:right;padding:2%;">点击量：{{x.click}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <ul class="date">
-                            <li><span><a href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml" target="_blank"><i ></i>更多</a></span></li>
-                        </ul>
                     </div>
                     <br/>
 
                     <div class="services">
                         <div class="test-in">
-                            <h4 class="author">&nbsp;&nbsp;&nbsp;研究报告</h4>
+                            <h4 class="author">&nbsp;&nbsp;研究报告</h4>
                             <div class="clear"> </div>
                         </div>
 
                         <div class="blog-in">
-                            <li  ng-repeat="y in research">
-                                [<span><a>发布日期</a>{{y.date}}</span>]
-                                <a  href="{{y.url}}" target="_blank">{{y.title}}</a></li>
-                            <ul class="date">
-                                <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
-
-                            </ul>
+                            <div class="stupid" ng-repeat="y in research">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td scope="col" style="vertical-align:middle; text-align:left;padding:2%;">
+                                            <a href="{{y.url}}" target="_blank">
+                                                {{y.title}}
+                                            </a>
+                                        </td>
+                                        <td scope="col" style="vertical-align:middle; text-align:right;padding:2%;">{{y.date}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                     </div>

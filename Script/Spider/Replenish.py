@@ -34,15 +34,20 @@ def getCode():
     for id in cursor:
         ids.append(id[0])
 
-    cursor.execute("SELECT code FROM research GROUP BY code;")
+    # cursor.execute("SELECT code FROM research GROUP BY code;")
+    # o_ids = []
+    # for code in cursor:
+    #     code = str(code[0])
+    #     o_ids.append(code)
+    #
+    # codes = list(set(ids).difference(set(o_ids)))
+    cursor.execute("SELECT code, count(code) FROM research GROUP BY code;")
     o_ids = []
     for code in cursor:
-        code = str(code[0])
-        o_ids.append(code)
+        if code[1] > 7:
+            o_ids.append(str(code[0]))
 
     codes = list(set(ids).difference(set(o_ids)))
-
-
     cursor.close()
     conn.close()
     return codes

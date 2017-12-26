@@ -131,21 +131,21 @@ body a{
   padding-right: 0.7em;
   color: #fff;
   text-decoration: none;
-  font-size: 1.3em;
+  font-size: 1.2em;
   text-align: right;
   background:#30383b;
 }
-.top-nav ul li  b {
-  display:block;
-  outline: none;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.5em;
-  text-align: right;
-  background:#30383b;
-}
+/*.top-nav ul li  b {*/
+  /*display:block;*/
+  /*outline: none;*/
+  /*padding-top: 1em;*/
+  /*padding-bottom: 1em;*/
+  /*color: #fff;*/
+  /*text-decoration: none;*/
+  /*font-size: 0.5em;*/
+  /*text-align: right;*/
+  /*background:#30383b;*/
+/*}*/
 .top-nav ul li  a.black{
   background:#30383c;
 }
@@ -800,12 +800,12 @@ ul.feature-grid li i{
 }
 h4.author{
   float: left;
-  width: 79.38%;
-  font-size: 1em;
+  width: 90%;
+  font-size: 1.1em;
   background: #55bab7;
   color: #fff;
   padding: 1.5em;
-  font-style: italic;
+  /*font-style: italic;*/
 }
 .test-top p{
   color:#a3a3a3;
@@ -1672,15 +1672,24 @@ ul.archive-grid li a:hover{
   .contact {
     width: 71%;
   }
-  .top-nav ul li a {
-    font-size: 1em;
+  .top-nav ul li  a {
+    display:block;
+    outline: none;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-right: 0.7em;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-align: right;
+    background:#30383b;
   }
   .grid9{
     display:none;
   }
-  .logo {
-    padding: 1em;
-  }
+  /*.logo {*/
+    /*padding: 1em;*/
+  /*}*/
   .b-animate span {
     padding-top: 1.5em;
   }
