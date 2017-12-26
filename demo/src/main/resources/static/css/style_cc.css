@@ -131,21 +131,21 @@ body a{
   padding-right: 0.7em;
   color: #fff;
   text-decoration: none;
-  font-size: 1.3em;
+  font-size: 1.2em;
   text-align: right;
   background:#30383b;
 }
-.top-nav ul li  b {
-  display:block;
-  outline: none;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.5em;
-  text-align: right;
-  background:#30383b;
-}
+/*.top-nav ul li  b {*/
+  /*display:block;*/
+  /*outline: none;*/
+  /*padding-top: 1em;*/
+  /*padding-bottom: 1em;*/
+  /*color: #fff;*/
+  /*text-decoration: none;*/
+  /*font-size: 0.5em;*/
+  /*text-align: right;*/
+  /*background:#30383b;*/
+/*}*/
 .top-nav ul li  a.black{
   background:#30383c;
 }
@@ -537,7 +537,7 @@ ul.social li  i.down{
 .callbacks_tabs a:after {
   content: "\f111";
   font-size: 0;
-  font-family: FontAwesome;
+  font-family: "Microsoft YaHei";
   visibility: visible;
   display: block;
   height: 8px;
@@ -800,12 +800,12 @@ ul.feature-grid li i{
 }
 h4.author{
   float: left;
-  width: 79.38%;
-  font-size: 1em;
+  width: 90%;
+  font-size: 1.1em;
   background: #55bab7;
   color: #fff;
   padding: 1.5em;
-  font-style: italic;
+  /*font-style: italic;*/
 }
 .test-top p{
   color:#a3a3a3;
@@ -1252,22 +1252,21 @@ ul.archive-grid li a:hover{
 .your-top {
   border: 1px solid #e2e2e2;
   position: relative;
-  margin: 0.8em 0;
+  margin: 0.8em 1.0em;
 }
-.your-top i {
-  background: url(../images/img-sprite.png)no-repeat -9px -86px ;
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  float:left;
-  border-right: 1px solid #e2e2e2;
-}
-.your-top i.email {
-  background-position: -51px -86px ;
-}
-.your-top i.website {
-  background-position: -93px -86px ;
-}
+/*.your-top i {*/
+  /*background: url(../images/search.png) 1em 1em;*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*display: inline-block;*/
+  /*float:left;*/
+/*}*/
+/*.your-top i.email {*/
+  /*background-position: -51px -86px ;*/
+/*}*/
+/*.your-top i.website {*/
+  /*background-position: -93px -86px ;*/
+/*}*/
 .your-top input[type="text"],.grid-contact-in textarea {
   background: none;
   width: 70%;
@@ -1673,15 +1672,24 @@ ul.archive-grid li a:hover{
   .contact {
     width: 71%;
   }
-  .top-nav ul li a {
-    font-size: 1em;
+  .top-nav ul li  a {
+    display:block;
+    outline: none;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    padding-right: 0.7em;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-align: right;
+    background:#30383b;
   }
   .grid9{
     display:none;
   }
-  .logo {
-    padding: 1em;
-  }
+  /*.logo {*/
+    /*padding: 1em;*/
+  /*}*/
   .b-animate span {
     padding-top: 1.5em;
   }
@@ -2248,8 +2256,9 @@ ul.archive-grid li a:hover{
     shape-rendering:crispEdges;
   }
   .axis text{
-    font-family: sans-serif;
+    font-family: "Microsoft YaHei";
     font-size: 11px;
   }
 
 }
+

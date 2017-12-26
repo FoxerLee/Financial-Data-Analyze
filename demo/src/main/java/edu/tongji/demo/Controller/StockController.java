@@ -1,7 +1,6 @@
 package edu.tongji.demo.Controller;
 
 import edu.tongji.demo.Service.IndustryService;
-import edu.tongji.demo.Service.SelfStockService;
 import edu.tongji.demo.Service.StockService;
 import edu.tongji.demo.Service.UserService;
 import edu.tongji.demo.Security.Verification;
@@ -9,11 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/stock")
-@CrossOrigin
 public class StockController {
     @Autowired
     private StockService stockService;
@@ -36,7 +33,7 @@ public class StockController {
         }
     }
         /**
-     * é€šè¿‡codeæˆ–è€…nameè·å¾—connectçš„ä¿¡æ¯
+     * Í¨¹ıcode»òÕßname»ñµÃconnectµÄĞÅÏ¢
      * @param content
      * @return
      */
@@ -50,12 +47,12 @@ public class StockController {
     }
 
     /**
-     * æ ¹æ®è¡Œä¸šåç§°è¿”å›è¯¥è¡Œä¸šè‚¡ç¥¨ä»¥åŠå®ƒä»¬çš„å‘¨ä¿¡æ¯
+     * ¸ù¾İĞĞÒµÃû³Æ·µ»Ø¸ÃĞĞÒµ¹ÉÆ±ÒÔ¼°ËüÃÇµÄÖÜĞÅÏ¢
      * @param name
      * @return
      */
     @GetMapping("/industry")
-    public Object GetStocksOfIndustry(@RequestParam(value = "name", defaultValue = "åŒ–å·¥è¡Œä¸š")  String name){
+    public Object GetStocksOfIndustry(@RequestParam(value = "name", defaultValue = "»¯¹¤ĞĞÒµ")  String name){
         if (!Verification.verify())
             return "400";
         else {
@@ -64,7 +61,7 @@ public class StockController {
     }
 
     /**
-     * è·å–æŸåªè‚¡ç¥¨çš„æœ€æ–°ä¿¡æ¯ï¼Œæ ¹æ®code
+     * »ñÈ¡Ä³Ö»¹ÉÆ±µÄ×îĞÂĞÅÏ¢£¬¸ù¾İcode
      * @param code
      * @return
      */
@@ -80,7 +77,7 @@ public class StockController {
     }
 
     /**
-     * è·å¾—è‚¡ç¥¨çš„å†å²æ•°æ®æ¥ç”»æ—¥Kå›¾
+     * »ñµÃ¹ÉÆ±µÄÀúÊ·Êı¾İÀ´»­ÈÕKÍ¼
      * @param code
      * @return
      */
@@ -118,7 +115,7 @@ public class StockController {
     }
 
     /**
-     * æ ¹æ®codeè·å–è‚¡ç¥¨åç§°
+     * ¸ù¾İcode»ñÈ¡¹ÉÆ±Ãû³Æ
      * @param code
      * @return
      */

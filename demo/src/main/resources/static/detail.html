@@ -7,10 +7,14 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
+
     <!-- Custom Theme files -->
     <!--theme-style-->
     <link href="css/style_cc.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/buttons.css"/>
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,6 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li ><a href="index_data2.html" >大数据展示</a ></li>
                 <li><a href="news.html" class="black" > 新闻资讯</a ></li>
                 <li><a href="ranking.html" class="black1"> 龙虎榜</a ></li>
+                <li><a href="fundamentals.html" class="black1"> 基本面数据</a ></li>
                 <li><a href="work.html" class="black2" > 个人主页</a ></li>
                 <li>
 
@@ -65,7 +70,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="content" >
         <div class="work">
-            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span></p>
+            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--<button class="button button-3d button-action button-circle button-jumbo"><i class="fa fa-thumbs-up" ng-click="display(code)"></i></button>-->
+                <button class="button button-raised button-action button-circle button-jumbo" style="background: rgb(51,58,62);border-color:rgb(51,58,62)"><i class="fa fa-thumbs-up" ng-click="display(code)" ></i></button>
+                <!--<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span>-->
+            </p>
             <div class="work-top">
 
 
@@ -86,115 +95,142 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>-->
                     <div class="test-top">
                         <div class="blog-in">
-                            <h5>{{datarealtime.close_value}}</h5>
-                            <p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>
+                            <h5 id="miaomiao" scope="col" style="vertical-align:middle; text-align:center;">当前价：{{datarealtime.close_value}}</h5>
+                            <!--<p>涨停：@up_limit@&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;跌停：@down_limit@</p>-->
 
-                            <ul class="date">
-                                <li><span><i class="date-in"></i>{{datarealtime.trading_day}}</span></li>
-                            </ul>
-                            <ul class="date">
-
-                            </ul>
                         </div>
+                        <style>
+                            .stupid{margin: 1% 2%}
+                        </style>
+                        <div class="stupid">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">涨停：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center; color: #bd362f">{{datarealtime.close_value*1.1}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">跌停：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center; color: #46a546">{{datarealtime.close_value*0.9}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">今开：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.open_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">昨收：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.settlement}}</td>
+                                </tr>
+                                <tr>
 
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">最高：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.high_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">最低：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.low_value}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">涨跌幅：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.p_change}}</td>
 
-                        <table border="0" cellpadding="0" cellspacing="0">
-                            <colgroup>
-                                <col width="100" />
-                                <col width="70" />
-                                <col width="100" />
-                                <col width="70" />
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">换手率：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.turnoverratio}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">成交额：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.volume_value}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">成交量：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.amount}}</td>
 
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th>今&nbsp;&nbsp;开：</th>
-                                <td class="@UD_open_color@">{{datarealtime.open_value}}</td>
-                                <th>昨&nbsp;&nbsp;收：</th>
-                                <td>{{datarealtime.close_value}}</td>
-                            </tr>
-                            <tr>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">市净率：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.pb}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">市盈率<sup>TTM</sup>：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.per}}</td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">流通市值：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.nmc}}</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">总市值：</td>
+                                    <td scope="col" style="vertical-align:middle; text-align:center;">{{datarealtime.mktcap}}</td>
 
-                                <th>最&nbsp;&nbsp;高：</th>
-                                <td class="@UD_high_color@">{{datarealtime.high_value}}</td>
-                                <th>最&nbsp;&nbsp;低：</th>
-                                <td class="@UD_low_color@">{{datarealtime.low_value}}</td>
-                            </tr>
-                            <tr>
-                                <th>振&nbsp;&nbsp;幅：</th>
-                                <td>{{datarealtime.p_change}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                                <th>换手率：</th>
-                                <td>{{datarealtime.turnoverratio}}</td>
-                            </tr>
-                            <tr>
-                                <th>成交额：</th>
-                                <td>{{datarealtime.volumn_value}}</td>
-                                <th>成交量：</th>
-                                <td>{{datarealtime.amount}}</td>
-
-                            </tr>
-                            <tr>
-                                <th>市净率：</th>
-                                <td>{{datarealtime.pb}}</td>
-                                <th>市盈率<sup>TTM</sup>：</th>
-                                <td>{{datarealtime.per}}</td>
-                            </tr>
-                            <tr>
-                                <th>流通市值：</th>
-                                <td>{{datarealtime.nmc}}</td>
-                                <th>总市值：</th>
-                                <td>{{datarealtime.mktcap}}</td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <br/>
+                            <br/>
+                        </div>
                     </div>
                 </div>
 
-                <!--<script type="text/javascript">hq.init();</script>&ndash;&gt;-->
-                <select name="select" id="select_k1" class="xla_k">
-                    <option value="日K">日K</option>
-                    <option value="周K">周K</option>
-                    <option value="月K">月K</option>
-                </select>
-                <div id="main" style="width: 480px;height:320px;"></div>
+
+                <style>
+                    .l-center{
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                </style>
+                <div id="select_k1" class="showcase-examples l-center">
+                    <input type="submit" value="日K" class="button button-pill button-primary" style="background-color: #1ab5b3;" ng-click="Select_Day_K()" id="day_k">
+                    <input type="submit" value="周K" class="button button-pill button-primary" style="background-color: #1ab5b3;" ng-click="Select_Week_K()" id="week_k">
+                    <input type="submit" value="月K" class="button button-pill button-primary" style="background-color: #1ab5b3;" ng-click="Select_Month_K()" id="month_k">
+                    <!--<button class="button button-pill button-primary">Go</button>-->
+                </div>
+                <style>
+                    .guding{text-align:center;}
+                    #main{display:inline-block;}
+                </style>
+                <div class="guding">
+                    <div id="main" style="top:2%;left:2%;width:470px;height:310px;" ></div>
+                </div>
+
             </div>
             <div class="work-in">
 
                 <div class="test">
                     <div class="test-in">
 
-                        <h4 class="author" >&nbsp;&nbsp;&nbsp;股吧论坛</h4>
+                        <h4 class="author" >&nbsp;&nbsp;股吧论坛</h4>
                         <div class="clear"> </div>
                     </div>
                     <div class="blog-in">
-                        <li  ng-repeat="x in news">
-                            [<span><a>点击量</a>{{x.click}}</span>]
-                            <a  href="{{x.url}}" target="_blank">{{x.name}}</a></li>
+                        <!--<li  ng-repeat="x in news">-->
+                            <div class="stupid" ng-repeat="x in news">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td scope="col" style="vertical-align:middle; text-align:left;padding:2%;">
+                                            <a href="{{x.url}}" target="_blank">
+                                                {{x.name}}
+                                            </a>
+                                        </td>
+                                        <td scope="col" style="vertical-align:middle; text-align:right;padding:2%;">点击量：{{x.click}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        <ul class="date">
-                            <li><span><a href="http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_AllNewsStock/symbol/sh601318.phtml" target="_blank"><i ></i>更多</a></span></li>
-                        </ul>
                     </div>
                     <br/>
 
                     <div class="services">
                         <div class="test-in">
-                            <h4 class="author">&nbsp;&nbsp;&nbsp;研究报告</h4>
+                            <h4 class="author">&nbsp;&nbsp;研究报告</h4>
                             <div class="clear"> </div>
                         </div>
 
                         <div class="blog-in">
-                            <li  ng-repeat="y in research">
-                                [<span><a>发布日期</a>{{y.date}}</span>]
-                                <a  href="{{y.url}}" target="_blank">{{y.title}}</a></li>
-                            <ul class="date">
-                                <li><span><a href="http://vip.stock.finance.sina.com.cn/q/go.php/vReport_List/kind/search/index.phtml?symbol=601318&t1=all" target="_blank"><i ></i>更多</a></span></li>
-
-                            </ul>
+                            <div class="stupid" ng-repeat="y in research">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td scope="col" style="vertical-align:middle; text-align:left;padding:2%;">
+                                            <a href="{{y.url}}" target="_blank">
+                                                {{y.title}}
+                                            </a>
+                                        </td>
+                                        <td scope="col" style="vertical-align:middle; text-align:right;padding:2%;">{{y.date}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                     </div>
@@ -231,7 +267,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     var args = getQueryStringArgs();
     var code = args["code"];
     var app = angular.module('myApp', []);
-
     app.controller('siteCtrl', function($scope, $http) {
         $scope.check_out = function () {
             window.location.href = "login.html";
@@ -268,249 +303,296 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             .then(function (response) {
                 if (response.data === 400)
                     window.location.href =  "login.html";
+                var temp2 = angular.fromJson(response.data);
+                if (temp2.settlement < temp2.close_value) {
+                    document.getElementById("miaomiao").style.color="#bd362f";
+                }
+                else if (temp2.settlement > temp2.close_value){
+                    document.getElementById("miaomiao").style.color="#46a546";
+                }
                 $scope.datarealtime = response.data;
             });
-
-        var selectoption = document.getElementById("select_k1").value;
-        var temp = "http://localhost:8080/stock/history/days?code=";
-        if(selectoption === "日K")
-            temp = "http://localhost:8080/stock/history/days?code=";
-        else if(selectoption === "周K")
-            temp = "http://localhost:8080/stock/history/weeks?code=";
-            else if(selectoption === "月K")
-            temp = "http://localhost:8080/stock/history/months?code=";
-        $http.get(temp + code)
+        // var selectoption = document.getElementById("select_k1").value;
+        // var temp = "http://localhost:8080/stock/history/days?code=";
+        // if(selectoption === "日K")
+        //     temp = "http://localhost:8080/stock/history/days?code=";
+        // else if(selectoption === "周K")
+        //     temp = "http://localhost:8080/stock/history/weeks?code=";
+        // else if(selectoption === "月K")
+        //     temp = "http://localhost:8080/stock/history/months?code=";
+        $http.get("http://localhost:8080/stock/history/days?code=" + code)
             .then(function (response) {
+                document.getElementById("week_k").style.backgroundColor = "#778288";
+                document.getElementById("month_k").style.backgroundColor = "#778288";
+                document.getElementById("day_k").style.backgroundColor = "#1ab5b3";
                 if (response.data === 400)
                     window.location.href =  "login.html";
                 //绘图
-                var upColor = '#00da3c';
-                var downColor = '#ec0000';
-                var myChart = echarts.init(document.getElementById('main'));
-                var data = splitData(response.data);
-                myChart.setOption(option = {
-                    backgroundColor: '#fff',
-                    animation: false,
-                    legend: {
-                        bottom: 10,
-                        left: 'center',
-                        data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross'
-                        },
-                        backgroundColor: 'rgba(245, 245, 245, 0.8)',
-                        borderWidth: 1,
-                        borderColor: '#ccc',
-                        padding: 10,
-                        textStyle: {
-                            color: '#000'
-                        },
-                        position: function (pos, params, el, elRect, size) {
-                            var obj = {top: 10};
-                            obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-                            return obj;
-                        }
-                        // extraCssText: 'width: 170px'
-                    },
-                    axisPointer: {
-                        link: {xAxisIndex: 'all'},
-                        label: {
-                            backgroundColor: '#777'
-                        }
-                    },
-                    toolbox: {
-                        feature: {
-                            dataZoom: {
-                                yAxisIndex: false
-                            },
-                            brush: {
-                                type: ['lineX', 'clear']
-                            }
-                        }
-                    },
-                    brush: {
-                        xAxisIndex: 'all',
-                        brushLink: 'all',
-                        outOfBrush: {
-                            colorAlpha: 0.1
-                        }
-                    },
-                    visualMap: {
-                        show: false,
-                        seriesIndex: 5,
-                        dimension: 2,
-                        pieces: [{
-                            value: 1,
-                            color: downColor
-                        }, {
-                            value: -1,
-                            color: upColor
-                        }]
-                    },
-                    grid: [
-                        {
-                            left: '10%',
-                            right: '8%',
-                            height: '50%'
-                        },
-                        {
-                            left: '10%',
-                            right: '8%',
-                            top: '63%',
-                            height: '16%'
-                        }
-                    ],
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: data.categoryData,
-                            scale: true,
-                            boundaryGap : false,
-                            axisLine: {onZero: false},
-                            splitLine: {show: false},
-                            splitNumber: 20,
-                            min: 'dataMin',
-                            max: 'dataMax',
-                            axisPointer: {
-                                z: 100
-                            }
-                        },
-                        {
-                            type: 'category',
-                            gridIndex: 1,
-                            data: data.categoryData,
-                            scale: true,
-                            boundaryGap : false,
-                            axisLine: {onZero: false},
-                            axisTick: {show: false},
-                            splitLine: {show: false},
-                            axisLabel: {show: false},
-                            splitNumber: 20,
-                            min: 'dataMin',
-                            max: 'dataMax'
-
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            scale: true,
-                            splitArea: {
-                                show: true
-                            }
-                        },
-                        {
-                            scale: true,
-                            gridIndex: 1,
-                            splitNumber: 2,
-                            axisLabel: {show: false},
-                            axisLine: {show: false},
-                            axisTick: {show: false},
-                            splitLine: {show: false}
-                        }
-                    ],
-                    dataZoom: [
-                        {
-                            type: 'inside',
-                            xAxisIndex: [0, 1],
-                            start: 98,
-                            end: 100
-                        },
-                        {
-                            show: true,
-                            xAxisIndex: [0, 1],
-                            type: 'slider',
-                            top: '85%',
-                            start: 98,
-                            end: 100
-                        }
-                    ],
-                    series: [
-                        {
-                            name: 'Dow-Jones index',
-                            type: 'candlestick',
-                            data: data.values,
-                            itemStyle: {
-                                normal: {
-                                    color: upColor,
-                                    color0: downColor,
-                                    borderColor: null,
-                                    borderColor0: null
-                                }
-                            },
-                            tooltip: {
-                                formatter: function (param) {
-                                    param = param[0];
-                                    return [
-                                        'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
-                                        'Open: ' + param.data[0] + '<br/>',
-                                        'Close: ' + param.data[1] + '<br/>',
-                                        'Lowest: ' + param.data[2] + '<br/>',
-                                        'Highest: ' + param.data[3] + '<br/>'
-                                    ].join('');
-                                }
-                            }
-                        },
-                        {
-                            name: 'MA5',
-                            type: 'line',
-                            data: calculateMA(5, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'MA10',
-                            type: 'line',
-                            data: calculateMA(10, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'MA20',
-                            type: 'line',
-                            data: calculateMA(20, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'MA30',
-                            type: 'line',
-                            data: calculateMA(30, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'Volume',
-                            type: 'bar',
-                            xAxisIndex: 1,
-                            yAxisIndex: 1,
-                            data: data.volumes
-                        }
-                    ]
-                }, true);
-                myChart.dispatchAction({
-                    type: 'brush',
-                    areas: [
-                        {
-                            brushType: 'lineX',
-                            coordRange: ['2016-06-02', '2016-06-20'],
-                            xAxisIndex: 0
-                        }
-                    ]
-                });
+                DrawData(response);
             });
 
+        $scope.Select_Day_K = function () {
+            $http.get("http://localhost:8080/stock/history/days?code=" + code)
+                .then(function (response) {
+                    if (response.data === 400)
+                        window.location.href =  "login.html";
+                    DrawData(response);
+                });
+            document.getElementById("week_k").style.backgroundColor = "#778288";
+            document.getElementById("month_k").style.backgroundColor = "#778288";
+            document.getElementById("day_k").style.backgroundColor = "#1ab5b3";
+
+        }
+        $scope.Select_Week_K = function () {
+            $http.get("http://localhost:8080/stock/history/weeks?code=" + code)
+                .then(function (response) {
+                    if (response.data === 400)
+                        window.location.href =  "login.html";
+                    DrawData(response);
+                });
+            document.getElementById("day_k").style.backgroundColor = "#778288";
+            document.getElementById("month_k").style.backgroundColor = "#778288";
+            document.getElementById("week_k").style.backgroundColor = "#1ab5b3";
+        }
+        $scope.Select_Month_K = function () {
+            $http.get("http://localhost:8080/stock/history/months?code=" + code)
+                .then(function (response) {
+                    if (response.data === 400)
+                        window.location.href =  "login.html";
+                    DrawData(response);
+                });
+            document.getElementById("week_k").style.backgroundColor = "#778288";
+            document.getElementById("day_k").style.backgroundColor = "#778288";
+            document.getElementById("month_k").style.backgroundColor = "#1ab5b3";
+        }
     });
+
+    function DrawData(response) {
+        var upColor = '#00da3c';
+        var downColor = '#ec0000';
+        var myChart = echarts.init(document.getElementById('main'));
+        var data = splitData(response.data);
+        myChart.setOption(option = {
+            backgroundColor: '#fff',
+            animation: false,
+            legend: {
+                bottom: 10,
+                left: 'center',
+                data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                },
+                backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                borderWidth: 1,
+                borderColor: '#ccc',
+                padding: 10,
+                textStyle: {
+                    color: '#000'
+                },
+                position: function (pos, params, el, elRect, size) {
+                    var obj = {top: 10};
+                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+                    return obj;
+                }
+                // extraCssText: 'width: 170px'
+            },
+            axisPointer: {
+                link: {xAxisIndex: 'all'},
+                label: {
+                    backgroundColor: '#777'
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: false
+                    },
+                    brush: {
+                        type: ['lineX', 'clear']
+                    }
+                }
+            },
+            brush: {
+                xAxisIndex: 'all',
+                brushLink: 'all',
+                outOfBrush: {
+                    colorAlpha: 0.1
+                }
+            },
+            visualMap: {
+                show: false,
+                seriesIndex: 5,
+                dimension: 2,
+                pieces: [{
+                    value: 1,
+                    color: downColor
+                }, {
+                    value: -1,
+                    color: upColor
+                }]
+            },
+            grid: [
+                {
+                    left: '10%',
+                    right: '8%',
+                    height: '50%'
+                },
+                {
+                    left: '10%',
+                    right: '8%',
+                    top: '63%',
+                    height: '16%'
+                }
+            ],
+            xAxis: [
+                {
+                    type: 'category',
+                    data: data.categoryData,
+                    scale: true,
+                    boundaryGap : false,
+                    axisLine: {onZero: false},
+                    splitLine: {show: false},
+                    splitNumber: 20,
+                    min: 'dataMin',
+                    max: 'dataMax',
+                    axisPointer: {
+                        z: 100
+                    }
+                },
+                {
+                    type: 'category',
+                    gridIndex: 1,
+                    data: data.categoryData,
+                    scale: true,
+                    boundaryGap : false,
+                    axisLine: {onZero: false},
+                    axisTick: {show: false},
+                    splitLine: {show: false},
+                    axisLabel: {show: false},
+                    splitNumber: 20,
+                    min: 'dataMin',
+                    max: 'dataMax'
+                }
+            ],
+            yAxis: [
+                {
+                    scale: true,
+                    splitArea: {
+                        show: true
+                    }
+                },
+                {
+                    scale: true,
+                    gridIndex: 1,
+                    splitNumber: 2,
+                    axisLabel: {show: false},
+                    axisLine: {show: false},
+                    axisTick: {show: false},
+                    splitLine: {show: false}
+                }
+            ],
+            dataZoom: [
+                {
+                    type: 'inside',
+                    xAxisIndex: [0, 1],
+                    start: 98,
+                    end: 100
+                },
+                {
+                    show: true,
+                    xAxisIndex: [0, 1],
+                    type: 'slider',
+                    top: '85%',
+                    start: 98,
+                    end: 100
+                }
+            ],
+            series: [
+                {
+                    name: 'Dow-Jones index',
+                    type: 'candlestick',
+                    data: data.values,
+                    itemStyle: {
+                        normal: {
+                            color: upColor,
+                            color0: downColor,
+                            borderColor: null,
+                            borderColor0: null
+                        }
+                    },
+                    tooltip: {
+                        formatter: function (param) {
+                            param = param[0];
+                            return [
+                                'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
+                                'Open: ' + param.data[0] + '<br/>',
+                                'Close: ' + param.data[1] + '<br/>',
+                                'Lowest: ' + param.data[2] + '<br/>',
+                                'Highest: ' + param.data[3] + '<br/>'
+                            ].join('');
+                        }
+                    }
+                },
+                {
+                    name: 'MA5',
+                    type: 'line',
+                    data: calculateMA(5, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'MA10',
+                    type: 'line',
+                    data: calculateMA(10, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'MA20',
+                    type: 'line',
+                    data: calculateMA(20, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'MA30',
+                    type: 'line',
+                    data: calculateMA(30, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'Volume',
+                    type: 'bar',
+                    xAxisIndex: 1,
+                    yAxisIndex: 1,
+                    data: data.volumes
+                }
+            ]
+        }, true);
+        myChart.dispatchAction({
+            type: 'brush',
+            areas: [
+                {
+                    brushType: 'lineX',
+                    coordRange: ['2016-06-02', '2016-06-20'],
+                    xAxisIndex: 0
+                }
+            ]
+        });
+    }
+
     function splitData(rawData) {
         var categoryData = [];
         var values = [];
@@ -541,9 +623,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return result;
     }
-
 </script>
-</html>
-
-
 </html>

@@ -17,7 +17,7 @@ public interface UserService {
 
     void logout(HttpServletRequest request, HttpServletResponse response);
 
-    boolean signUp(String name, String password);
+    boolean signUp(String name, String password, String email, String nickname);
 
     UserInfo getUserInformation(HttpServletRequest request);
 }

@@ -57,8 +57,7 @@ public class UserController {
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public @ResponseBody String SignUp(UserInfo data){
         try{
-            System.out.print(data.getName());
-            if(userService.signUp(data.getName(), data.getPassword()))
+            if(userService.signUp(data.getName(), data.getPassword(), data.getEmail(), data.getNickname()))
                 return "200";
             else
                 return "400";

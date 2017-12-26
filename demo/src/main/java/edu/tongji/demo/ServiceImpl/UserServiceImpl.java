@@ -80,12 +80,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public boolean signUp(String name, String password){
+    public boolean signUp(String name, String password, String email, String nickname){
         try{
             if(userInfoMapper.Check(name) >= 1)
                 return false;
             else{
-                userInfoMapper.AddUser(name, password);
+                System.out.println("name:" + name + ",password:" + password + ",email" + email + ",nickname:" + nickname);
+                userInfoMapper.AddUser(name, password, email, nickname);
                 return true;
             }
         }catch (Exception e){
