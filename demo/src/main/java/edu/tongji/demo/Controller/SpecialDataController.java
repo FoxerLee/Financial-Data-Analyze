@@ -158,7 +158,7 @@ public class SpecialDataController {
                 temp[6] = profitData.get(i).getEps();
                 temp[7] = profitData.get(i).getBusiness_income();
                 temp[8] = profitData.get(i).getBips();
-                rep[i] = temp;
+                rep[j] = temp;
             }
             HashMap<String, Object> result = new HashMap<>();
             int t = size%RECORD_PER_PAGE;
@@ -196,7 +196,7 @@ public class SpecialDataController {
                 temp[5] = operationData.get(i).getInventory_days();
                 temp[6] = operationData.get(i).getCurrentasset_turnover();
                 temp[7] = operationData.get(i).getCurrentasset_days();
-                rep[i] = temp;
+                rep[j] = temp;
             }
             HashMap<String, Object> result = new HashMap<>();
             int t = size%RECORD_PER_PAGE;
