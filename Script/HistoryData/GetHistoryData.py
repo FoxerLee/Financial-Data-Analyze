@@ -5,27 +5,37 @@ print(tushare.__version__)
 import csv
 import datetime
 import sys
+import mysql.connector
 reload(sys)                      # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
 
-bourse = 'sh'
 t = 'month'
 
-f = open("stock/stockCode_"+bourse+".csv")
-line = f.readline()
 
-for i in range(1773):
-    line = f.readline()
-    patt = re.compile(r"\((.*?)\)", re.I | re.X)
-    code = patt.findall(line)
+def getCode():
+    config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'javaEE',
+              'charset': 'utf8'}
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
 
-    nPos = line.index('(')
-    name = line[0:nPos]
+    sql = "SELECT code FROM connect;"
+    cursor.execute(sql)
+    ids = []
+    for id in cursor:
+        ids.append(id[0])
+
+    cursor.close()
+    conn.close()
+    return ids
+
+codes = getCode()
+
+for code in codes:
     try:
-        if code[0][0] == '0' or code[0][0] == '6':
-            df = tushare.get_hist_data(code[0], ktype='W')
-            df.to_csv('data_'+bourse+'_'+t+'/' + name + '_' + code[0] + '.csv')
-            print name + " " + str(code)
+        if code[0] == '0' or code[0] == '6':
+            df = tushare.get_hist_data(code, ktype='W')
+            df.to_csv('data_'+t+'/' + code + '.csv')
+            print code + " " + str(code)
             print datetime.datetime.now()
 
         # if code[0][0] == '6':
