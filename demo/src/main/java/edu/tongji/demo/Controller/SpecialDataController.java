@@ -51,7 +51,7 @@ public class SpecialDataController {
                 t = size/RECORD_PER_PAGE + 1;
             else
                 t = size/RECORD_PER_PAGE;
-            result.put("pageNum", t);
+            result.put("page", p);
             result.put("data",rep);
             return result;
         }catch (Exception e){
@@ -89,7 +89,7 @@ public class SpecialDataController {
                 t = size/RECORD_PER_PAGE + 1;
             else
                 t = size/RECORD_PER_PAGE;
-            result.put("pageNum", t);
+            result.put("page",p);
             result.put("data",rep);
             return result;
         }catch (Exception e){
@@ -127,7 +127,7 @@ public class SpecialDataController {
                 t = size/RECORD_PER_PAGE + 1;
             else
                 t = size/RECORD_PER_PAGE;
-            result.put("pageNum", t);
+            result.put("page", p);
             result.put("data",rep);
             return result;
         }catch (Exception e){
@@ -166,7 +166,7 @@ public class SpecialDataController {
                 t = size/RECORD_PER_PAGE + 1;
             else
                 t = size/RECORD_PER_PAGE;
-            result.put("pageNum", t);
+            result.put("page", p);
             result.put("data",rep);
             return result;
         }catch (Exception e){
@@ -204,7 +204,7 @@ public class SpecialDataController {
                 t = size/RECORD_PER_PAGE + 1;
             else
                 t = size/RECORD_PER_PAGE;
-            result.put("pageNum", t);
+            result.put("page", p);
             result.put("data",rep);
             return result;
         }catch (Exception e){
