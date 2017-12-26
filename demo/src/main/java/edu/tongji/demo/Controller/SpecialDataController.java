@@ -35,7 +35,7 @@ public class SpecialDataController {
         return specialService.getGrowthData();
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profit")
     public Object getProfileData(){
         if(!Verification.verify())
             return "400";

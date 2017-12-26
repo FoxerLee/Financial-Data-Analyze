@@ -7,9 +7,9 @@ import datetime
 reload(sys)                      # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
 
-bourse = 'sz'
+
 t = 'month'
-path = "data_" + bourse + "_" + t
+path = "data_" + t
 config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'javaEE',
                       'charset': 'utf8'}
 # files = os.listdir(path)
@@ -29,7 +29,7 @@ def run():
 
     for file in files:
 
-        code = file.split('_')[1].split('.')[0]
+        code = file.split('.')[0]
         sql = "INSERT INTO warehouse_data_" + t + "s VALUES (NULL,%s,%s,%s,%s,%s,%s,%s,%s)"
         # sql = "INSERT INTO warehouse_data_" + t + "VALUES (SEQ_W_DATA_DAYS.NEXTVAL,?,?,?,?,?,?,?)"
         try:
