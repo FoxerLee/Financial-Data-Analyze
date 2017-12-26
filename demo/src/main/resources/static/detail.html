@@ -172,9 +172,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                 </style>
                 <div id="select_k1" class="showcase-examples l-center">
-                    <input type="submit" value="日K" class="button button-pill button-primary" style="background-color: #1ab5b3;">
-                    <input type="submit" value="周K" class="button button-pill button-primary" style="background-color: #1ab5b3;">
-                    <input type="submit" value="月K" class="button button-pill button-primary" style="background-color: #1ab5b3;">
+                    <input type="submit" value="日K" class="button button-pill button-primary" style="background-color: #1ab5b3;" ng-click="Select_Day_K()" id="day_k">
+                    <input type="submit" value="周K" class="button button-pill button-primary" style="background-color: #1ab5b3;" ng-click="Select_Week_K()" id="week_k">
+                    <input type="submit" value="月K" class="button button-pill button-primary" style="background-color: #1ab5b3;" ng-click="Select_Month_K()" id="month_k">
                     <!--<button class="button button-pill button-primary">Go</button>-->
                 </div>
                 <style>
@@ -316,244 +316,287 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
                 $scope.datarealtime = response.data;
             });
-        var selectoption = document.getElementById("select_k1").value;
-        var temp = "http://localhost:8080/stock/history/days?code=";
-        if(selectoption === "日K")
-            temp = "http://localhost:8080/stock/history/days?code=";
-        else if(selectoption === "周K")
-            temp = "http://localhost:8080/stock/history/weeks?code=";
-        else if(selectoption === "月K")
-            temp = "http://localhost:8080/stock/history/months?code=";
-        $http.get(temp + code)
+        // var selectoption = document.getElementById("select_k1").value;
+        // var temp = "http://localhost:8080/stock/history/days?code=";
+        // if(selectoption === "日K")
+        //     temp = "http://localhost:8080/stock/history/days?code=";
+        // else if(selectoption === "周K")
+        //     temp = "http://localhost:8080/stock/history/weeks?code=";
+        // else if(selectoption === "月K")
+        //     temp = "http://localhost:8080/stock/history/months?code=";
+        $http.get("http://localhost:8080/stock/history/days?code=" + code)
             .then(function (response) {
+                document.getElementById("week_k").style.backgroundColor = "#778288";
+                document.getElementById("month_k").style.backgroundColor = "#778288";
+                document.getElementById("day_k").style.backgroundColor = "#1ab5b3";
                 if (response.data === 400)
                     window.location.href =  "login.html";
                 //绘图
-                var upColor = '#00da3c';
-                var downColor = '#ec0000';
-                var myChart = echarts.init(document.getElementById('main'));
-                var data = splitData(response.data);
-                myChart.setOption(option = {
-                    backgroundColor: '#fff',
-                    animation: false,
-                    legend: {
-                        bottom: 10,
-                        left: 'center',
-                        data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross'
-                        },
-                        backgroundColor: 'rgba(245, 245, 245, 0.8)',
-                        borderWidth: 1,
-                        borderColor: '#ccc',
-                        padding: 10,
-                        textStyle: {
-                            color: '#000'
-                        },
-                        position: function (pos, params, el, elRect, size) {
-                            var obj = {top: 10};
-                            obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-                            return obj;
-                        }
-                        // extraCssText: 'width: 170px'
-                    },
-                    axisPointer: {
-                        link: {xAxisIndex: 'all'},
-                        label: {
-                            backgroundColor: '#777'
-                        }
-                    },
-                    toolbox: {
-                        feature: {
-                            dataZoom: {
-                                yAxisIndex: false
-                            },
-                            brush: {
-                                type: ['lineX', 'clear']
-                            }
-                        }
+                DrawData(response);
+            });
+
+        $scope.Select_Day_K = function () {
+            $http.get("http://localhost:8080/stock/history/days?code=" + code)
+                .then(function (response) {
+                    if (response.data === 400)
+                        window.location.href =  "login.html";
+                    DrawData(response);
+                });
+            document.getElementById("week_k").style.backgroundColor = "#778288";
+            document.getElementById("month_k").style.backgroundColor = "#778288";
+            document.getElementById("day_k").style.backgroundColor = "#1ab5b3";
+
+        }
+        $scope.Select_Week_K = function () {
+            $http.get("http://localhost:8080/stock/history/weeks?code=" + code)
+                .then(function (response) {
+                    if (response.data === 400)
+                        window.location.href =  "login.html";
+                    DrawData(response);
+                });
+            document.getElementById("day_k").style.backgroundColor = "#778288";
+            document.getElementById("month_k").style.backgroundColor = "#778288";
+            document.getElementById("week_k").style.backgroundColor = "#1ab5b3";
+        }
+        $scope.Select_Month_K = function () {
+            $http.get("http://localhost:8080/stock/history/months?code=" + code)
+                .then(function (response) {
+                    if (response.data === 400)
+                        window.location.href =  "login.html";
+                    DrawData(response);
+                });
+            document.getElementById("week_k").style.backgroundColor = "#778288";
+            document.getElementById("day_k").style.backgroundColor = "#778288";
+            document.getElementById("month_k").style.backgroundColor = "#1ab5b3";
+        }
+    });
+
+    function DrawData(response) {
+        var upColor = '#00da3c';
+        var downColor = '#ec0000';
+        var myChart = echarts.init(document.getElementById('main'));
+        var data = splitData(response.data);
+        myChart.setOption(option = {
+            backgroundColor: '#fff',
+            animation: false,
+            legend: {
+                bottom: 10,
+                left: 'center',
+                data: ['Dow-Jones index', 'MA5', 'MA10', 'MA20', 'MA30']
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                },
+                backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                borderWidth: 1,
+                borderColor: '#ccc',
+                padding: 10,
+                textStyle: {
+                    color: '#000'
+                },
+                position: function (pos, params, el, elRect, size) {
+                    var obj = {top: 10};
+                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+                    return obj;
+                }
+                // extraCssText: 'width: 170px'
+            },
+            axisPointer: {
+                link: {xAxisIndex: 'all'},
+                label: {
+                    backgroundColor: '#777'
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: false
                     },
                     brush: {
-                        xAxisIndex: 'all',
-                        brushLink: 'all',
-                        outOfBrush: {
-                            colorAlpha: 0.1
+                        type: ['lineX', 'clear']
+                    }
+                }
+            },
+            brush: {
+                xAxisIndex: 'all',
+                brushLink: 'all',
+                outOfBrush: {
+                    colorAlpha: 0.1
+                }
+            },
+            visualMap: {
+                show: false,
+                seriesIndex: 5,
+                dimension: 2,
+                pieces: [{
+                    value: 1,
+                    color: downColor
+                }, {
+                    value: -1,
+                    color: upColor
+                }]
+            },
+            grid: [
+                {
+                    left: '10%',
+                    right: '8%',
+                    height: '50%'
+                },
+                {
+                    left: '10%',
+                    right: '8%',
+                    top: '63%',
+                    height: '16%'
+                }
+            ],
+            xAxis: [
+                {
+                    type: 'category',
+                    data: data.categoryData,
+                    scale: true,
+                    boundaryGap : false,
+                    axisLine: {onZero: false},
+                    splitLine: {show: false},
+                    splitNumber: 20,
+                    min: 'dataMin',
+                    max: 'dataMax',
+                    axisPointer: {
+                        z: 100
+                    }
+                },
+                {
+                    type: 'category',
+                    gridIndex: 1,
+                    data: data.categoryData,
+                    scale: true,
+                    boundaryGap : false,
+                    axisLine: {onZero: false},
+                    axisTick: {show: false},
+                    splitLine: {show: false},
+                    axisLabel: {show: false},
+                    splitNumber: 20,
+                    min: 'dataMin',
+                    max: 'dataMax'
+                }
+            ],
+            yAxis: [
+                {
+                    scale: true,
+                    splitArea: {
+                        show: true
+                    }
+                },
+                {
+                    scale: true,
+                    gridIndex: 1,
+                    splitNumber: 2,
+                    axisLabel: {show: false},
+                    axisLine: {show: false},
+                    axisTick: {show: false},
+                    splitLine: {show: false}
+                }
+            ],
+            dataZoom: [
+                {
+                    type: 'inside',
+                    xAxisIndex: [0, 1],
+                    start: 98,
+                    end: 100
+                },
+                {
+                    show: true,
+                    xAxisIndex: [0, 1],
+                    type: 'slider',
+                    top: '85%',
+                    start: 98,
+                    end: 100
+                }
+            ],
+            series: [
+                {
+                    name: 'Dow-Jones index',
+                    type: 'candlestick',
+                    data: data.values,
+                    itemStyle: {
+                        normal: {
+                            color: upColor,
+                            color0: downColor,
+                            borderColor: null,
+                            borderColor0: null
                         }
                     },
-                    visualMap: {
-                        show: false,
-                        seriesIndex: 5,
-                        dimension: 2,
-                        pieces: [{
-                            value: 1,
-                            color: downColor
-                        }, {
-                            value: -1,
-                            color: upColor
-                        }]
-                    },
-                    grid: [
-                        {
-                            left: '10%',
-                            right: '8%',
-                            height: '50%'
-                        },
-                        {
-                            left: '10%',
-                            right: '8%',
-                            top: '63%',
-                            height: '16%'
+                    tooltip: {
+                        formatter: function (param) {
+                            param = param[0];
+                            return [
+                                'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
+                                'Open: ' + param.data[0] + '<br/>',
+                                'Close: ' + param.data[1] + '<br/>',
+                                'Lowest: ' + param.data[2] + '<br/>',
+                                'Highest: ' + param.data[3] + '<br/>'
+                            ].join('');
                         }
-                    ],
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: data.categoryData,
-                            scale: true,
-                            boundaryGap : false,
-                            axisLine: {onZero: false},
-                            splitLine: {show: false},
-                            splitNumber: 20,
-                            min: 'dataMin',
-                            max: 'dataMax',
-                            axisPointer: {
-                                z: 100
-                            }
-                        },
-                        {
-                            type: 'category',
-                            gridIndex: 1,
-                            data: data.categoryData,
-                            scale: true,
-                            boundaryGap : false,
-                            axisLine: {onZero: false},
-                            axisTick: {show: false},
-                            splitLine: {show: false},
-                            axisLabel: {show: false},
-                            splitNumber: 20,
-                            min: 'dataMin',
-                            max: 'dataMax'
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            scale: true,
-                            splitArea: {
-                                show: true
-                            }
-                        },
-                        {
-                            scale: true,
-                            gridIndex: 1,
-                            splitNumber: 2,
-                            axisLabel: {show: false},
-                            axisLine: {show: false},
-                            axisTick: {show: false},
-                            splitLine: {show: false}
-                        }
-                    ],
-                    dataZoom: [
-                        {
-                            type: 'inside',
-                            xAxisIndex: [0, 1],
-                            start: 98,
-                            end: 100
-                        },
-                        {
-                            show: true,
-                            xAxisIndex: [0, 1],
-                            type: 'slider',
-                            top: '85%',
-                            start: 98,
-                            end: 100
-                        }
-                    ],
-                    series: [
-                        {
-                            name: 'Dow-Jones index',
-                            type: 'candlestick',
-                            data: data.values,
-                            itemStyle: {
-                                normal: {
-                                    color: upColor,
-                                    color0: downColor,
-                                    borderColor: null,
-                                    borderColor0: null
-                                }
-                            },
-                            tooltip: {
-                                formatter: function (param) {
-                                    param = param[0];
-                                    return [
-                                        'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
-                                        'Open: ' + param.data[0] + '<br/>',
-                                        'Close: ' + param.data[1] + '<br/>',
-                                        'Lowest: ' + param.data[2] + '<br/>',
-                                        'Highest: ' + param.data[3] + '<br/>'
-                                    ].join('');
-                                }
-                            }
-                        },
-                        {
-                            name: 'MA5',
-                            type: 'line',
-                            data: calculateMA(5, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'MA10',
-                            type: 'line',
-                            data: calculateMA(10, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'MA20',
-                            type: 'line',
-                            data: calculateMA(20, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'MA30',
-                            type: 'line',
-                            data: calculateMA(30, data),
-                            smooth: true,
-                            lineStyle: {
-                                normal: {opacity: 0.5}
-                            }
-                        },
-                        {
-                            name: 'Volume',
-                            type: 'bar',
-                            xAxisIndex: 1,
-                            yAxisIndex: 1,
-                            data: data.volumes
-                        }
-                    ]
-                }, true);
-                myChart.dispatchAction({
-                    type: 'brush',
-                    areas: [
-                        {
-                            brushType: 'lineX',
-                            coordRange: ['2016-06-02', '2016-06-20'],
-                            xAxisIndex: 0
-                        }
-                    ]
-                });
-            });
-    });
+                    }
+                },
+                {
+                    name: 'MA5',
+                    type: 'line',
+                    data: calculateMA(5, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'MA10',
+                    type: 'line',
+                    data: calculateMA(10, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'MA20',
+                    type: 'line',
+                    data: calculateMA(20, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'MA30',
+                    type: 'line',
+                    data: calculateMA(30, data),
+                    smooth: true,
+                    lineStyle: {
+                        normal: {opacity: 0.5}
+                    }
+                },
+                {
+                    name: 'Volume',
+                    type: 'bar',
+                    xAxisIndex: 1,
+                    yAxisIndex: 1,
+                    data: data.volumes
+                }
+            ]
+        }, true);
+        myChart.dispatchAction({
+            type: 'brush',
+            areas: [
+                {
+                    brushType: 'lineX',
+                    coordRange: ['2016-06-02', '2016-06-20'],
+                    xAxisIndex: 0
+                }
+            ]
+        });
+    }
+
     function splitData(rawData) {
         var categoryData = [];
         var values = [];
