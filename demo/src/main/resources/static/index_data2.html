@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         if (i === 0) {
                             $scope.industry.splice(0, 1);
                         }
-                        if (float_range >= 1.5) {
+                        if (float_range >= 1.6) {
                             $scope.industry.splice(i, 0, {
                                 name: temp[i].name,
                                 turnover_p: temp[i].turnoverP,
@@ -173,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 style: "cc2"
                             });
                         }
-                        else if (0.5 <= float_range) {
+                        else if (0.3 <= float_range) {
 
                             $scope.industry.splice(i, 0, {
                                 name: temp[i].name,
@@ -183,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 style: "cc3"
                             });
                         }
-                        else if (0.0 <= float_range) {
+                        else if (0.0 < float_range) {
                             $scope.industry.splice(i, 0, {
                                 name: temp[i].name,
                                 turnover_p: temp[i].turnoverP,
@@ -192,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 style: "cc4"
                             });
                         }
-                        else if (-0.5 <= float_range) {
+                        else if (float_range >= -0.3) {
                             $scope.industry.splice(i, 0, {
                                 name: temp[i].name,
                                 turnover_p: temp[i].turnoverP,

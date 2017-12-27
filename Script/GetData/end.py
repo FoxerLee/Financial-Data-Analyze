@@ -73,28 +73,29 @@ def getData(select,flag, start,end,st):
     inTime = GetTime()
     params=[]
     try:
-        config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
-        conn = mysql.connector.connect(**config)
-        cursor=conn.cursor()
+        # config={'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'javaEE', 'charset':'utf8'}
+        # conn = mysql.connector.connect(**config)
+        # cursor=conn.cursor()
         for index, row in data.iterrows():
             if row['code'][0] == '6' or row['code'][0] == '0':
                 
 
-                sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
-                cursor.execute(sql)
-                add_volume = 0.0
-                try:
-                    for volume_value in cursor:
-                        add_volume = row['volume'] - volume_value
-                except:
-                    add_volume = row['volume']
-                add_volume = row['volume']
+                # sql = "SELECT volume_value FROM data_days WHERE code = " + str(row['code'])
+                # cursor.execute(sql)
+                # add_volume = 0.0
+                # try:
+                #     for volume_value in cursor:
+                #         add_volume = row['volume'] - volume_value
+                # except:
+                #     add_volume = row['volume']
+                # add_volume = row['volume']
                 params.append((str(row['code']), inTime, row['open'], row['trade'],
-                           row['high'], row['low'], add_volume, row['changepercent'], row['turnoverratio'],
+                           row['high'], row['low'], row['volume'], row['changepercent'], row['turnoverratio'],
                            row['amount'], row['per'], row['pb'], row['mktcap'], row['nmc'], row['settlement']))
-                conn.close()
-                cursor.close()
-    except:
+                # conn.close()
+                # cursor.close()
+    except Exception, e:
+        print e
         print "data null"
         conn.close()
         cursor.close()
@@ -117,7 +118,8 @@ def store(select,params):
         conn.close()
         cursor.close()
         print "success"
-    except:
+    except Exception, e:
+        print e
         print "write data error!"
         conn.close()
         cursor.close()
