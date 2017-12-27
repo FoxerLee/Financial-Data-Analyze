@@ -183,4 +183,9 @@ public class StockServiceImpl implements StockService {
             return "404";
         }
     }
+
+    @Override
+    public Integer getPredict(String code){
+        return connectMapper.getPredict(code);
+    }
 }

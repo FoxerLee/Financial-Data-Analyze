@@ -18,6 +18,7 @@ public class StockController {
     @Autowired
     private IndustryService industryService;
 
+
     @GetMapping("/all")
     public Object GetAllStockInfo(){
         if (!Verification.verify())
@@ -33,7 +34,7 @@ public class StockController {
         }
     }
         /**
-     * Í¨¹ýcode»òÕßname»ñµÃconnectµÄÐÅÏ¢
+     * Í¨ï¿½ï¿½codeï¿½ï¿½ï¿½ï¿½nameï¿½ï¿½ï¿½connectï¿½ï¿½ï¿½ï¿½Ï¢
      * @param content
      * @return
      */
@@ -47,12 +48,12 @@ public class StockController {
     }
 
     /**
-     * ¸ù¾ÝÐÐÒµÃû³Æ·µ»Ø¸ÃÐÐÒµ¹ÉÆ±ÒÔ¼°ËüÃÇµÄÖÜÐÅÏ¢
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½Òµï¿½ï¿½Æ±ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
      * @param name
      * @return
      */
     @GetMapping("/industry")
-    public Object GetStocksOfIndustry(@RequestParam(value = "name", defaultValue = "»¯¹¤ÐÐÒµ")  String name){
+    public Object GetStocksOfIndustry(@RequestParam(value = "name", defaultValue = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµ")  String name){
         if (!Verification.verify())
             return "400";
         else {
@@ -61,7 +62,7 @@ public class StockController {
     }
 
     /**
-     * »ñÈ¡Ä³Ö»¹ÉÆ±µÄ×îÐÂÐÅÏ¢£¬¸ù¾Ýcode
+     * ï¿½ï¿½È¡Ä³Ö»ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½code
      * @param code
      * @return
      */
@@ -77,7 +78,7 @@ public class StockController {
     }
 
     /**
-     * »ñµÃ¹ÉÆ±µÄÀúÊ·Êý¾ÝÀ´»­ÈÕKÍ¼
+     * ï¿½ï¿½Ã¹ï¿½Æ±ï¿½ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½KÍ¼
      * @param code
      * @return
      */
@@ -115,7 +116,7 @@ public class StockController {
     }
 
     /**
-     * ¸ù¾Ýcode»ñÈ¡¹ÉÆ±Ãû³Æ
+     * ï¿½ï¿½ï¿½ï¿½codeï¿½ï¿½È¡ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½
      * @param code
      * @return
      */
@@ -124,6 +125,13 @@ public class StockController {
         if (!Verification.verify())
             return "400";
         return stockService.getStockNameByCode(code);
+    }
+
+    @GetMapping(value = "/predict")
+    public Object getPredicton(@RequestParam(value = "code", defaultValue = "000001")String code){
+        if (!Verification.verify())
+            return "400";
+        return stockService.getPredict(code);
     }
 
 }

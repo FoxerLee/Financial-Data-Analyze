@@ -20,4 +20,7 @@ public interface ConnectMapper {
 
     @Select("select name from connect where code = \'${code}\'")
     String getName(@Param(value = "code")String code);
+
+    @Select("select res from connect where code = \'${code}\'")
+    Integer getPredict(@Param(value = "code")String code);
 }

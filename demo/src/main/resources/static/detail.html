@@ -71,14 +71,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---->
     <div class="content" >
         <div class="work">
-            <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <!--<button class="button button-3d button-action button-circle button-jumbo"><i class="fa fa-thumbs-up" ng-click="display(code)"></i></button>-->
+            <div class="heat-map-title">&nbsp;&nbsp;&nbsp;{{stockname.name}}({{code}})&nbsp;&nbsp;
+                <button class="button-borderless" id="predict">{{predict}}&nbsp;&nbsp;</button>
                 <button class="button button-raised button-action button-circle button-jumbo" style="background: rgb(51,58,62);border-color:rgb(51,58,62)"><i class="fa fa-thumbs-up" ng-click="display(code)" ></i></button>
-                <!--<span class="heat-map-title2" ng-click="display(code)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加入自选股</span>-->
-            </p>
+
+            </div>
             <div class="work-top">
-
-
                 <div class="test">
                     <!-- <div class="price_time">
                         <div class="price clearfix" id="trading">
@@ -272,7 +270,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $scope.check_out = function () {
             window.location.href = "login.html";
             $http.get("http://localhost:8080/user/logout");
-        }
+        };
         $scope.code = code;
         $scope.display = function(tempcode){
             $http.get("http://localhost:8080/profile/stock/add?code="+tempcode)
@@ -331,6 +329,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 //绘图
                 DrawData(response);
             });
+        $http.get("http://localhost:8080/stock/predict?code=" + code)
+            .then(function (value) {
+                if(value.data === 400)
+                    window.location.href = "index.html";
+                var p = value.data;
+                if (p === 1){
+                    $scope.predict = "涨";
+                    document.getElementById("predict").style.color = "#bd362f";
+                }else if(p === 2){
+                    $scope.predict = "跌";
+                    document.getElementById("predict").style.color = "#46a546";
+                }
+            });
 
         $scope.Select_Day_K = function () {
             $http.get("http://localhost:8080/stock/history/days?code=" + code)
@@ -343,7 +354,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             document.getElementById("month_k").style.backgroundColor = "#778288";
             document.getElementById("day_k").style.backgroundColor = "#1ab5b3";
 
-        }
+        };
         $scope.Select_Week_K = function () {
             $http.get("http://localhost:8080/stock/history/weeks?code=" + code)
                 .then(function (response) {
@@ -354,7 +365,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             document.getElementById("day_k").style.backgroundColor = "#778288";
             document.getElementById("month_k").style.backgroundColor = "#778288";
             document.getElementById("week_k").style.backgroundColor = "#1ab5b3";
-        }
+        };
         $scope.Select_Month_K = function () {
             $http.get("http://localhost:8080/stock/history/months?code=" + code)
                 .then(function (response) {
