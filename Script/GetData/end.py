@@ -39,7 +39,7 @@ def Timer():
 def DealData(flag):
 
     # global conn1, cursor1, conn2, cursor2, conn3, cursor3
-
+    print flag
     start_time = datetime.datetime.now()
 
 
@@ -95,7 +95,7 @@ def getData(select,flag, start,end,st):
                 conn.close()
                 cursor.close()
     except:
-        # print "data null"
+        print "data null"
         conn.close()
         cursor.close()
     # print params
@@ -118,6 +118,7 @@ def store(select,params):
         cursor.close()
         print "success"
     except:
+        print "write data error!"
         conn.close()
         cursor.close()
 

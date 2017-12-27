@@ -16,6 +16,7 @@
     <link href="css/style_foxer.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="css/buttons.css"/>
     <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -92,21 +93,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0" >
                 <tr>
-                    <td scope="col" style="vertical-align:middle; text-align:center;" >标题</td>
-                    <td scope="col" style="vertical-align:middle; text-align:center;" >发布日期</td>
-                    <td scope="col" style="vertical-align:middle; text-align:center;" >研究者</td>
-                    <td scope="col" style="vertical-align:middle; text-align:center;" >研究机构</td>
-                    <td scope="col" style="vertical-align:middle; text-align:center;" >详情</td>
-
+                    <td scope="col" style="vertical-align:middle; text-align:center;" ng-repeat="t in miaotitle">{{t}}</td>
                 </tr>
-                <tr ng-repeat="x in data">
-
-                    <td style="vertical-align:middle; text-align:center;">{{x[1]}}</td>
-                    <td style="vertical-align:middle; text-align:center;">{{x[1]}}</td>
-                    <td style="vertical-align:middle; text-align:center;">{{x[2]}}</td>
-                    <td style="vertical-align:middle; text-align:center;">{{x[3]}}</td>
-                    <!--<td style="vertical-align:middle; text-align:center;"><a  href="{{x.url}}" target="_blank">🔎</a></td>-->
-
+                <tr ng-repeat="miao in data">
+                    <td style="vertical-align:middle; text-align:center;" ng-repeat="x in miao">{{x}}</td>
                 </tr>
 
 
@@ -115,17 +105,118 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     app.controller('siteCtrl', function($scope, $http) {
                         $http.get("http://localhost:8080/special/profit")
                             .then(function (response) {
+                                document.getElementById("growth").style.backgroundColor = "#778288";
+                                document.getElementById("operation").style.backgroundColor = "#778288";
+                                document.getElementById("cashflow").style.backgroundColor = "#778288";
+                                document.getElementById("debtpaying").style.backgroundColor = "#778288";
+                                document.getElementById("profit").style.backgroundColor = "#1ab5b3";
                                 if (response === 400)
                                     window.location.href =  "login.html";
-                                var data = response.data;
+
+                                var title = new Array("股票代码","股票名称","净资产收益率(%)","净利率(%)","毛利率(%)","净利润(万元)","每股收益","营业收入(百万元)","每股主营业务收入(元)");
+                                $scope.miaotitle = title;
                                 $scope.data = response.data;
                             });
                         $scope.check_out = function () {
                             window.location.href =  "login.html";
                         }
+                        $scope.Select_profit = function () {
+                            $http.get("http://localhost:8080/special/profit")
+                                .then(function (response) {
+                                    document.getElementById("growth").style.backgroundColor = "#778288";
+                                    document.getElementById("operation").style.backgroundColor = "#778288";
+                                    document.getElementById("cashflow").style.backgroundColor = "#778288";
+                                    document.getElementById("debtpaying").style.backgroundColor = "#778288";
+                                    document.getElementById("profit").style.backgroundColor = "#1ab5b3";
+                                    if (response === 400)
+                                        window.location.href =  "login.html";
+                                    var title = new Array("股票代码","股票名称","净资产收益率(%)","净利率(%)","毛利率(%)","净利润(万元)","每股收益","营业收入(百万元)","每股主营业务收入(元)");
+                                    $scope.miaotitle = title;
+                                    $scope.data = response.data;
+                                });
+                        }
+                        $scope.Select_growth = function () {
+                            $http.get("http://localhost:8080/special/growth")
+                                .then(function (response) {
+                                    document.getElementById("growth").style.backgroundColor = "#1ab5b3";
+                                    document.getElementById("operation").style.backgroundColor = "#778288";
+                                    document.getElementById("cashflow").style.backgroundColor = "#778288";
+                                    document.getElementById("debtpaying").style.backgroundColor = "#778288";
+                                    document.getElementById("profit").style.backgroundColor = "#778288";
+                                    if (response === 400)
+                                        window.location.href =  "login.html";
+
+                                    var title = new Array("股票代码","股票名称","主营业务收入增长率(%)","净利润增长率(%)","净资产增长率","总资产增长率","每股收益增长率","股东权益增长率");
+                                    $scope.miaotitle = title;
+                                    $scope.data = response.data;
+                                });
+                        }
+                        $scope.Select_operation = function () {
+                            $http.get("http://localhost:8080/special/operation")
+                                .then(function (response) {
+                                    document.getElementById("growth").style.backgroundColor = "#778288";
+                                    document.getElementById("operation").style.backgroundColor = "#1ab5b3";
+                                    document.getElementById("cashflow").style.backgroundColor = "#778288";
+                                    document.getElementById("debtpaying").style.backgroundColor = "#778288";
+                                    document.getElementById("profit").style.backgroundColor = "#778288";
+                                    if (response === 400)
+                                        window.location.href =  "login.html";
+
+                                    var title = new Array("股票代码","股票名称","应收账款周转率(次)","应收账款周转天数(天)","存货周转率(次)","存货周转天数(天)","流动资产周转率(次)","流动资产周转天数(天)");
+                                    $scope.miaotitle = title;
+                                    $scope.data = response.data;
+                                });
+                        }
+                        $scope.Select_cashflow = function () {
+                            $http.get("http://localhost:8080/special/cashflow")
+                                .then(function (response) {
+                                    document.getElementById("growth").style.backgroundColor = "#778288";
+                                    document.getElementById("operation").style.backgroundColor = "#778288";
+                                    document.getElementById("cashflow").style.backgroundColor = "#1ab5b3";
+                                    document.getElementById("debtpaying").style.backgroundColor = "#778288";
+                                    document.getElementById("profit").style.backgroundColor = "#778288";
+                                    if (response === 400)
+                                        window.location.href =  "login.html";
+
+                                    var title = new Array("股票代码","股票名称","经营现金净流量对销售收入比率","资产的经营现金流量回报率","经营现金净流量与净利润的比率","经营现金净流量对负债比率","现金流量比率");
+                                    $scope.miaotitle = title;
+                                    $scope.data = response.data;
+                                });
+                        }
+                        $scope.Select_debtpaying = function () {
+                            $http.get("http://localhost:8080/special/debt")
+                                .then(function (response) {
+                                    document.getElementById("growth").style.backgroundColor = "#778288";
+                                    document.getElementById("operation").style.backgroundColor = "#778288";
+                                    document.getElementById("cashflow").style.backgroundColor = "#778288";
+                                    document.getElementById("debtpaying").style.backgroundColor = "#1ab5b3";
+                                    document.getElementById("profit").style.backgroundColor = "#778288";
+                                    if (response === 400)
+                                        window.location.href =  "login.html";
+
+                                    var title = new Array("股票代码","股票名称","流动比率","速动比率","现金比率","利息支付倍数","股东权益比率","股东权益增长率");
+                                    $scope.miaotitle = title;
+                                    $scope.data = response.data;
+                                });
+                        }
                     });
 
                 </script>
+                <style>
+                    .guding{text-align:center;}
+                    #miao{display:inline-block;}
+                </style>
+                <div class="guding" >
+                    <ul class="pagination" id="miao">
+                        <li><a href="#">&laquo;</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
 
             </table>
             <!-- 分页 end --
