@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <p class="heat-map-title" >&nbsp;&nbsp;&nbsp;A股行业<span class="heat-map-title2">按成交额从前到后排列</span></p>
 
-    <div ng-repeat="n in industry" ng-click="display(n.name)" id="{{n.name}}" class="content-grid" >
+    <div ng-repeat="n in industry" ng-click="display(n.name)" id="{{n.name}}" class="content-grid">
         <a class="b-link-stripe b-animate-go  thickbox">
             <div class={{n.style}}>{{n.name}}</div>
             <div class="b-wrapper">
@@ -95,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li class="insert">&nbsp;&nbsp;&nbsp;</li>
         </ul>
         <p id="individual" class="heat-map-title" >&nbsp;&nbsp;&nbsp;化工行业个股<span class="heat-map-title2">按成交额从前到后排列</span></p>
-        <div ng-repeat="m in single"  class="content-grid">
+        <div ng-repeat="m in single"  class="content-grid" >
             <a class="b-link-stripe b-animate-go  thickbox">
                 <div id={{m.name}} class={{m.style}} ng-click="goto(m.code)">{{m.name}}</div>
             </a>
