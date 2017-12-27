@@ -1006,7 +1006,7 @@ table tbody tr:hover > td{background:#eef6ff;}
     margin-left: 10px;
     background-color: #0F8EE2;
     color:white;
-    font-family: "microsoft Yahei";
+    font-family: "microsoft YaHei";
     font-size: 14px;
     border-style: none;
     outline: none;
@@ -1023,20 +1023,20 @@ table tbody tr:hover > td{background:#eef6ff;}
 }
 .datePickerDiv select{
     border-radius: 0px;
-    font-family: "microsoft yahei";
+    font-family: "Microsoft YaHei","SimHei";
     font-size: 13px;
 }
 .datePickerDiv .qgqpSelect{
     border-radius: 0px;
     width:100px;
-    font-family: "microsoft yahei";
+    font-family: "Microsoft YaHei","SimHei";
     font-size: 13px;
 }
 .datePickerDiv input[type=text]{
     /*width:150px;*/
     border-radius: 0;
     color:gray;
-    font-family: "microsoft yahei";
+    font-family: "Microsoft YaHei","SimHei";
     margin-bottom: 0px;
     text-align: left;
 }
@@ -1048,7 +1048,7 @@ table tbody tr:hover > td{background:#eef6ff;}
     color:white;
     padding:5px 0px 5px 0px;
     font-size: 14px;
-    font-family: "microsoft yahei";
+    font-family: "Microsoft YaHei","SimHei";
     outline: none;
 }
 
@@ -1067,7 +1067,7 @@ table tbody tr:hover > td{background:#eef6ff;}
 /*´¦ÀídatepickerÀïµÄtable*/
 .datepicker table{
     border-style: none;
-    font-family: microsoft yahei;
+    font-family: "Microsoft YaHei","SimHei";
 }
 
 .datepicker table tr:nth-child(n){
