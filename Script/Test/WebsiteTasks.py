@@ -30,8 +30,15 @@ class WebsiteTasks(TaskSet):
             self.cookiejar[cookie['name']] = cookie['value']
 
     @task
-    def test_task(self):
+    def test_task1(self):
         self.client.request('get', "/ranking.html", cookies=self.cookiejar)
+
+    @task
+    def test_task2(self):
+        self.client.request('get', "/detail.html?code=000001", cookies=self.cookiejar)
+    @task
+    def test_task3(self):
+        self.client.request('get', "/fundamentals.html", cookies=self.cookiejar)
 
 class WebsiteUser(HttpLocust):
     task_set = WebsiteTasks
